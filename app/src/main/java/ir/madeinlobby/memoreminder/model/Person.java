@@ -18,4 +18,20 @@ public class Person {
         this.allPostsIds = new ArrayList<>();
         this.allTags = new ArrayList<>();
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public ArrayList<String> getAllPostsIds() {
+        return allPostsIds;
+    }
+
+    public ArrayList<Tag> getAllTags() {
+        return allTags;
+    }
 }

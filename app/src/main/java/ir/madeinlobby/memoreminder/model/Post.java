@@ -32,4 +32,40 @@ public class Post {
         this.commentsIds = new ArrayList<>();
         this.location = location;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getUsernameWhoBelong() {
+        return usernameWhoBelong;
+    }
+
+    public LocalDate getDateCreated() {
+        return dateCreated;
+    }
+
+    public LocalDate getLastDateEdited() {
+        return lastDateEdited;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public ArrayList<Tag> getTags() {
+        return tags;
+    }
+
+    public ArrayList<String> getUsersWhoBeenTagged() {
+        return usersWhoBeenTagged;
+    }
+
+    public ArrayList<String> getCommentsIds() {
+        return commentsIds;
+    }
 }

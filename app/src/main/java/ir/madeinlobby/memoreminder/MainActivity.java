@@ -2,6 +2,7 @@ package ir.madeinlobby.memoreminder;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
@@ -22,7 +23,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void registerPressed(View view) {
-        Toast.makeText(this, "register", Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "register", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+        startActivity(intent);
     }
 
     public void loginClicked(View view) {

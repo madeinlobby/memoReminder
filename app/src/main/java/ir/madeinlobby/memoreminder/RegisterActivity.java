@@ -19,9 +19,11 @@ public class RegisterActivity extends AppCompatActivity {
         EditText textPassword = findViewById(R.id.passwordForRegister);
         EditText textFirstName = findViewById(R.id.firstNameForRegister);
         EditText textLastName = findViewById(R.id.lastNameForRegister);
+        EditText textEmail = findViewById(R.id.emailForRegister);
         String userName = textUserName.getText().toString();
         String passWord = textPassword.getText().toString();
         String firstName = textFirstName.getText().toString();
         String lastName = textLastName.getText().toString();
+        String email = textEmail.getText().toString();
     }
 }

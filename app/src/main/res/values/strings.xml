@@ -13,8 +13,8 @@
     <string name="password">password :</string>
     <string name="login">login</string>
     <string name="login_page">Login Page</string>
-    <string name="register"><u>create an account</u></string>
-    <string name="register2"><u>register</u></string>
+    <string name="register">create an account</string>
+    <string name="register2">register</string>
     <string name="firstName">first name :</string>
     <string name="lastName">last name :</string>
 </resources>

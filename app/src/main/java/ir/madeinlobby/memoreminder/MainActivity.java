@@ -7,6 +7,7 @@ import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void registerPressed(View view) {
+        Toast.makeText(this, "register", Toast.LENGTH_LONG).show();
     }
 
     public void loginClicked(View view) {

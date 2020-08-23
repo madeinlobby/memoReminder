@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void registerPressed(View view) {
-//        Toast.makeText(this, "register", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
         startActivity(intent);
     }

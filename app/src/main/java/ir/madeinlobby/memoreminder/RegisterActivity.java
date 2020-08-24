@@ -34,7 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
         String lastName = textLastName.getText().toString();
         String email = textEmail.getText().toString();
         try {
-            HttpUtility.openConnection(server + "/login.php");
+            HttpUtility.openConnection(server + "/register.php");
             HashMap<String, String> fields = new HashMap<>();
             fields.put("username", userName);
             fields.put("password", password);

@@ -44,14 +44,14 @@ public class RegisterActivity extends AppCompatActivity {
             public void run() {
                 String response = HttpUtility.sendPostRequest(server + "/register.php",fields);
                 if (response.startsWith("error")) {
-                    if (response.equals("error: register_error, username_already_taken")) {
+                    if (response.startsWith("error: register_error, username_already_taken")) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 Toast.makeText(RegisterActivity.this, "username taken already", Toast.LENGTH_LONG).show();
                             }
                         });
-                    } else if (response.equals("error: register_error, empty_required_field")) {
+                    } else if (response.startsWith("error: register_error, empty_required_field")) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {

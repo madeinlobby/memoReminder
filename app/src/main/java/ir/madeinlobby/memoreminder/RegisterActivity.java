@@ -11,10 +11,10 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.HashMap;
 
+import ir.madeinlobby.memoreminder.utilities.BaseController;
 import ir.madeinlobby.memoreminder.utilities.HttpUtility;
 
 public class RegisterActivity extends AppCompatActivity {
-    private static final String server = "localhost:80";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
         String lastName = textLastName.getText().toString();
         String email = textEmail.getText().toString();
         try {
-            HttpUtility.openConnection(server + "/register.php");
+            HttpUtility.openConnection(BaseController.server + "/register.php");
             HashMap<String, String> fields = new HashMap<>();
             fields.put("username", userName);
             fields.put("password", password);
@@ -45,9 +45,11 @@ public class RegisterActivity extends AppCompatActivity {
             String response = HttpUtility.readResponse();
             if (response.startsWith("error")) {
                 if (response.equals("error: register_error, username_already_taken")) {
-                    Toast.makeText(RegisterActivity.this, "username taken already", Toast.LENGTH_LONG).show();
+                    BaseController.showError(RegisterActivity.this,"username taken already");
+//                    Toast.makeText(RegisterActivity.this, "username taken already", Toast.LENGTH_LONG).show();
                 } else if (response.equals("error: register_error, empty_required_field")) {
-                    Toast.makeText(RegisterActivity.this, "every fields should be filled", Toast.LENGTH_LONG).show();
+                    BaseController.showError(RegisterActivity.this,"every fields should be filled");
+//                    Toast.makeText(RegisterActivity.this, "every fields should be filled", Toast.LENGTH_LONG).show();
                 }
             } else {
                 Toast.makeText(RegisterActivity.this, "register was successful", Toast.LENGTH_LONG).show();

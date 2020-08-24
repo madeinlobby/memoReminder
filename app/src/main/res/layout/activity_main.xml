@@ -37,9 +37,9 @@
         <EditText
             android:id="@+id/usernameForLogin"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="10dp"
-            android:background="@color/textInput" />
+            android:background="@drawable/text_input_style"/>
     </LinearLayout>
 
     <LinearLayout
@@ -59,11 +59,11 @@
 
         <EditText
             android:id="@+id/passwordForLogin"
+            android:inputType="textPassword"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="10dp"
-            android:background="@color/textInput"
-            android:inputType="textPassword"/>
+            android:background="@drawable/text_input_style"/>
     </LinearLayout>
 
     <Button

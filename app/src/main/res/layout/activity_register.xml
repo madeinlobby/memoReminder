@@ -47,9 +47,9 @@
                 <EditText
                     android:id="@+id/usernameForRegister"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="50dp"
                     android:layout_marginLeft="10dp"
-                    android:background="@color/textInput" />
+                    android:background="@drawable/text_input_style" />
             </LinearLayout>
 
             <LinearLayout
@@ -71,9 +71,9 @@
                 <EditText
                     android:id="@+id/firstNameForRegister"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="50dp"
                     android:layout_marginLeft="10dp"
-                    android:background="@color/textInput" />
+                    android:background="@drawable/text_input_style"/>
             </LinearLayout>
 
             <LinearLayout
@@ -95,9 +95,9 @@
                 <EditText
                     android:id="@+id/lastNameForRegister"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="50dp"
                     android:layout_marginLeft="10dp"
-                    android:background="@color/textInput" />
+                    android:background="@drawable/text_input_style"/>
             </LinearLayout>
 
             <LinearLayout
@@ -119,9 +119,9 @@
                 <EditText
                     android:id="@+id/emailForRegister"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="50dp"
                     android:layout_marginLeft="10dp"
-                    android:background="@color/textInput" />
+                    android:background="@drawable/text_input_style"/>
             </LinearLayout>
 
             <LinearLayout
@@ -143,10 +143,10 @@
                 <EditText
                     android:id="@+id/passwordForRegister"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="50dp"
                     android:layout_marginLeft="10dp"
-                    android:background="@color/textInput"
-                    android:inputType="textPassword" />
+                    android:background="@drawable/text_input_style"
+                    android:inputType="textPassword"/>
             </LinearLayout>
 
             <Button

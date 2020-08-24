@@ -14,8 +14,9 @@
     <string name="login">login</string>
     <string name="login_page">Login Page</string>
     <string name="register">create an account</string>
-    <string name="register2">register</string>
+    <string name="register2">register </string>
     <string name="firstName">first name :</string>
     <string name="lastName">last name :</string>
     <string name="email">email :</string>
+    <string name="modification">modification :</string>
 </resources>

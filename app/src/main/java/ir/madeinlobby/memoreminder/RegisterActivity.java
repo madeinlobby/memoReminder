@@ -14,8 +14,7 @@ import java.util.HashMap;
 import ir.madeinlobby.memoreminder.utilities.HttpUtility;
 
 public class RegisterActivity extends AppCompatActivity {
-    private static final String server = "localhost:80";
-
+    private static final String server = "http://10.0.2.2/memoReminder";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,29 +32,43 @@ public class RegisterActivity extends AppCompatActivity {
         String firstName = textFirstName.getText().toString();
         String lastName = textLastName.getText().toString();
         String email = textEmail.getText().toString();
-        try {
-            HttpUtility.openConnection(server + "/register.php");
-            HashMap<String, String> fields = new HashMap<>();
-            fields.put("username", userName);
-            fields.put("password", password);
-            fields.put("firstName", firstName);
-            fields.put("lastName", lastName);
-            fields.put("email", email);
-            HttpUtility.sendPostRequest(fields);
-            String response = HttpUtility.readResponse();
-            if (response.startsWith("error")) {
-                if (response.equals("error: register_error, username_already_taken")) {
-                    Toast.makeText(RegisterActivity.this, "username taken already", Toast.LENGTH_LONG).show();
-                } else if (response.equals("error: register_error, empty_required_field")) {
-                    Toast.makeText(RegisterActivity.this, "every fields should be filled", Toast.LENGTH_LONG).show();
+        final HashMap<String, String> fields = new HashMap<>();
+        fields.put("username", userName);
+        fields.put("password", password);
+        fields.put("firstName", firstName);
+        fields.put("lastName", lastName);
+        fields.put("email", email);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String response = HttpUtility.sendPostRequest(server + "/register.php",fields);
+                if (response.startsWith("error")) {
+                    if (response.equals("error: register_error, username_already_taken")) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(RegisterActivity.this, "username taken already", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    } else if (response.equals("error: register_error, empty_required_field")) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(RegisterActivity.this, "every fields should be filled", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+                } else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(RegisterActivity.this, "register was successful", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                            startActivity(intent);
+                        }
+                    });
                 }
-            } else {
-                Toast.makeText(RegisterActivity.this, "register was successful", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                startActivity(intent);
             }
-        } catch (IOException e) {
-            Toast.makeText(RegisterActivity.this, "error in opening connection", Toast.LENGTH_LONG).show();
-        }
+        }).start();
     }
 }

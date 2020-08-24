@@ -8,4 +8,5 @@
     <color name="buttonColor">#E8E1A1</color>
     <color name="topicColor">#50583B</color>
     <color name="black">#000000</color>
+    <color name="postColor">#E9F1D4</color>
 </resources>

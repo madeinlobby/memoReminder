@@ -11,6 +11,7 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.HashMap;
 
+import ir.madeinlobby.memoreminder.utilities.BaseController;
 import ir.madeinlobby.memoreminder.utilities.HttpUtility;
 
 public class RegisterActivity extends AppCompatActivity {

@@ -2,6 +2,8 @@ package ir.madeinlobby.memoreminder;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -15,6 +17,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.util.HashMap;
 
+import ir.madeinlobby.memoreminder.utilities.BaseController;
 import ir.madeinlobby.memoreminder.utilities.HttpUtility;
 
 public class MainActivity extends AppCompatActivity {

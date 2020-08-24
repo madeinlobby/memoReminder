@@ -49,9 +49,8 @@ public class RegisterActivity extends AppCompatActivity {
                 } else if (response.equals("error: register_error, empty_required_field")) {
                     Toast.makeText(RegisterActivity.this, "every fields should be filled", Toast.LENGTH_LONG).show();
                 }
-                Toast.makeText(RegisterActivity.this, "invalid username or password", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(RegisterActivity.this, "register successful successful", Toast.LENGTH_LONG).show();
+                Toast.makeText(RegisterActivity.this, "register was successful", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                 startActivity(intent);
             }

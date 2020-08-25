@@ -2,10 +2,13 @@ package ir.madeinlobby.memoreminder;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class accountArea extends AppCompatActivity {
+import ir.madeinlobby.memoreminder.utilities.BaseController;
+
+public class AccountArea extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,5 +17,8 @@ public class accountArea extends AppCompatActivity {
     }
 
     public void logOutClicked(View view) {
+        BaseController.setToken("");
+        Intent intent = new Intent(AccountArea.this, MainActivity.class);
+        startActivity(intent);
     }
 }

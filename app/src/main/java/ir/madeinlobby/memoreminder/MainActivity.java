@@ -2,8 +2,6 @@ package ir.madeinlobby.memoreminder;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -13,8 +11,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.util.HashMap;
 
 import ir.madeinlobby.memoreminder.utilities.BaseController;
@@ -60,11 +56,12 @@ public class MainActivity extends AppCompatActivity {
                     });
                 } else {
                     String token = response.substring(4);
+                    BaseController.setToken(token);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             Toast.makeText(MainActivity.this, "login successful", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(MainActivity.this, accountArea.class);
+                            Intent intent = new Intent(MainActivity.this, AccountArea.class);
                             startActivity(intent);
                         }
                     });

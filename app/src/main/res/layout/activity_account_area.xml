@@ -7,37 +7,54 @@
     android:background="@color/background"
     android:orientation="vertical"
     tools:context=".accountArea">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_margin="5dp">
+        android:layout_margin="5dp"
+        android:padding="5dp">
 
         <ImageView
-            android:layout_width="45dp"
+            android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_gravity="bottom"
             android:src="@drawable/posts_icon1"
-            android:layout_marginLeft="30dp"/>
+            android:layout_weight="0.20"
+            />
 
         <ImageView
-            android:layout_width="45dp"
+            android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_gravity="bottom"
             android:src="@drawable/contacts_icon"
-            android:layout_marginLeft="45dp"/>
+            android:layout_weight="0.20"
+            />
 
         <ImageView
-            android:layout_width="40dp"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_gravity="bottom"
             android:src="@drawable/tags"
-            android:layout_marginLeft="45dp"/>
+            android:layout_weight="0.20"
+            />
+
         <ImageView
-            android:layout_width="43dp"
+            android:layout_width="match_parent"
             android:layout_height="43dp"
             android:layout_gravity="bottom"
             android:src="@drawable/tag_icon1"
-            android:layout_marginLeft="45dp"/>
+            android:layout_weight="0.20"
+            />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_gravity="bottom"
+            android:src="@drawable/logout_icon"
+            android:layout_weight="0.20"
+            android:layout_marginBottom="2dp"
+            android:onClick="logOutClicked"
+            />
 
     </LinearLayout>
 
@@ -45,10 +62,13 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@android:color/black" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <view class="androidx.appcompat.app.AlertController$RecycleListView"
+
+        <view
+            class="androidx.appcompat.app.AlertController$RecycleListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

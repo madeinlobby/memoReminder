@@ -7,9 +7,10 @@ import android.content.DialogInterface;
 import ir.madeinlobby.memoreminder.MainActivity;
 
 public class BaseController {
-    public static final String server="localhost:80";
+    public static final String server = "localhost:80";
+    private static String token = "";
 
-    public static void showError(Context context,String message){
+    public static void showError(Context context, String message) {
         AlertDialog alertDialog = new AlertDialog.Builder(context)
                 .setIcon(android.R.drawable.ic_delete)
                 .setTitle("Error happened!")
@@ -20,5 +21,13 @@ public class BaseController {
                     }
                 })
                 .show();
+    }
+
+    public static String getToken() {
+        return token;
+    }
+
+    public static void setToken(String token) {
+        BaseController.token = token;
     }
 }

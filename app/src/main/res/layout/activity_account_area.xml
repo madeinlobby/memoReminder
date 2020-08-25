@@ -48,7 +48,7 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="37dp"
             android:layout_gravity="bottom"
             android:src="@drawable/logout_icon"
             android:layout_weight="0.20"

@@ -11,7 +11,7 @@ public class BaseController {
     private static String token = "";
 
     public static void showError(Context context, String message) {
-        AlertDialog alertDialog = new AlertDialog.Builder(context)
+        new AlertDialog.Builder(context)
                 .setIcon(android.R.drawable.ic_delete)
                 .setTitle("Error happened!")
                 .setMessage(message)

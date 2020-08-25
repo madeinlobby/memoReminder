@@ -36,7 +36,7 @@
             android:layout_marginRight="10dp"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/tagIcon"
+            android:src="@drawable/tag_icon"
             android:onClick="tagIconClicked"/>
     </LinearLayout>
     <LinearLayout

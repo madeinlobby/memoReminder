@@ -1,50 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:layout_margin="15dp"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background ="@drawable/brief_post_row"
+    android:layout_margin="15dp"
+    android:background="@drawable/brief_post_row"
     android:orientation="horizontal">
+
     <ImageView
         android:id="@+id/postRowPicture"
-        android:background="@drawable/border_for_photo"
-        android:layout_margin="15dp"
         android:layout_width="180dp"
         android:layout_height="180dp"
-        tools:srcCompat="@tools:sample/avatars"/>
+        android:layout_margin="15dp"
+        android:background="@drawable/border_for_photo"
+        tools:srcCompat="@tools:sample/avatars" />
+
     <LinearLayout
-        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center_vertical"
         android:orientation="vertical"
-        android:gravity="center_vertical">
+        android:padding="10dp">
+
         <TextView
             android:id="@+id/postRowTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
             android:layout_gravity="center"
-            android:text="hello"/>
-        <TextView
-            android:id="@+id/postRowLocation"
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:text="hello"
             android:textColor="@color/black"
-            android:text="shiraz"/>
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/location_icon"/>
+
+            <TextView
+                android:id="@+id/postRowLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="shiraz"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/calendar_icon"/>
         <TextView
             android:id="@+id/postRowModification"
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:text="12-03-2020"
             android:textColor="@color/black"
-            android:text="12-03-2020"/>
+            android:textSize="20sp" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

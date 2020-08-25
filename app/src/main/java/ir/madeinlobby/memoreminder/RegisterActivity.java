@@ -48,14 +48,16 @@ public class RegisterActivity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(RegisterActivity.this, "username taken already", Toast.LENGTH_LONG).show();
+                                BaseController.showError(RegisterActivity.this,"username taken already");
+//                                Toast.makeText(RegisterActivity.this, "username taken already", Toast.LENGTH_LONG).show();
                             }
                         });
                     } else if (response.startsWith("error: register_error, empty_required_field")) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(RegisterActivity.this, "every fields should be filled", Toast.LENGTH_LONG).show();
+                                BaseController.showError(RegisterActivity.this,"every fields should be filled");
+//                                Toast.makeText(RegisterActivity.this, "every fields should be filled", Toast.LENGTH_LONG).show();
                             }
                         });
                     }

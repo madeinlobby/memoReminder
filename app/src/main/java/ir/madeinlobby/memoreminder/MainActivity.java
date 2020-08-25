@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(MainActivity.this, "invalid username or password", Toast.LENGTH_LONG).show();
+                            BaseController.showError(MainActivity.this,"invalid username or password");
+//                            Toast.makeText(MainActivity.this, "invalid username or password", Toast.LENGTH_LONG).show();
                         }
                     });
                 } else {

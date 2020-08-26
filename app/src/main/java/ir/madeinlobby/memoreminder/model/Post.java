@@ -17,7 +17,7 @@ public class Post {
     private Location location;
     private ArrayList<Tag> tags;
     private ArrayList<String> usersWhoBeenTagged;
-    private ArrayList<String> commentsIds;
+    private ArrayList<Comment> comments;
     // image and video and voice
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -29,7 +29,7 @@ public class Post {
         this.id = RandomString.getAlphaNumericString();
         this.tags = new ArrayList<>();
         this.usersWhoBeenTagged = new ArrayList<>();
-        this.commentsIds = new ArrayList<>();
+        this.comments = new ArrayList<>();
         this.location = location;
     }
 
@@ -65,7 +65,7 @@ public class Post {
         return usersWhoBeenTagged;
     }
 
-    public ArrayList<String> getCommentsIds() {
-        return commentsIds;
+    public ArrayList<Comment> getCommentsIds() {
+        return comments;
     }
 }

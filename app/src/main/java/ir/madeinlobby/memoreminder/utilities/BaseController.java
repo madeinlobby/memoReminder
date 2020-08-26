@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
-import ir.madeinlobby.memoreminder.MainActivity;
 
 public class BaseController {
     public static final String server = "localhost:80";

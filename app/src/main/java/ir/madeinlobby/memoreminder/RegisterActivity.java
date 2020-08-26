@@ -15,7 +15,6 @@ import ir.madeinlobby.memoreminder.utilities.BaseController;
 import ir.madeinlobby.memoreminder.utilities.HttpUtility;
 
 public class RegisterActivity extends AppCompatActivity {
-    private static final String server = "http://10.0.2.2/memoReminder";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String response = HttpUtility.sendPostRequest(server + "/register.php",fields);
+                String response = HttpUtility.sendPostRequest(BaseController.server + "/register.php",fields);
                 if (response.startsWith("error")) {
                     if (response.startsWith("error: register_error, username_already_taken")) {
                         runOnUiThread(new Runnable() {

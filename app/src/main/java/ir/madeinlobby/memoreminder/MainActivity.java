@@ -2,6 +2,7 @@ package ir.madeinlobby.memoreminder;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -17,16 +18,17 @@ import ir.madeinlobby.memoreminder.utilities.BaseController;
 import ir.madeinlobby.memoreminder.utilities.HttpUtility;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String server = "http://10.0.2.2/memoReminder";
+    public static Activity mainActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mainActivity = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TextView textView = findViewById(R.id.register);
-        SpannableString content = new SpannableString( "create an account" ) ;
-        content.setSpan( new UnderlineSpan() , 0 , content.length() , 0 ) ;
-        textView.setText(content) ;
+        SpannableString content = new SpannableString("create an account");
+        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+        textView.setText(content);
     }
 
     public void registerPressed(View view) {
@@ -45,12 +47,12 @@ public class MainActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String response = HttpUtility.sendPostRequest(server + "/login.php", fields);
+                String response = HttpUtility.sendPostRequest(BaseController.server + "/login.php", fields);
                 if (response.startsWith("error")) {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            BaseController.showError(MainActivity.this,"invalid username or password");
+                            BaseController.showError(MainActivity.this, "invalid username or password");
 //                            Toast.makeText(MainActivity.this, "invalid username or password", Toast.LENGTH_LONG).show();
                         }
                     });

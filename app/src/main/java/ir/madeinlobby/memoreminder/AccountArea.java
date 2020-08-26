@@ -14,6 +14,7 @@ public class AccountArea extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_area);
+        MainActivity.mainActivity.finish();
     }
 
     public void logOutClicked(View view) {

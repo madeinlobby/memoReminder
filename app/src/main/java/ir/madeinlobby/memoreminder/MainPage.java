@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,8 +15,7 @@ import android.widget.ScrollView;
 import com.azeesoft.lib.colorpicker.ColorPickerDialog;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import dev.sasikanth.colorsheet.ColorSheet;
-import petrov.kristiyan.colorpicker.ColorPicker;
+
 
 public class MainPage extends AppCompatActivity {
     ScrollView scrollView;

@@ -33,17 +33,21 @@ public class MainPage extends AppCompatActivity {
                 switch (item.getItemId()) {
 
                     case R.id.posts:
+                        scrollView.removeAllViews();
                         posts();
                         return true;
 
                     case R.id.contacts:
+                        scrollView.removeAllViews();
                         contacts();
                         return true;
 
                     case R.id.tags:
+                        scrollView.removeAllViews();
                         showTagsPage();
                         return true;
                     case R.id.tagged:
+                        scrollView.removeAllViews();
                         showTaggedPage();
                         return true;
 

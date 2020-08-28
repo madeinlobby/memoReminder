@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,11 +13,16 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import com.azeesoft.lib.colorpicker.ColorPickerDialog;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.HashMap;
+
+import ir.madeinlobby.memoreminder.controller.MainManager;
 import ir.madeinlobby.memoreminder.utilities.BaseController;
+import ir.madeinlobby.memoreminder.utilities.HttpUtility;
 
 
 public class MainPage extends AppCompatActivity {
@@ -92,6 +98,32 @@ public class MainPage extends AppCompatActivity {
         }
         EditText editText = findViewById(R.id.tagName);
         String tagTitle = editText.getText().toString();
+        final HashMap<String, String> fields = new HashMap<>();
+        fields.put("token", BaseController.getToken());
+        fields.put("text", tagTitle);
+        fields.put("color", tagColor);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String response = HttpUtility.sendPostRequest(BaseController.server + "/addTag.php", fields);
+                if (response.startsWith("error")) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            BaseController.showError(MainPage.this, getString(R.string.error_for_add_tag));
+                        }
+                    });
+                } else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(MainPage.this, getString(R.string.tag_added_sucessful), Toast.LENGTH_LONG).show();
+                            tagColor = "";
+                        }
+                    });
+                }
+            }
+        }).start();
         //sendTag
     }
 

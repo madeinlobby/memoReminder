@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                     });
                 } else {
                     String token = response.substring(4);
-                    BaseController.setToken(token);
+                    BaseController.setToken(token.trim());
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

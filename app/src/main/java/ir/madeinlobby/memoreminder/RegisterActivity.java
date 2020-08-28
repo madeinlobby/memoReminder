@@ -41,13 +41,13 @@ public class RegisterActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String response = HttpUtility.sendPostRequest(BaseController.server + "/register.php",fields);
+                String response = HttpUtility.sendPostRequest(BaseController.server + "/register.php", fields);
                 if (response.startsWith("error")) {
                     if (response.startsWith("error: register_error, username_already_taken")) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                BaseController.showError(RegisterActivity.this,"username taken already");
+                                BaseController.showError(RegisterActivity.this, getString(R.string.user_name_taken_already));
 //                                Toast.makeText(RegisterActivity.this, "username taken already", Toast.LENGTH_LONG).show();
                             }
                         });
@@ -55,7 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                BaseController.showError(RegisterActivity.this,"every fields should be filled");
+                                BaseController.showError(RegisterActivity.this, getString(R.string.empty_field));
 //                                Toast.makeText(RegisterActivity.this, "every fields should be filled", Toast.LENGTH_LONG).show();
                             }
                         });
@@ -64,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(RegisterActivity.this, "register was successful", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterActivity.this, getString(R.string.register_successful), Toast.LENGTH_LONG).show();
 //                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
 //                            startActivity(intent);
                             RegisterActivity.this.finish();

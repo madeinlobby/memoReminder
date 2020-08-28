@@ -18,5 +18,11 @@
     <string name="firstName">first name :</string>
     <string name="lastName">last name :</string>
     <string name="email">email :</string>
+    <string name="error_for_login">invalid username or password :</string>
     <string name="modification">modification :</string>
+    <string name="login_successful">login successful</string>
+    <string name="user_name_taken_already">username taken already</string>
+    <string name="error_for_pick_color">you must first pick up a color</string>
+    <string name="empty_field">every fields should be filled"</string>
+    <string name="register_successful">register was successful</string>
 </resources>

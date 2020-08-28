@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            BaseController.showError(MainActivity.this, "invalid username or password");
+                            BaseController.showError(MainActivity.this, getString(R.string.error_for_login));
 //                            Toast.makeText(MainActivity.this, "invalid username or password", Toast.LENGTH_LONG).show();
                         }
                     });
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(MainActivity.this, "login successful", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, getString(R.string.login_successful), Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(MainActivity.this, MainPage.class);
                             startActivity(intent);
                         }

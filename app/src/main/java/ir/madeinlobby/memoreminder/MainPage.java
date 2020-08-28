@@ -16,10 +16,12 @@ import android.widget.ScrollView;
 import com.azeesoft.lib.colorpicker.ColorPickerDialog;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import ir.madeinlobby.memoreminder.utilities.BaseController;
+
 
 public class MainPage extends AppCompatActivity {
     ScrollView scrollView;
-    String tagColor;
+    String tagColor = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,9 +86,13 @@ public class MainPage extends AppCompatActivity {
     }
 
     public void addTag(View view) {
+        if (tagColor.equals("")) {
+            BaseController.showError(MainPage.this, getString(R.string.error_for_pick_color));
+            return;
+        }
         EditText editText = findViewById(R.id.tagName);
         String tagTitle = editText.getText().toString();
-
+        //sendTag
     }
 
     private void contacts() {

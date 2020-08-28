@@ -34,14 +34,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="tag name :"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:layout_weight = "0"
+                />
 
             <EditText
-                android:layout_width="200dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="15dp"
                 android:background="@color/textInput"
-                android:gravity="center" />
+                android:id="@+id/tagName"
+                android:layout_weight = "1"
+                />
 
             <ImageView
                 android:layout_width="30dp"
@@ -49,7 +53,10 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="15dp"
                 android:onClick="colorPickerClicked"
-                android:src="@drawable/color_picker_icon2" />
+                android:layout_gravity="fill_horizontal"
+                android:src="@drawable/color_picker_icon2"
+                android:layout_weight = "0"
+                />
 
         </LinearLayout>
 
@@ -60,6 +67,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/button"
             android:text="add "
+            android:onClick="addTag"
             android:textAllCaps="false" />
     </LinearLayout>
 

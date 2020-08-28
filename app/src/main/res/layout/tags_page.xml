@@ -6,22 +6,24 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="add new tag"
-        android:textColor="@color/black"
-        android:textSize="16dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="@drawable/border_for_photo"
-        android:padding="10dp"
+        android:gravity="center"
         android:orientation="vertical"
-        android:gravity="center">
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="add new tag"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,22 +33,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="tag name :"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
+
             <EditText
-                android:layout_marginLeft="15dp"
                 android:layout_width="200dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
                 android:background="@color/textInput"
-                android:gravity="center"/>
+                android:gravity="center" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:onClick="colorPickerClicked"
+                android:src="@drawable/color_picker_icon2" />
+
         </LinearLayout>
+
         <Button
-            android:layout_marginTop="10dp"
             android:layout_width="60dp"
             android:layout_height="40dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="20dp"
             android:background="@drawable/button"
             android:text="add "
-            android:textAllCaps="false"/>
-
+            android:textAllCaps="false" />
     </LinearLayout>
 
 </LinearLayout>

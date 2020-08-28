@@ -6,14 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
+import com.azeesoft.lib.colorpicker.ColorPickerDialog;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import dev.sasikanth.colorsheet.ColorSheet;
 import petrov.kristiyan.colorpicker.ColorPicker;
 
 public class MainPage extends AppCompatActivity {
@@ -66,21 +69,14 @@ public class MainPage extends AppCompatActivity {
     }
 
     public void colorPickerClicked(View view){
-        ColorPicker colorPicker = new ColorPicker(MainPage.this);
-        colorPicker.setRoundColorButton(true);
-        colorPicker.setColorButtonMargin(10,10,10,10);
-        colorPicker.show();
-        colorPicker.setOnChooseColorListener(new ColorPicker.OnChooseColorListener() {
+        ColorPickerDialog colorPickerDialog = ColorPickerDialog.createColorPickerDialog(MainPage.this,R.style.AppTheme);
+        colorPickerDialog.setOnColorPickedListener(new ColorPickerDialog.OnColorPickedListener() {
             @Override
-            public void onChooseColor(int position,int color) {
-                
-            }
-
-            @Override
-            public void onCancel(){
-                // put code
+            public void onColorPicked(int color, String hexVal) {
+                Log.d("color",hexVal);
             }
         });
+        colorPickerDialog.show();
     }
 
     private void contacts() {

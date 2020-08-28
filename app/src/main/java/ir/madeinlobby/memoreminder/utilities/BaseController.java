@@ -6,7 +6,8 @@ import android.content.DialogInterface;
 
 
 public class BaseController {
-    public static final String server = "http://10.0.2.2/memoReminder";
+    //    public static final String server = "http://10.0.2.2/memoReminder";           //local
+    public static final String server = "https://memoreminder.000webhostapp.com";     // online
     private static String token = "";
 
     public static void showError(Context context, String message) {

@@ -26,5 +26,6 @@
     <string name="error_for_pick_color">you must first pick up a color</string>
     <string name="empty_field">every fields should be filled"</string>
     <string name="register_successful">register was successful</string>
-    <string name="tag_added_sucessful">tag created successfuly</string>
+    <string name="tag_added_successful">tag created successfully</string>
+    <string name="error_connection_server">can not connect to server</string>
 </resources>

@@ -12,8 +12,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import ir.madeinlobby.memoreminder.model.Tag;
 import ir.madeinlobby.memoreminder.utilities.BaseController;
 import ir.madeinlobby.memoreminder.utilities.HttpUtility;
 
@@ -67,6 +72,36 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, getString(R.string.login_successful), Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(MainActivity.this, MainPage.class);
                             startActivity(intent);
+                        }
+                    });
+                }
+            }
+        }).start();
+        getTags();
+    }
+
+    private void getTags() {
+        final HashMap<String, String> fields2 = new HashMap<>();
+        fields2.put("token", BaseController.getToken());
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final String response = HttpUtility.sendPostRequest(BaseController.server + "/getTags.php", fields2);
+                if (response.startsWith("error")) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            BaseController.showError(MainActivity.this, getString(R.string.error_connection_server));
+                        }
+                    });
+                } else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ArrayList<Tag> tags = new Gson().fromJson(response, new TypeToken<ArrayList<Tag>>() {
+                            }.getType());
+                            BaseController.getTags().clear();
+                            BaseController.getTags().addAll(tags);
                         }
                     });
                 }

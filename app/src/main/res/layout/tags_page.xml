@@ -45,9 +45,8 @@
                 android:layout_marginLeft="15dp"
                 android:background="@color/textInput"
                 android:id="@+id/tagName"
-                android:padding="10dp"
-                android:layout_weight = "1"
-                />
+                android:paddingLeft="7dp"
+                android:layout_weight = "1" />
 
             <ImageView
                 android:layout_width="30dp"

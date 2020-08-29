@@ -6,7 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,9 +22,14 @@ import android.widget.Toast;
 
 import com.azeesoft.lib.colorpicker.ColorPickerDialog;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import ir.madeinlobby.memoreminder.controller.MainManager;
+import ir.madeinlobby.memoreminder.model.Tag;
 import ir.madeinlobby.memoreminder.utilities.BaseController;
 import ir.madeinlobby.memoreminder.utilities.HttpUtility;
 
@@ -34,6 +43,10 @@ public class MainPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
         scrollView = findViewById(R.id.main_layout);
+        RecyclerView recyclerView = findViewById(R.id.recycleViewForTags);
+        recyclerView.setLayoutManager(new GridLayoutManager(this,3));
+        TagsAdaptor tagsAdaptor = new TagsAdaptor(BaseController.getTags(),this);
+        recyclerView.setAdapter(tagsAdaptor);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new HomePageFragment()).commit();
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -63,6 +76,7 @@ public class MainPage extends AppCompatActivity {
             }
         });
     }
+
 
     private void showTaggedPage() {
     }
@@ -112,7 +126,7 @@ public class MainPage extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(MainPage.this, getString(R.string.tag_added_sucessful), Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainPage.this, getString(R.string.tag_added_successful), Toast.LENGTH_LONG).show();
                             tagColor = "";
                         }
                     });

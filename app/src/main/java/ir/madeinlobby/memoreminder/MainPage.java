@@ -20,7 +20,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.HashMap;
 
-import ir.madeinlobby.memoreminder.controller.MainManager;
 import ir.madeinlobby.memoreminder.utilities.BaseController;
 import ir.madeinlobby.memoreminder.utilities.HttpUtility;
 
@@ -134,6 +133,7 @@ public class MainPage extends AppCompatActivity {
     }
 
     private void logout() {
+        BaseController.setToken("");
         finish();
     }
 }

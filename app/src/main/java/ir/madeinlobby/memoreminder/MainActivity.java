@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
         SpannableString content = new SpannableString("create an account");
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
         textView.setText(content);
-//        Intent intent = new Intent(MainActivity.this, MainPage.class);
-//        startActivity(intent);
+        Intent intent = new Intent(MainActivity.this, MainPage.class);
+        startActivity(intent);
     }
 
     public void registerPressed(View view) {

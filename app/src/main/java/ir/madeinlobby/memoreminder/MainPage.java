@@ -55,7 +55,6 @@ public class MainPage extends AppCompatActivity {
                         break;
 
                     case R.id.nav_logout:
-//                        scrollView.removeAllViews();
                         logout();
                         break;
                 }

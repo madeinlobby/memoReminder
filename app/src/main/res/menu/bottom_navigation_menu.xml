@@ -1,30 +1,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/posts"
+        android:id="@+id/nav_home"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_home_24"
         android:title="posts"/>
 
     <item
-        android:id="@+id/contacts"
+        android:id="@+id/nav_contacts"
         android:enabled="true"
         android:icon="@drawable/contacts_icon"
         android:title="contacts" />
 
     <item
-        android:id="@+id/tags"
+        android:id="@+id/nav_tags"
         android:enabled="true"
         android:icon="@drawable/tags_icon1"
         android:title="tags"/>
 
     <item
-        android:id="@+id/tagged"
+        android:id="@+id/nav_tagged"
         android:enabled="true"
         android:icon="@drawable/tag_icon1"
         android:title="tagged"/>
 
     <item
-        android:id="@+id/logout"
+        android:id="@+id/nav_logout"
         android:enabled="true"
         android:icon="@drawable/logout_icon"
         android:title="logout"/>

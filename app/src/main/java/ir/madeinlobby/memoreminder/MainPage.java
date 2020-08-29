@@ -2,6 +2,7 @@ package ir.madeinlobby.memoreminder;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -34,32 +35,33 @@ public class MainPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
         scrollView = findViewById(R.id.main_layout);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new HomePageFragment());
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment selectedFragment = null;
                 switch (item.getItemId()) {
-
-                    case R.id.posts:
+                    case R.id.nav_home:
                         scrollView.removeAllViews();
                         posts();
                         return true;
 
-                    case R.id.contacts:
+                    case R.id.nav_contacts:
                         scrollView.removeAllViews();
                         contacts();
                         return true;
 
-                    case R.id.tags:
+                    case R.id.nav_tags:
                         scrollView.removeAllViews();
                         showTagsPage();
                         return true;
-                    case R.id.tagged:
+                    case R.id.nav_tagged:
                         scrollView.removeAllViews();
                         showTaggedPage();
                         return true;
 
-                    case R.id.logout:
+                    case R.id.nav_logout:
                         logout();
                         return true;
 

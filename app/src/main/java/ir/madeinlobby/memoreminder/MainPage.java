@@ -34,7 +34,7 @@ public class MainPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
         scrollView = findViewById(R.id.main_layout);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new HomePageFragment());
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new HomePageFragment()).commit();
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -59,7 +59,7 @@ public class MainPage extends AppCompatActivity {
                         logout();
                         break;
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, selectedFragment);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, selectedFragment).commit();
                 return true;
             }
         });

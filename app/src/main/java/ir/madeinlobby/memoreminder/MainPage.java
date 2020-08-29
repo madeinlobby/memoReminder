@@ -42,30 +42,26 @@ public class MainPage extends AppCompatActivity {
                 Fragment selectedFragment = null;
                 switch (item.getItemId()) {
                     case R.id.nav_home:
-                        scrollView.removeAllViews();
-                        posts();
-                        return true;
-
+                        selectedFragment = new HomePageFragment();
+                        break;
                     case R.id.nav_contacts:
                         scrollView.removeAllViews();
                         contacts();
-                        return true;
-
+                        break;
                     case R.id.nav_tags:
-                        scrollView.removeAllViews();
-                        showTagsPage();
-                        return true;
+                        selectedFragment = new TagsPageFragment();
+                        break;
                     case R.id.nav_tagged:
                         scrollView.removeAllViews();
                         showTaggedPage();
-                        return true;
+                        break;
 
                     case R.id.nav_logout:
                         logout();
-                        return true;
-
+                        break;
                 }
-                return false;
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, selectedFragment);
+                return true;
             }
         });
     }

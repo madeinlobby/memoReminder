@@ -143,6 +143,30 @@ public class MainPage extends AppCompatActivity {
     }
 
     private void logout() {
+        final HashMap<String, String> fields = new HashMap<>();
+        fields.put("token", BaseController.getToken());
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String response = HttpUtility.sendPostRequest(BaseController.server + "/logout.php", fields);
+                if (response.startsWith("error")) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            BaseController.showError(MainPage.this, getString(R.string.error_connection_server));
+                        }
+                    });
+                } else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(MainPage.this, getString(R.string.logout_successful), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+            }
+        }).start();
+        BaseController.getTags().clear();
         BaseController.setToken("");
         finish();
     }

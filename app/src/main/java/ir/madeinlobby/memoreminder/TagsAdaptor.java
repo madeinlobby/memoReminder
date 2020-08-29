@@ -42,9 +42,6 @@ public class TagsAdaptor extends RecyclerView.Adapter<TagsAdaptor.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        holder.senderTextView .setText(data.get(position).getSender());
-//        holder.subjectTextView.setText(data.get(position).getSubject());
-//        Picasso.get().load(data.get(position).getImageURL()).into(holder.image);
         holder.text.setText(data.get(position).getTitle());
         holder.color.setBackgroundColor(Color.parseColor(data.get(position).getColorHex()));
     }

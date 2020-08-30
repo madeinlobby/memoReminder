@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
     android:padding="10dp">
@@ -78,7 +78,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
-        android:layout_below="@id/addNewTag" />
+        android:layout_below="@id/addNewTag"
+        android:orientation="vertical"/>
 
 
 </RelativeLayout>

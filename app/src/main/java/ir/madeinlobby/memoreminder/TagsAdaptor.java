@@ -2,6 +2,7 @@ package ir.madeinlobby.memoreminder;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,17 +10,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 ;import java.util.ArrayList;
 
 import ir.madeinlobby.memoreminder.model.Tag;
 
 public class TagsAdaptor extends RecyclerView.Adapter<TagsAdaptor.ViewHolder> {
-
+//    private Context context;
     private ArrayList<Tag> data;
     private LayoutInflater layoutInflater;
 
     public TagsAdaptor(ArrayList<Tag> data, Context context) {
+//        this.context = context;
         this.data = data;
         this.layoutInflater = LayoutInflater.from(context);
     }
@@ -44,6 +47,7 @@ public class TagsAdaptor extends RecyclerView.Adapter<TagsAdaptor.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.text.setText(data.get(position).getTitle());
         holder.color.setBackgroundColor(Color.parseColor(data.get(position).getColorHex()));
+//        holder.color.setBackground(ResourcesCompat.getDrawable(context.getResources(),R.drawable.color_box, null));
     }
 
     @Override

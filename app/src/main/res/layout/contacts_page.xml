@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="8dp">
 
     <RelativeLayout
         android:id="@+id/friendRequests"
@@ -48,6 +48,15 @@
     <!--        android:layout_below="@id/friendRequests">-->
 
     <!--    </ScrollView>-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleViewForFriends"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        android:layout_below="@id/friendRequests"
+        android:orientation="vertical"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

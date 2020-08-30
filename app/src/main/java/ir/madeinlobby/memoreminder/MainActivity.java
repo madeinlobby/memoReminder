@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -100,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
                             BaseController.getTags().clear();
                             BaseController.getTags().addAll(tags);
                             Toast.makeText(MainActivity.this, getString(R.string.login_successful), Toast.LENGTH_LONG).show();
+                            Log.d("test","hi");
                             Intent intent = new Intent(MainActivity.this, MainPage.class);
                             startActivity(intent);
                         }

@@ -6,6 +6,7 @@ public class Person {
     private String username;
     private String password;
     private ArrayList<String> allPostsIds;
+    private ArrayList<String> friendRequestsReceived;
     private ArrayList<Tag> allTags;
     private String firstName;
     private String lastName;
@@ -19,6 +20,7 @@ public class Person {
         this.allPostsIds = new ArrayList<>();
         this.allTags = new ArrayList<>();
         this.email = email;
+        this.friendRequestsReceived = new ArrayList<>();
     }
 
     public String getUsername() {

@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <RelativeLayout
         android:id="@+id/friendRequests"
@@ -32,31 +34,37 @@
                 android:text="accept or decline requests"
                 android:textSize="16dp" />
         </LinearLayout>
+
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentRight="true"
-            android:src="@drawable/friend_request_icon"/>
+            android:src="@drawable/friend_request_icon" />
 
     </RelativeLayout>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/friendRequests">
+    <!--    <ScrollView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:layout_below="@id/friendRequests">-->
 
-    </ScrollView>
+    <!--    </ScrollView>-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/add_friend"
-        android:backgroundTint="@color/background"/>
+        android:layout_alignParentRight="true"
+        android:backgroundTint="@color/background"
+        android:src="@drawable/add_friend" />
+    <!--        android:layout_width="110dp"-->
+    <!--        android:layout_height="110dp"-->
+    <!--        android:layout_alignParentEnd="true"-->
+    <!--        android:layout_alignParentBottom="true"-->
+    <!--        android:layout_marginStart="16dp"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:layout_marginEnd="16dp"-->
+    <!--        android:layout_marginBottom="16dp"-->
 
 </RelativeLayout>

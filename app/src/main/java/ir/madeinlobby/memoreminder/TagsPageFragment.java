@@ -31,7 +31,7 @@ import ir.madeinlobby.memoreminder.utilities.HttpUtility;
 
 public class TagsPageFragment extends Fragment {
 
-    Context context = null;
+    Context context;
     RelativeLayout layout = null;
 
     public TagsPageFragment(Context context) {

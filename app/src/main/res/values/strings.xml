@@ -29,4 +29,6 @@
     <string name="tag_added_successful">tag created successfully</string>
     <string name="error_connection_server">can not connect to server</string>
     <string name="logout_successful">logout successful</string>
+    <string name="accept_request">accept</string>
+    <string name="delete_request">delete</string>
 </resources>

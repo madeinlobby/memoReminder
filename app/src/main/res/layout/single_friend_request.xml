@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:background="@drawable/border_for_photo"
+    android:backgroundTint="@color/postColor"
+    android:layout_margin="5dp">
+    <TextView
+        android:id="@+id/requestUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="yasaman.zolfi1380"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+    <Button
+        android:id="@+id/acceptRequest"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/border_for_photo"
+        android:text="@string/accept_request"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:backgroundTint="#b5ead7"/>
+    <Button
+        android:id="@+id/deleteRequest"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/border_for_photo"
+        android:text="@string/delete_request"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:backgroundTint="#ff9aa2"/>
+
+</LinearLayout>

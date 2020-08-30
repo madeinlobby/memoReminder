@@ -33,6 +33,7 @@ public class TagsPageFragment extends Fragment {
 
     Context context;
     RelativeLayout layout = null;
+    TagsAdaptor tagsAdaptor = null;
 
     public TagsPageFragment(Context context) {
         this.context = context;
@@ -45,7 +46,8 @@ public class TagsPageFragment extends Fragment {
         layout = (RelativeLayout) inflater.inflate(R.layout.tags_page, container, false);
         RecyclerView recyclerView = layout.findViewById(R.id.recycleViewForTags);
         recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
-        TagsAdaptor tagsAdaptor = new TagsAdaptor(BaseController.getTags(), context);
+        tagsAdaptor = new TagsAdaptor(BaseController.getTags(), context);
+        MainPage.tagsAdaptor = tagsAdaptor;
         recyclerView.setAdapter(tagsAdaptor);
 //        return inflater.inflate(R.layout.tags_page,container,false);
         return layout;
@@ -65,6 +67,12 @@ public class TagsPageFragment extends Fragment {
                     }.getType());
                     BaseController.getTags().clear();
                     BaseController.getTags().addAll(tags);
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            tagsAdaptor.notifyDataSetChanged();
+                        }
+                    });
                 }
             }
         }).start();

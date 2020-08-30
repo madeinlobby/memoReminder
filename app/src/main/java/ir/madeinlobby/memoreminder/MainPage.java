@@ -38,6 +38,7 @@ import ir.madeinlobby.memoreminder.utilities.HttpUtility;
 public class MainPage extends AppCompatActivity {
     ScrollView scrollView;
     String tagColor = "";
+    public static TagsAdaptor tagsAdaptor = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,7 +129,8 @@ public class MainPage extends AppCompatActivity {
                         @Override
                         public void run() {
                             Toast.makeText(MainPage.this, getString(R.string.tag_added_successful), Toast.LENGTH_LONG).show();
-                            BaseController.getTags().add(new Tag(tagTitle,tagColor));
+                            BaseController.getTags().add(new Tag(tagTitle, tagColor));
+                            tagsAdaptor.notifyDataSetChanged();
                             tagColor = "";
                         }
                     });

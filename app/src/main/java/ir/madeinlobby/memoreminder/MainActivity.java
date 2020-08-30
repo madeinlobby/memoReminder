@@ -70,7 +70,10 @@ public class MainActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            getTags();
+//                            getTags();
+                            Toast.makeText(MainActivity.this, getString(R.string.login_successful), Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(MainActivity.this, MainPage.class);
+                            startActivity(intent);
                         }
                     });
                 }

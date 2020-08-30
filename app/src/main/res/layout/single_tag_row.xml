@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/single_tag_style"
     android:orientation="vertical"
+    android:layout_margin="10dp"
     android:padding="5dp">
 
 

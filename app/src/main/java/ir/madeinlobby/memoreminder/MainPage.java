@@ -107,7 +107,7 @@ public class MainPage extends AppCompatActivity {
             return;
         }
         EditText editText = findViewById(R.id.tagName);
-        String tagTitle = editText.getText().toString();
+        final String tagTitle = editText.getText().toString();
         final HashMap<String, String> fields = new HashMap<>();
         fields.put("token", BaseController.getToken());
         fields.put("text", tagTitle);
@@ -128,13 +128,13 @@ public class MainPage extends AppCompatActivity {
                         @Override
                         public void run() {
                             Toast.makeText(MainPage.this, getString(R.string.tag_added_successful), Toast.LENGTH_LONG).show();
+                            BaseController.getTags().add(new Tag(tagTitle,tagColor));
                             tagColor = "";
                         }
                     });
                 }
             }
         }).start();
-        //sendTag
     }
 
     private void contacts() {

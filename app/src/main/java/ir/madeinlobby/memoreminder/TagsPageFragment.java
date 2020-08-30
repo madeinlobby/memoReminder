@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import androidx.fragment.app.Fragment;
 
@@ -20,7 +21,7 @@ import ir.madeinlobby.memoreminder.utilities.BaseController;
 public class TagsPageFragment extends Fragment {
 
     Context context = null;
-    LinearLayout layout = null;
+    RelativeLayout layout = null;
 
     public TagsPageFragment(Context context) {
         this.context = context;
@@ -29,7 +30,7 @@ public class TagsPageFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        layout = (LinearLayout)inflater.inflate(R.layout.tags_page,container,false);
+        layout = (RelativeLayout) inflater.inflate(R.layout.tags_page,container,false);
         RecyclerView recyclerView = layout.findViewById(R.id.recycleViewForTags);
         recyclerView.setLayoutManager(new GridLayoutManager(context,3));
         TagsAdaptor tagsAdaptor = new TagsAdaptor(BaseController.getTags(),context);

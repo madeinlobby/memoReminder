@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/single_tag_style"
     android:orientation="vertical"
@@ -15,8 +15,7 @@
         android:layout_alignParentTop="false"
         android:layout_marginStart="15dp"
         android:layout_marginTop="3dp"
-        android:background="@drawable/color_box"
-        android:backgroundTint="@color/topicColor"/>
+        android:background="@drawable/color_box"/>
 
     <TextView
         android:id="@+id/tagName"
@@ -25,7 +24,6 @@
         android:layout_alignParentTop="false"
         android:layout_marginStart="10dp"
         android:layout_toEndOf="@id/colorBoxForTags"
-        android:text="hiiiiiii"
         android:layout_marginEnd="20dp"
         android:textColor="@color/black"
         android:textSize="20sp" />

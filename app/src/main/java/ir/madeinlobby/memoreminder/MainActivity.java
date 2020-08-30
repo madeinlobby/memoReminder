@@ -69,15 +69,12 @@ public class MainActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(MainActivity.this, getString(R.string.login_successful), Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(MainActivity.this, MainPage.class);
-                            startActivity(intent);
+                            getTags();
                         }
                     });
                 }
             }
         }).start();
-        getTags();
     }
 
     private void getTags() {
@@ -102,6 +99,9 @@ public class MainActivity extends AppCompatActivity {
                             }.getType());
                             BaseController.getTags().clear();
                             BaseController.getTags().addAll(tags);
+                            Toast.makeText(MainActivity.this, getString(R.string.login_successful), Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(MainActivity.this, MainPage.class);
+                            startActivity(intent);
                         }
                     });
                 }

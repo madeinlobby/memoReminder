@@ -60,7 +60,7 @@ public class MainPage extends AppCompatActivity {
                         selectedFragment = new HomePageFragment();
                         break;
                     case R.id.nav_contacts:
-                        contacts();
+                        selectedFragment = new ContactPageFragment(MainPage.this);
                         break;
                     case R.id.nav_tags:
                         selectedFragment = new TagsPageFragment(MainPage.this);

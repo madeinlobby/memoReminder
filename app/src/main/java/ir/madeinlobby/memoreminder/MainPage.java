@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -137,6 +138,36 @@ public class MainPage extends AppCompatActivity {
                 }
             }
         }).start();
+    }
+
+    public void sendFriendRequest(View view){
+        TextView textView = findViewById(R.id.friendUsername);
+        final String friendUsername = textView.getText().toString();
+        final HashMap<String, String> fields = new HashMap<>();
+        fields.put("token", BaseController.getToken());
+        fields.put("username", friendUsername);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String response = HttpUtility.sendPostRequest(BaseController.server + "/sendFriendRequest.php", fields);
+                if (response.startsWith("error")) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            BaseController.showError(MainPage.this, getString(R.string.send_request_error));
+                        }
+                    });
+                } else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(MainPage.this, getString(R.string.request_sent_successfully), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+            }
+        }).start();
+
     }
 
     private void contacts() {

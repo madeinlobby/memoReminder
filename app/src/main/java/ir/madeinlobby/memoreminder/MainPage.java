@@ -173,4 +173,8 @@ public class MainPage extends AppCompatActivity {
         BaseController.setToken("");
         finish();
     }
+
+    public void showFriendRequests(View view) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart,new FriendRequestsFragment() ).commit();
+    }
 }

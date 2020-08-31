@@ -8,6 +8,7 @@
         android:id="@+id/friendRequests"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="showFriendRequests"
         android:layout_margin="10dp"
         android:background="@drawable/border_for_photo"
         android:orientation="horizontal"

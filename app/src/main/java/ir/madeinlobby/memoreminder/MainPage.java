@@ -175,6 +175,6 @@ public class MainPage extends AppCompatActivity {
     }
 
     public void showFriendRequests(View view) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart,new FriendRequestsFragment() ).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new FriendRequestsFragment(MainPage.this)).commit();
     }
 }

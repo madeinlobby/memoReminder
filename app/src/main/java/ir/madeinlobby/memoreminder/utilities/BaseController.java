@@ -14,6 +14,7 @@ public class BaseController {
     public static final String server = "https://memoreminder.000webhostapp.com/control";     // online
     private static String token = "";
     private  static ArrayList<Tag> tags=new ArrayList<>();
+    private static  ArrayList<String> friendsRequests= new ArrayList<>();
 
     public static void showError(Context context, String message) {
         new AlertDialog.Builder(context)
@@ -40,7 +41,7 @@ public class BaseController {
         return tags;
     }
 
-    public static void setTags(ArrayList<Tag> tags) {
-        BaseController.tags = tags;
+    public static ArrayList<String> getFriendsRequests() {
+        return friendsRequests;
     }
 }

@@ -39,6 +39,7 @@ import ir.madeinlobby.memoreminder.utilities.HttpUtility;
 public class MainPage extends AppCompatActivity {
     ScrollView scrollView;
     String tagColor = "";
+    String contactPage = "";
     public static TagsAdaptor tagsAdaptor = null;
 
     @Override
@@ -61,7 +62,11 @@ public class MainPage extends AppCompatActivity {
                         selectedFragment = new HomePageFragment();
                         break;
                     case R.id.nav_contacts:
-                        selectedFragment = new ContactPageFragment(MainPage.this);
+                        if (contactPage.equals("")) {
+                            selectedFragment = new ContactPageFragment(MainPage.this);
+                        } else if (contactPage.equals("friendRequests")) {
+                            selectedFragment = new FriendRequestsFragment(MainPage.this);
+                        }
                         break;
                     case R.id.nav_tags:
                         selectedFragment = new TagsPageFragment(MainPage.this);
@@ -210,6 +215,7 @@ public class MainPage extends AppCompatActivity {
     }
 
     public void showFriendRequests(View view) {
+        contactPage = "friendRequests";
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new FriendRequestsFragment(MainPage.this)).commit();
     }
 
@@ -237,5 +243,10 @@ public class MainPage extends AppCompatActivity {
                 }
             }
         }).start();
+    }
+
+    public void backFromFriendRequestsPage(View view) {
+        contactPage = "";
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new ContactPageFragment(MainPage.this)).commit();
     }
 }

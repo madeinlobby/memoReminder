@@ -40,13 +40,16 @@
             android:src="@drawable/friend_request_icon"/>
 
     </RelativeLayout>
-    <ScrollView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewForFriends"
+        android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/friendRequests">
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/friendRequests"
+        android:orientation="vertical"/>
 
-    </ScrollView>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

@@ -16,6 +16,7 @@ public class BaseController {
     private  static ArrayList<Tag> tags=new ArrayList<>();
     private static ArrayList<String> searchedUsers = new ArrayList<>();
     private static  ArrayList<String> friendsRequests= new ArrayList<>();
+    private static ArrayList<String> friends = new ArrayList<>();
 
     public static void showError(Context context, String message) {
         new AlertDialog.Builder(context)
@@ -48,5 +49,9 @@ public class BaseController {
 
     public static ArrayList<String> getSearchedUsers() {
         return searchedUsers;
+    }
+
+    public static ArrayList<String> getFriends() {
+        return friends;
     }
 }

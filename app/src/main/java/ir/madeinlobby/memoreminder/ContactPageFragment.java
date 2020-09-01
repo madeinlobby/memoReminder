@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
@@ -33,7 +34,8 @@ public class ContactPageFragment extends Fragment {
 
     Context context;
     RelativeLayout layout = null;
-//    TagsAdaptor tagsAdaptor = null;
+    FriendsAdaptor friendsAdaptor = null;
+
 
     public ContactPageFragment(Context context) {
         this.context = context;
@@ -42,38 +44,38 @@ public class ContactPageFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        getTags();
+        getFriends();
         layout = (RelativeLayout) inflater.inflate(R.layout.contacts_page, container, false);
-//        RecyclerView recyclerView = layout.findViewById(R.id.recycleViewForTags);
-//        recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
-//        tagsAdaptor = new TagsAdaptor(BaseController.getTags(), context);
-//        MainPage.tagsAdaptor = tagsAdaptor;
-//        recyclerView.setAdapter(tagsAdaptor);
+        RecyclerView recyclerView = layout.findViewById(R.id.recycleViewForFriends);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        friendsAdaptor = new FriendsAdaptor(BaseController.getFriends(), context);
+        recyclerView.setAdapter(friendsAdaptor);
         return layout;
     }
 
-//    private void getTags() {
-//        final HashMap<String, String> fields2 = new HashMap<>();
-//        fields2.put("token", BaseController.getToken());
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                final String response = HttpUtility.sendPostRequest(BaseController.server + "/getTags.php", fields2);
-//                if (response.startsWith("error")) {
-//                    BaseController.showError(context, getString(R.string.error_connection_server));
-//                } else {
-//                    ArrayList<Tag> tags = new Gson().fromJson(response, new TypeToken<ArrayList<Tag>>() {
-//                    }.getType());
-//                    BaseController.getTags().clear();
-//                    BaseController.getTags().addAll(tags);
-//                    getActivity().runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            tagsAdaptor.notifyDataSetChanged();
-//                        }
-//                    });
-//                }
-//            }
-//        }).start();
-//    }
+    private void getFriends() {
+        final HashMap<String, String> fields2 = new HashMap<>();
+        fields2.put("token", BaseController.getToken());
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final String response = HttpUtility.sendPostRequest(BaseController.server + "/getTags.php", fields2); //todo
+                if (response.startsWith("error")) {
+                    BaseController.showError(context, getString(R.string.error_connection_server));
+                } else {
+                    ArrayList<String> friends = new Gson().fromJson(response, new TypeToken<ArrayList<String>>() {
+                    }.getType());
+                    BaseController.getFriends().clear();
+                    BaseController.getFriends().addAll(friends);
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            friendsAdaptor.notifyDataSetChanged();
+                        }
+                    });
+                }
+            }
+        }).start();
+    }
+
 }

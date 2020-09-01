@@ -12,9 +12,9 @@
         android:layout_height="30dp"
         android:src="@drawable/remove_friend_icon"/>
     <TextView
+        android:id="@+id/friendName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="yasaman.zolfi4"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:gravity="center"/>

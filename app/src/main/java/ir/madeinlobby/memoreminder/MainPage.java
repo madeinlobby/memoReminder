@@ -170,6 +170,10 @@ public class MainPage extends AppCompatActivity {
 
     }
 
+    public void addFriend(View view){
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new AddFriendsFragment(MainPage.this)).commit();
+    }
+
     private void contacts() {
     }
 

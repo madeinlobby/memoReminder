@@ -228,7 +228,12 @@ public class MainPage extends AppCompatActivity {
             public void run() {
                 final String response = HttpUtility.sendPostRequest(BaseController.server + "/searchUsername.php", fields2);
                 if (response.startsWith("error")) {
-                    BaseController.showError(MainPage.this, getString(R.string.error_connection_server));
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            BaseController.showError(MainPage.this, getString(R.string.send_request_error));
+                        }
+                    });
                 } else {
                     ArrayList<String> users = new Gson().fromJson(response, new TypeToken<ArrayList<String>>() {
                     }.getType());
@@ -237,7 +242,7 @@ public class MainPage extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-//                            adapter
+
                         }
                     });
                 }

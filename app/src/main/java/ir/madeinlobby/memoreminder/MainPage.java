@@ -224,14 +224,14 @@ public class MainPage extends AppCompatActivity {
                 if (response.startsWith("error")) {
                     BaseController.showError(MainPage.this, getString(R.string.error_connection_server));
                 } else {
-                    ArrayList<String> friends = new Gson().fromJson(response, new TypeToken<ArrayList<String>>() {
+                    ArrayList<String> users = new Gson().fromJson(response, new TypeToken<ArrayList<String>>() {
                     }.getType());
-                    BaseController.getFriendsRequests().clear();
-                    BaseController.getFriendsRequests().addAll(friends);
+                    BaseController.getSearchedUsers().clear();
+                    BaseController.getSearchedUsers().addAll(users);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            friendRequestAdaptor.notifyDataSetChanged();
+//                            adapter
                         }
                     });
                 }

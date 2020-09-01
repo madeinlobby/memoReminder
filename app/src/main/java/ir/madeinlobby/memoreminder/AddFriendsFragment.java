@@ -42,5 +42,4 @@ public class AddFriendsFragment extends Fragment {
         return layout;
     }
 
-
 }

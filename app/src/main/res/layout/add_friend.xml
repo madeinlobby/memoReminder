@@ -19,7 +19,8 @@
         android:layout_marginEnd="10dp"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:src="@drawable/ic_baseline_search_24"/>
+        android:src="@drawable/ic_baseline_search_24"
+        android:onClick="searchUsername"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewForUsers"
         android:padding="5dp"

@@ -212,4 +212,30 @@ public class MainPage extends AppCompatActivity {
     public void showFriendRequests(View view) {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new FriendRequestsFragment(MainPage.this)).commit();
     }
+
+    public void searchUsername(View view) {
+        final HashMap<String, String> fields2 = new HashMap<>();
+        EditText searchedUsername = view.findViewById(R.id.searchedUsername);
+        fields2.put("search", searchedUsername.getText().toString());
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final String response = HttpUtility.sendPostRequest(BaseController.server + "/searchUsername.php", fields2);
+                if (response.startsWith("error")) {
+                    BaseController.showError(MainPage.this, getString(R.string.error_connection_server));
+                } else {
+                    ArrayList<String> friends = new Gson().fromJson(response, new TypeToken<ArrayList<String>>() {
+                    }.getType());
+                    BaseController.getFriendsRequests().clear();
+                    BaseController.getFriendsRequests().addAll(friends);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            friendRequestAdaptor.notifyDataSetChanged();
+                        }
+                    });
+                }
+            }
+        }).start();
+    }
 }

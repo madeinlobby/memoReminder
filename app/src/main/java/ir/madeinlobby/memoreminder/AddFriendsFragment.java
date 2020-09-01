@@ -34,7 +34,6 @@ public class AddFriendsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getFriendRequests();
         layout = (RelativeLayout) inflater.inflate(R.layout.add_friend, container, false);
         RecyclerView recyclerView = layout.findViewById(R.id.recycleViewForUsers);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -43,29 +42,5 @@ public class AddFriendsFragment extends Fragment {
         return layout;
     }
 
-    private void getFriendRequests() {
-        final HashMap<String, String> fields2 = new HashMap<>();
-        fields2.put("token", BaseController.getToken());
-        fields2.put("type", "received");
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                final String response = HttpUtility.sendPostRequest(BaseController.server + "/getFriendRequest.php", fields2);
-                if (response.startsWith("error")) {
-                    BaseController.showError(context, getString(R.string.error_connection_server));
-                } else {
-                    ArrayList<String> friends = new Gson().fromJson(response, new TypeToken<ArrayList<String>>() {
-                    }.getType());
-                    BaseController.getFriendsRequests().clear();
-                    BaseController.getFriendsRequests().addAll(friends);
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            friendRequestAdaptor.notifyDataSetChanged();
-                        }
-                    });
-                }
-            }
-        }).start();
-    }
+
 }

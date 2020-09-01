@@ -4,11 +4,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 ;import java.util.ArrayList;
+
+import ir.madeinlobby.memoreminder.utilities.BaseController;
 
 
 public class AddFriendAdaptor extends RecyclerView.Adapter<AddFriendAdaptor.ViewHolder> {
@@ -22,21 +25,27 @@ public class AddFriendAdaptor extends RecyclerView.Adapter<AddFriendAdaptor.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView text;
+        ImageView imageView;
+
         ViewHolder(View itemView) {
             super(itemView);
-            text = itemView.findViewById(R.id.requestUsername);
+            text = itemView.findViewById(R.id.friendName);
+            imageView = itemView.findViewById(R.id.imageViewForContactRow);
         }
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(layoutInflater.inflate(R.layout.single_friend_request, parent, false));
+        return new ViewHolder(layoutInflater.inflate(R.layout.contact_row, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.text.setText(data.get(position));
+        if (!BaseController.getFriends().contains(data.get(position))) {
+            holder.imageView.setImageResource(R.drawable.send_request);
+        }
     }
 
     @Override

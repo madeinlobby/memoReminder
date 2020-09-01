@@ -60,7 +60,7 @@
         android:layout_alignParentEnd="true"
         android:backgroundTint="@color/background"
         android:src="@drawable/add_friend"
-        android:onClick="addFriend"/>
+        android:onClick="addFriendButtonClicked"/>
     <!--        android:layout_width="110dp"-->
     <!--        android:layout_height="110dp"-->
     <!--        android:layout_alignParentEnd="true"-->

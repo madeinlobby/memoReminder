@@ -8,9 +8,11 @@
     android:background="@drawable/border_for_photo"
     android:backgroundTint="@color/postColor">
     <ImageView
+        android:id="@+id/imageViewForContactRow"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@drawable/remove_friend_icon"/>
+        android:src="@drawable/remove_friend_icon"
+        android:onClick="contactRowClicked"/>
     <TextView
         android:id="@+id/friendName"
         android:layout_width="match_parent"

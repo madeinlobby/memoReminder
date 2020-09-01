@@ -25,7 +25,7 @@ import ir.madeinlobby.memoreminder.utilities.HttpUtility;
 public class AddFriendsFragment extends Fragment {
     Context context;
     RelativeLayout layout = null;
-    FriendRequestAdaptor friendRequestAdaptor = null;
+    AddFriendAdaptor addFriendAdaptor = null;
 
     public AddFriendsFragment(Context context) {
         this.context = context;
@@ -37,9 +37,11 @@ public class AddFriendsFragment extends Fragment {
         layout = (RelativeLayout) inflater.inflate(R.layout.add_friend, container, false);
         RecyclerView recyclerView = layout.findViewById(R.id.recycleViewForUsers);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        friendRequestAdaptor = new FriendRequestAdaptor(BaseController.getFriendsRequests(), context);
-        recyclerView.setAdapter(friendRequestAdaptor);
+        addFriendAdaptor = new AddFriendAdaptor(BaseController.getSearchedUsers(), context);
+        recyclerView.setAdapter(addFriendAdaptor);
+        MainPage.addFriendAdaptor = addFriendAdaptor;
         return layout;
     }
+
 
 }

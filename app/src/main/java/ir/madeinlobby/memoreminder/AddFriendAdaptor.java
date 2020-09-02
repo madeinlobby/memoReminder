@@ -6,12 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 ;import java.util.ArrayList;
+import java.util.HashMap;
 
 import ir.madeinlobby.memoreminder.utilities.BaseController;
+import ir.madeinlobby.memoreminder.utilities.HttpUtility;
 
 
 public class AddFriendAdaptor extends RecyclerView.Adapter<AddFriendAdaptor.ViewHolder> {
@@ -41,11 +44,23 @@ public class AddFriendAdaptor extends RecyclerView.Adapter<AddFriendAdaptor.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         holder.text.setText(data.get(position));
         if (!BaseController.getFriends().contains(data.get(position))) {
             holder.imageView.setImageResource(R.drawable.send_request);
+            holder.imageView.setTag("add");
         }
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainPage mainPage = (MainPage) layoutInflater.getContext();
+                if (holder.imageView.getTag().equals("add")) {
+                    mainPage.sendFriendRequest2(holder.text.getText().toString());
+                } else {
+                    mainPage.removeFriend(holder.text.getText().toString());
+                }
+            }
+        });
     }
 
     @Override

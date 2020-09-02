@@ -36,4 +36,6 @@
     <string name="send_request_error">request can not be sent. Try later</string>
     <string name="accept_friend_request">this user was added to your contact</string>
     <string name="reject_friend_request">you rejected this friend request</string>
+    <string name="remove_friend">this user removed from your friends successfully</string>
+
 </resources>

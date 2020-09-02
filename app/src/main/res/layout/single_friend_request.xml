@@ -26,7 +26,6 @@
         android:text="@string/accept_request"
         android:layout_gravity="right"
         android:textAllCaps="false"
-        android:onClick="acceptFriendRequest"
         android:textSize="18sp"
         android:backgroundTint="#b5ead7"/>
     <Button
@@ -38,7 +37,6 @@
         android:text="@string/delete_request"
         android:textAllCaps="false"
         android:textSize="18sp"
-        android:onClick="rejectFriendRequest"
         android:backgroundTint="#ff9aa2"/>
 
 </LinearLayout>

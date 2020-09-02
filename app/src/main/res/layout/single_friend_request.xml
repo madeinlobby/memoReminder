@@ -12,7 +12,6 @@
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:textSize="18sp"
-        android:text="aboots"
         android:layout_weight="1"
         android:textStyle="bold"
         android:layout_marginLeft="5dp"
@@ -27,6 +26,7 @@
         android:text="@string/accept_request"
         android:layout_gravity="right"
         android:textAllCaps="false"
+        android:onClick="acceptFriendRequest"
         android:textSize="18sp"
         android:backgroundTint="#b5ead7"/>
     <Button
@@ -37,8 +37,8 @@
         android:background="@drawable/border_for_photo"
         android:text="@string/delete_request"
         android:textAllCaps="false"
-        android:layout_gravity=""
         android:textSize="18sp"
+        android:onClick="rejectFriendRequest"
         android:backgroundTint="#ff9aa2"/>
 
 </LinearLayout>

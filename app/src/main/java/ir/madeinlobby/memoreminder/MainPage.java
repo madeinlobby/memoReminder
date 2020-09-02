@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -16,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -41,16 +43,13 @@ public class MainPage extends AppCompatActivity {
     String tagColor = "";
     String contactPage = "";
     public static TagsAdaptor tagsAdaptor = null;
+    public static AddFriendAdaptor addFriendAdaptor = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
         scrollView = findViewById(R.id.main_layout);
-//        RecyclerView recyclerView = findViewById(R.id.recycleViewForTags);
-//        recyclerView.setLayoutManager(new GridLayoutManager(this,3));
-//        TagsAdaptor tagsAdaptor = new TagsAdaptor(BaseController.getTags(),this);
-//        recyclerView.setAdapter(tagsAdaptor);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new HomePageFragment()).commit();
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -66,6 +65,8 @@ public class MainPage extends AppCompatActivity {
                             selectedFragment = new ContactPageFragment(MainPage.this);
                         } else if (contactPage.equals("friendRequests")) {
                             selectedFragment = new FriendRequestsFragment(MainPage.this);
+                        } else if (contactPage.equals("addFriend")){
+                            selectedFragment = new AddFriendsFragment(MainPage.this);
                         }
                         break;
                     case R.id.nav_tags:
@@ -84,7 +85,6 @@ public class MainPage extends AppCompatActivity {
             }
         });
     }
-
 
     private void showTaggedPage() {
     }
@@ -145,8 +145,8 @@ public class MainPage extends AppCompatActivity {
         }).start();
     }
 
-    public void sendFriendRequest(View view){
-        TextView textView = findViewById(R.id.friendUsername);
+    public void sendFriendRequest(View view) {
+        TextView textView = view.findViewById(R.id.friendUsername);
         final String friendUsername = textView.getText().toString();
         final HashMap<String, String> fields = new HashMap<>();
         fields.put("token", BaseController.getToken());
@@ -175,7 +175,8 @@ public class MainPage extends AppCompatActivity {
 
     }
 
-    public void addFriend(View view){
+    public void addFriendButtonClicked(View view) {
+        contactPage = "addFriend";
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new AddFriendsFragment(MainPage.this)).commit();
     }
 
@@ -228,7 +229,12 @@ public class MainPage extends AppCompatActivity {
             public void run() {
                 final String response = HttpUtility.sendPostRequest(BaseController.server + "/searchUsername.php", fields2);
                 if (response.startsWith("error")) {
-                    BaseController.showError(MainPage.this, getString(R.string.error_connection_server));
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            BaseController.showError(MainPage.this, getString(R.string.send_request_error));
+                        }
+                    });
                 } else {
                     ArrayList<String> users = new Gson().fromJson(response, new TypeToken<ArrayList<String>>() {
                     }.getType());
@@ -237,7 +243,7 @@ public class MainPage extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-//                            adapter
+                            addFriendAdaptor.notifyDataSetChanged();
                         }
                     });
                 }
@@ -248,5 +254,135 @@ public class MainPage extends AppCompatActivity {
     public void backFromFriendRequestsPage(View view) {
         contactPage = "";
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new ContactPageFragment(MainPage.this)).commit();
+    }
+
+    public void contactRowClicked(View view) {
+        ImageView imageView = view.findViewById(R.id.imageViewForContactRow);
+        Drawable drawable = getResources().getDrawable(R.drawable.remove_friend_icon);
+        if (imageView.getDrawable().equals(drawable)) {
+            removeFriend(view);
+        } else {
+            sendFriendRequest2(view);
+        }
+    }
+
+    private void removeFriend(View view) {
+        TextView textView = view.findViewById(R.id.friendName);
+        final String friendUsername = textView.getText().toString();
+        final HashMap<String, String> fields = new HashMap<>();
+        fields.put("token", BaseController.getToken());
+        fields.put("username", friendUsername);
+        fields.put("type", friendUsername);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String response = HttpUtility.sendPostRequest(BaseController.server + "/sendFriendRequest.php", fields); //todo
+                if (response.startsWith("error")) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            BaseController.showError(MainPage.this, getString(R.string.send_request_error));
+                        }
+                    });
+                } else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(MainPage.this, getString(R.string.request_sent_successfully), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+            }
+        }).start();
+    }
+
+    private void sendFriendRequest2(View view) {
+        TextView textView = view.findViewById(R.id.friendName);
+        final String friendUsername = textView.getText().toString();
+        final HashMap<String, String> fields = new HashMap<>();
+        fields.put("token", BaseController.getToken());
+        fields.put("username", friendUsername);
+        fields.put("type", "add");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String response = HttpUtility.sendPostRequest(BaseController.server + "/sendFriendRequest.php", fields);
+                if (response.startsWith("error")) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            BaseController.showError(MainPage.this, getString(R.string.send_request_error));
+                        }
+                    });
+                } else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(MainPage.this, getString(R.string.request_sent_successfully), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+            }
+        }).start();
+    }
+
+    public void acceptFriendRequest(View view) {
+        TextView textView = view.findViewById(R.id.requestUsername);
+        String userName = textView.getText().toString();
+        final HashMap<String, String> fields = new HashMap<>();
+        fields.put("token", BaseController.getToken());
+        fields.put("username", userName);
+        fields.put("type", "accept");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String response = HttpUtility.sendPostRequest(BaseController.server + "/sendFriendRequest.php", fields);
+                if (response.startsWith("error")) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            BaseController.showError(MainPage.this, getString(R.string.send_request_error));
+                        }
+                    });
+                } else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(MainPage.this, getString(R.string.accept_friend_request), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+            }
+        }).start();
+    }
+
+    public void rejectFriendRequest(View view) {
+        TextView textView = view.findViewById(R.id.requestUsername);
+        String userName = textView.getText().toString();
+        final HashMap<String, String> fields = new HashMap<>();
+        fields.put("token", BaseController.getToken());
+        fields.put("username", userName);
+        fields.put("type", "reject");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String response = HttpUtility.sendPostRequest(BaseController.server + "/sendFriendRequest.php", fields);
+                if (response.startsWith("error")) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            BaseController.showError(MainPage.this, getString(R.string.send_request_error));
+                        }
+                    });
+                } else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(MainPage.this, getString(R.string.reject_friend_request), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+            }
+        }).start();
     }
 }

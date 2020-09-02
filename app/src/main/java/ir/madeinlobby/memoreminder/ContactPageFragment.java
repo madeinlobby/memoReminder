@@ -59,9 +59,14 @@ public class ContactPageFragment extends Fragment {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final String response = HttpUtility.sendPostRequest(BaseController.server + "/getTags.php", fields2); //todo
+                final String response = HttpUtility.sendPostRequest(BaseController.server + "/getFriends.php", fields2);
                 if (response.startsWith("error")) {
-                    BaseController.showError(context, getString(R.string.error_connection_server));
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            BaseController.showError(context, getString(R.string.error_connection_server));
+                        }
+                    });
                 } else {
                     ArrayList<String> friends = new Gson().fromJson(response, new TypeToken<ArrayList<String>>() {
                     }.getType());

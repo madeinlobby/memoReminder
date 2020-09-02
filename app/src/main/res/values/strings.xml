@@ -34,4 +34,6 @@
     <string name="friend_requests_title">Friend Requests</string>
     <string name="request_sent_successfully">Friend Request sent successfully</string>
     <string name="send_request_error">request can not be sent. Try later</string>
+    <string name="accept_friend_request">this user was added to your contact</string>
+    <string name="reject_friend_request">you rejected this friend request</string>
 </resources>

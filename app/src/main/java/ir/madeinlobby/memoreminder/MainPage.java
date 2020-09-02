@@ -146,7 +146,7 @@ public class MainPage extends AppCompatActivity {
     }
 
     public void sendFriendRequest(View view) {
-        TextView textView = view.findViewById(R.id.friendUsername);
+        TextView textView = findViewById(R.id.friendUsername);
         final String friendUsername = textView.getText().toString();
         final HashMap<String, String> fields = new HashMap<>();
         fields.put("token", BaseController.getToken());
@@ -257,7 +257,7 @@ public class MainPage extends AppCompatActivity {
     }
 
     public void contactRowClicked(View view) {
-        ImageView imageView = view.findViewById(R.id.imageViewForContactRow);
+        ImageView imageView = findViewById(R.id.imageViewForContactRow);
         Drawable drawable = getResources().getDrawable(R.drawable.remove_friend_icon);
         if (imageView.getDrawable().equals(drawable)) {
             removeFriend(view);
@@ -267,7 +267,7 @@ public class MainPage extends AppCompatActivity {
     }
 
     private void removeFriend(View view) {
-        TextView textView = view.findViewById(R.id.friendName);
+        TextView textView = findViewById(R.id.friendName);
         final String friendUsername = textView.getText().toString();
         final HashMap<String, String> fields = new HashMap<>();
         fields.put("token", BaseController.getToken());
@@ -297,7 +297,7 @@ public class MainPage extends AppCompatActivity {
     }
 
     private void sendFriendRequest2(View view) {
-        TextView textView = view.findViewById(R.id.friendName);
+        TextView textView = findViewById(R.id.friendName);
         final String friendUsername = textView.getText().toString();
         final HashMap<String, String> fields = new HashMap<>();
         fields.put("token", BaseController.getToken());
@@ -327,7 +327,7 @@ public class MainPage extends AppCompatActivity {
     }
 
     public void acceptFriendRequest(View view) {
-        TextView textView = view.findViewById(R.id.requestUsername);
+        TextView textView = findViewById(R.id.requestUsername);
         String userName = textView.getText().toString();
         final HashMap<String, String> fields = new HashMap<>();
         fields.put("token", BaseController.getToken());
@@ -357,7 +357,7 @@ public class MainPage extends AppCompatActivity {
     }
 
     public void rejectFriendRequest(View view) {
-        TextView textView = view.findViewById(R.id.requestUsername);
+        TextView textView = findViewById(R.id.requestUsername);
         String userName = textView.getText().toString();
         final HashMap<String, String> fields = new HashMap<>();
         fields.put("token", BaseController.getToken());

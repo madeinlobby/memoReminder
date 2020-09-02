@@ -256,6 +256,11 @@ public class MainPage extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new ContactPageFragment(MainPage.this)).commit();
     }
 
+    public void backFromSearchUserPage(View view) {
+        contactPage = "";
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new ContactPageFragment(MainPage.this)).commit();
+    }
+
     public void contactRowClicked(View view) {
         ImageView imageView = findViewById(R.id.imageViewForContactRow);
         Drawable drawable = getResources().getDrawable(R.drawable.remove_friend_icon);

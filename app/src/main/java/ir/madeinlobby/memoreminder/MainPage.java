@@ -181,9 +181,6 @@ public class MainPage extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new AddFriendsFragment(MainPage.this)).commit();
     }
 
-    private void contacts() {
-    }
-
     private void posts() {
     }
 
@@ -212,6 +209,9 @@ public class MainPage extends AppCompatActivity {
             }
         }).start();
         BaseController.getTags().clear();
+        BaseController.getFriends().clear();
+        BaseController.getFriendsRequests().clear();
+        BaseController.getSearchedUsers().clear();
         BaseController.setToken("");
         finish();
     }

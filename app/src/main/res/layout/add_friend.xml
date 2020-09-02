@@ -20,6 +20,8 @@
         android:padding="5dp"
         android:layout_toRightOf="@+id/back"
         android:paddingStart="10dp"
+        android:maxLines="1"
+        android:inputType="text"
         android:textSize="18sp"/>
     <ImageView
         android:layout_alignEnd="@id/searchedUsername"
@@ -30,6 +32,15 @@
         android:layout_height="35dp"
         android:src="@drawable/ic_baseline_search_24"
         android:onClick="searchUsername"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/topicColor"
+        android:layout_below="@+id/searchedUsername"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewForUsers"
         android:padding="5dp"

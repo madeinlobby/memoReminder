@@ -66,7 +66,7 @@ public class MainPage extends AppCompatActivity {
                             selectedFragment = new ContactPageFragment(MainPage.this);
                         } else if (contactPage.equals("friendRequests")) {
                             selectedFragment = new FriendRequestsFragment(MainPage.this);
-                        } else if (contactPage.equals("addFriend")){
+                        } else if (contactPage.equals("addFriend")) {
                             selectedFragment = new AddFriendsFragment(MainPage.this);
                         }
                         break;
@@ -240,7 +240,11 @@ public class MainPage extends AppCompatActivity {
                     ArrayList<String> users = new Gson().fromJson(response, new TypeToken<ArrayList<String>>() {
                     }.getType());
                     BaseController.getSearchedUsers().clear();
-                    BaseController.getSearchedUsers().addAll(users);
+                    if (users != null) {
+                        BaseController.getSearchedUsers().addAll(users);
+                    } else {
+                        BaseController.showError(MainPage.this,"this user name doesn't exist");
+                    }
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

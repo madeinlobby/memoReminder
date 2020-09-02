@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,6 +43,7 @@ import ir.madeinlobby.memoreminder.utilities.HttpUtility;
 
 
 public class MainPage extends AppCompatActivity {
+    private static final int PICK_IMAGE = 1;
     ScrollView scrollView;
     String tagColor = "";
     String contactPage = "";
@@ -313,7 +315,7 @@ public class MainPage extends AppCompatActivity {
         new AlertDialog.Builder(MainPage.this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("remove friend")
-                .setMessage("are you sure you want to remove "+friendUsername + " from your friends")
+                .setMessage("are you sure you want to remove " + friendUsername + " from your friends")
                 .setPositiveButton("yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -444,5 +446,17 @@ public class MainPage extends AppCompatActivity {
                 }
             }
         }).start();
+    }
+
+    public void addPost(View view) {
+//        ImagePicker.Companion.with(this)
+//                .crop()	    			//Crop image(Optional), Check Customization for more option
+//                .compress(1024)			//Final image size will be less than 1 MB(Optional)
+//                .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+//                .start();
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
     }
 }

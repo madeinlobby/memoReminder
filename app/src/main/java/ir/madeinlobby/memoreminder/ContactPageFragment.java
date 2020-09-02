@@ -49,6 +49,7 @@ public class ContactPageFragment extends Fragment {
         RecyclerView recyclerView = layout.findViewById(R.id.recycleViewForFriends);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         friendsAdaptor = new FriendsAdaptor(BaseController.getFriends(), context);
+        MainPage.friendsAdaptor = friendsAdaptor;
         recyclerView.setAdapter(friendsAdaptor);
         return layout;
     }

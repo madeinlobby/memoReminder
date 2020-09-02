@@ -47,6 +47,7 @@ public class MainPage extends AppCompatActivity {
     public static AddFriendAdaptor addFriendAdaptor = null;
     public static FriendRequestAdaptor friendRequestAdaptor = null;
     FloatingActionButton floatingActionButton;
+    public static FriendsAdaptor friendsAdaptor = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -190,9 +191,6 @@ public class MainPage extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new AddFriendsFragment(MainPage.this)).commit();
     }
 
-    private void posts() {
-    }
-
     private void logout() {
         final HashMap<String, String> fields = new HashMap<>();
         fields.put("token", BaseController.getToken());
@@ -256,7 +254,7 @@ public class MainPage extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                BaseController.showError(MainPage.this,"this user name doesn't exist");
+                                BaseController.showError(MainPage.this, "this user name doesn't exist");
                             }
                         });
                     }
@@ -299,7 +297,7 @@ public class MainPage extends AppCompatActivity {
         final HashMap<String, String> fields = new HashMap<>();
         fields.put("token", BaseController.getToken());
         fields.put("username", friendUsername);
-        fields.put("type", friendUsername);
+        fields.put("type", "remove");
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -315,7 +313,9 @@ public class MainPage extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(MainPage.this, getString(R.string.request_sent_successfully), Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainPage.this, getString(R.string.remove_friend), Toast.LENGTH_LONG).show();
+                            BaseController.getFriends().remove(friendUsername);
+                            friendsAdaptor.notifyDataSetChanged();
                         }
                     });
                 }

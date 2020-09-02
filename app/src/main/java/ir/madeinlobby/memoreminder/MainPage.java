@@ -310,35 +310,48 @@ public class MainPage extends AppCompatActivity {
 //    }
 
     public void removeFriend(final String friendUsername) {
-//        TextView textView = findViewById(R.id.friendName);
-//        final String friendUsername = textView.getText().toString();
-        final HashMap<String, String> fields = new HashMap<>();
-        fields.put("token", BaseController.getToken());
-        fields.put("username", friendUsername);
-        fields.put("type", "remove");
-        new Thread(new Runnable() {
+        new AlertDialog.Builder(MainPage.this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("remove friend")
+                .setMessage("are you sure you want to remove "+friendUsername + " from your friends")
+                .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        final HashMap<String, String> fields = new HashMap<>();
+                        fields.put("token", BaseController.getToken());
+                        fields.put("username", friendUsername);
+                        fields.put("type", "remove");
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                final String response = HttpUtility.sendPostRequest(BaseController.server + "/sendFriendRequest.php", fields);
+                                if (response.startsWith("error")) {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            BaseController.showError(MainPage.this, response);
+                                        }
+                                    });
+                                } else {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(MainPage.this, getString(R.string.remove_friend), Toast.LENGTH_LONG).show();
+                                            BaseController.getFriends().remove(friendUsername);
+                                            friendsAdaptor.notifyDataSetChanged();
+                                        }
+                                    });
+                                }
+                            }
+                        }).start();
+                    }
+                }).setNegativeButton("cancel", new DialogInterface.OnClickListener() {
             @Override
-            public void run() {
-                final String response = HttpUtility.sendPostRequest(BaseController.server + "/sendFriendRequest.php", fields); //todo remember to remove from friend list
-                if (response.startsWith("error")) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            BaseController.showError(MainPage.this, response);
-                        }
-                    });
-                } else {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(MainPage.this, getString(R.string.remove_friend), Toast.LENGTH_LONG).show();
-                            BaseController.getFriends().remove(friendUsername);
-                            friendsAdaptor.notifyDataSetChanged();
-                        }
-                    });
-                }
+            public void onClick(DialogInterface dialogInterface, int i) {
+
             }
-        }).start();
+        })
+                .show();
     }
 
     public void sendFriendRequest2(final String friendUsername) {
@@ -373,9 +386,7 @@ public class MainPage extends AppCompatActivity {
         }).start();
     }
 
-    public void acceptFriendRequest(View view) {
-        TextView textView = findViewById(R.id.requestUsername);
-        final String userName = textView.getText().toString();
+    public void acceptFriendRequest(final String userName) {
         final HashMap<String, String> fields = new HashMap<>();
         fields.put("token", BaseController.getToken());
         fields.put("username", userName);
@@ -405,9 +416,7 @@ public class MainPage extends AppCompatActivity {
         }).start();
     }
 
-    public void rejectFriendRequest(View view) {
-        TextView textView = findViewById(R.id.requestUsername);
-        final String userName = textView.getText().toString();
+    public void rejectFriendRequest(final String userName) {
         final HashMap<String, String> fields = new HashMap<>();
         fields.put("token", BaseController.getToken());
         fields.put("username", userName);

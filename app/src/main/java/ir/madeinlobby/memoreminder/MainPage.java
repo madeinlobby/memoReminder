@@ -283,35 +283,35 @@ public class MainPage extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new ContactPageFragment(MainPage.this)).commit();
     }
 
-    public void contactRowClicked(View view) {
-        ImageView imageView = findViewById(R.id.imageViewForContactRow);
-        String tag = (String) imageView.getTag();
-        if (tag.equals("remove")) {
-            Log.d("checkkk","remove");
-            new AlertDialog.Builder(MainPage.this)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setTitle("remove friend")
-                    .setMessage("are you sure you want to remove this friend?")
-                    .setPositiveButton("yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            removeFriend();
-                        }
-                    }).setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                }
-            })
-                    .show();
-        } else {
-            Log.d("checkkk","add");
-            sendFriendRequest2(view);
-        }
-    }
+//    public void contactRowClicked(View view) {
+//        ImageView imageView = findViewById(R.id.imageViewForContactRow);
+//        String tag = (String) imageView.getTag();
+//        if (tag.equals("remove")) {
+//            Log.d("checkkk","remove");
+//            new AlertDialog.Builder(MainPage.this)
+//                    .setIcon(android.R.drawable.ic_dialog_alert)
+//                    .setTitle("remove friend")
+//                    .setMessage("are you sure you want to remove this friend?")
+//                    .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialogInterface, int i) {
+//                            removeFriend();
+//                        }
+//                    }).setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialogInterface, int i) {
+//                }
+//            })
+//                    .show();
+//        } else {
+//            Log.d("checkkk","add");
+//            sendFriendRequest2(view);
+//        }
+//    }
 
-    private void removeFriend() {
-        TextView textView = findViewById(R.id.friendName);
-        final String friendUsername = textView.getText().toString();
+    public void removeFriend(final String friendUsername) {
+//        TextView textView = findViewById(R.id.friendName);
+//        final String friendUsername = textView.getText().toString();
         final HashMap<String, String> fields = new HashMap<>();
         fields.put("token", BaseController.getToken());
         fields.put("username", friendUsername);
@@ -341,9 +341,9 @@ public class MainPage extends AppCompatActivity {
         }).start();
     }
 
-    private void sendFriendRequest2(View view) {
-        TextView textView = findViewById(R.id.friendName);
-        final String friendUsername = textView.getText().toString();
+    public void sendFriendRequest2(final String friendUsername) {
+//        TextView textView = findViewById(R.id.friendName);
+//        final String friendUsername = textView.getText().toString();
         final HashMap<String, String> fields = new HashMap<>();
         fields.put("token", BaseController.getToken());
         fields.put("username", friendUsername);

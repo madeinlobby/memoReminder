@@ -13,7 +13,7 @@
         android:layout_height="30dp"
         android:tag="remove"
         android:src="@drawable/remove_friend_icon"
-        android:onClick="contactRowClicked"/>
+        />
     <TextView
         android:id="@+id/friendName"
         android:layout_width="match_parent"

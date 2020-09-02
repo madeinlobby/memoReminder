@@ -221,7 +221,7 @@ public class MainPage extends AppCompatActivity {
 
     public void searchUsername(View view) {
         final HashMap<String, String> fields2 = new HashMap<>();
-        EditText searchedUsername = view.findViewById(R.id.searchedUsername);
+        EditText searchedUsername = findViewById(R.id.searchedUsername);
         fields2.put("search", searchedUsername.getText().toString());
         new Thread(new Runnable() {
             @Override

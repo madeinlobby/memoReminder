@@ -44,7 +44,7 @@ public class MainPage extends AppCompatActivity {
     String contactPage = "";
     public static TagsAdaptor tagsAdaptor = null;
     public static AddFriendAdaptor addFriendAdaptor = null;
-    public static FriendRequestAdaptor friendRequestAdaptor;
+    public static FriendRequestAdaptor friendRequestAdaptor = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -282,12 +282,12 @@ public class MainPage extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String response = HttpUtility.sendPostRequest(BaseController.server + "/sendFriendRequest.php", fields); //todo
+                final String response = HttpUtility.sendPostRequest(BaseController.server + "/sendFriendRequest.php", fields); //todo remember to remove from friend list
                 if (response.startsWith("error")) {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            BaseController.showError(MainPage.this, getString(R.string.send_request_error));
+                            BaseController.showError(MainPage.this, response);
                         }
                     });
                 } else {
@@ -312,12 +312,12 @@ public class MainPage extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String response = HttpUtility.sendPostRequest(BaseController.server + "/sendFriendRequest.php", fields);
+                final String response = HttpUtility.sendPostRequest(BaseController.server + "/sendFriendRequest.php", fields);
                 if (response.startsWith("error")) {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            BaseController.showError(MainPage.this, getString(R.string.send_request_error));
+                            BaseController.showError(MainPage.this, response);
                         }
                     });
                 } else {
@@ -325,6 +325,8 @@ public class MainPage extends AppCompatActivity {
                         @Override
                         public void run() {
                             Toast.makeText(MainPage.this, getString(R.string.request_sent_successfully), Toast.LENGTH_LONG).show();
+                            BaseController.getSearchedUsers().remove(friendUsername);
+                            addFriendAdaptor.notifyDataSetChanged();
                         }
                     });
                 }

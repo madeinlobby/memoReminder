@@ -65,6 +65,8 @@ public class MainPage extends AppCompatActivity {
                             selectedFragment = new ContactPageFragment(MainPage.this);
                         } else if (contactPage.equals("friendRequests")) {
                             selectedFragment = new FriendRequestsFragment(MainPage.this);
+                        } else if (contactPage.equals("addFriend")){
+                            selectedFragment = new AddFriendsFragment(MainPage.this);
                         }
                         break;
                     case R.id.nav_tags:
@@ -174,6 +176,7 @@ public class MainPage extends AppCompatActivity {
     }
 
     public void addFriendButtonClicked(View view) {
+        contactPage = "addFriend";
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new AddFriendsFragment(MainPage.this)).commit();
     }
 

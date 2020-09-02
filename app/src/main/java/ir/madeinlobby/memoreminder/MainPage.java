@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.azeesoft.lib.colorpicker.ColorPickerDialog;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -45,12 +46,14 @@ public class MainPage extends AppCompatActivity {
     public static TagsAdaptor tagsAdaptor = null;
     public static AddFriendAdaptor addFriendAdaptor = null;
     public static FriendRequestAdaptor friendRequestAdaptor = null;
+    FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
         scrollView = findViewById(R.id.main_layout);
+        floatingActionButton = findViewById(R.id.fab);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new HomePageFragment()).commit();
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -63,17 +66,22 @@ public class MainPage extends AppCompatActivity {
                         break;
                     case R.id.nav_contacts:
                         if (contactPage.equals("")) {
+                            floatingActionButton.setVisibility(View.VISIBLE);
                             selectedFragment = new ContactPageFragment(MainPage.this);
                         } else if (contactPage.equals("friendRequests")) {
+                            floatingActionButton.setVisibility(View.GONE);
                             selectedFragment = new FriendRequestsFragment(MainPage.this);
                         } else if (contactPage.equals("addFriend")) {
+                            floatingActionButton.setVisibility(View.GONE);
                             selectedFragment = new AddFriendsFragment(MainPage.this);
                         }
                         break;
                     case R.id.nav_tags:
+                        floatingActionButton.setVisibility(View.GONE);
                         selectedFragment = new TagsPageFragment(MainPage.this);
                         break;
                     case R.id.nav_tagged:
+                        floatingActionButton.setVisibility(View.GONE);
                         showTaggedPage();
                         break;
 
@@ -177,6 +185,7 @@ public class MainPage extends AppCompatActivity {
     }
 
     public void addFriendButtonClicked(View view) {
+        floatingActionButton.setVisibility(View.GONE);
         contactPage = "addFriend";
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new AddFriendsFragment(MainPage.this)).commit();
     }
@@ -218,6 +227,7 @@ public class MainPage extends AppCompatActivity {
 
     public void showFriendRequests(View view) {
         contactPage = "friendRequests";
+        floatingActionButton.setVisibility(View.GONE);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new FriendRequestsFragment(MainPage.this)).commit();
     }
 
@@ -263,11 +273,13 @@ public class MainPage extends AppCompatActivity {
 
     public void backFromFriendRequestsPage(View view) {
         contactPage = "";
+        floatingActionButton.setVisibility(View.VISIBLE);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new ContactPageFragment(MainPage.this)).commit();
     }
 
     public void backFromSearchUserPage(View view) {
         contactPage = "";
+        floatingActionButton.setVisibility(View.VISIBLE);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new ContactPageFragment(MainPage.this)).commit();
     }
 

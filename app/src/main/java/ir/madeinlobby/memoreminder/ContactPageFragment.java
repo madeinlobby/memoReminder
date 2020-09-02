@@ -59,7 +59,7 @@ public class ContactPageFragment extends Fragment {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final String response = HttpUtility.sendPostRequest(BaseController.server + "/getFriends.php", fields2); //todo
+                final String response = HttpUtility.sendPostRequest(BaseController.server + "/getFriends.php", fields2);
                 if (response.startsWith("error")) {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override

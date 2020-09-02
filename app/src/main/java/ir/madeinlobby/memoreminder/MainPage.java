@@ -44,6 +44,7 @@ public class MainPage extends AppCompatActivity {
     String contactPage = "";
     public static TagsAdaptor tagsAdaptor = null;
     public static AddFriendAdaptor addFriendAdaptor = null;
+    public static FriendRequestAdaptor friendRequestAdaptor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +79,7 @@ public class MainPage extends AppCompatActivity {
 
                     case R.id.nav_logout:
                         logout();
-                        break;
+                        return true;
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, selectedFragment).commit();
                 return true;
@@ -333,7 +334,7 @@ public class MainPage extends AppCompatActivity {
 
     public void acceptFriendRequest(View view) {
         TextView textView = findViewById(R.id.requestUsername);
-        String userName = textView.getText().toString();
+        final String userName = textView.getText().toString();
         final HashMap<String, String> fields = new HashMap<>();
         fields.put("token", BaseController.getToken());
         fields.put("username", userName);
@@ -354,6 +355,8 @@ public class MainPage extends AppCompatActivity {
                         @Override
                         public void run() {
                             Toast.makeText(MainPage.this, getString(R.string.accept_friend_request), Toast.LENGTH_LONG).show();
+                            BaseController.getFriendsRequests().remove(userName);
+                            friendRequestAdaptor.notifyDataSetChanged();
                         }
                     });
                 }
@@ -363,7 +366,7 @@ public class MainPage extends AppCompatActivity {
 
     public void rejectFriendRequest(View view) {
         TextView textView = findViewById(R.id.requestUsername);
-        String userName = textView.getText().toString();
+        final String userName = textView.getText().toString();
         final HashMap<String, String> fields = new HashMap<>();
         fields.put("token", BaseController.getToken());
         fields.put("username", userName);
@@ -384,6 +387,8 @@ public class MainPage extends AppCompatActivity {
                         @Override
                         public void run() {
                             Toast.makeText(MainPage.this, getString(R.string.reject_friend_request), Toast.LENGTH_LONG).show();
+                            BaseController.getFriendsRequests().remove(userName);
+                            friendRequestAdaptor.notifyDataSetChanged();
                         }
                     });
                 }

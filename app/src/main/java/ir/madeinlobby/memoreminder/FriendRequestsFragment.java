@@ -39,6 +39,7 @@ public class FriendRequestsFragment extends Fragment {
         RecyclerView recyclerView = layout.findViewById(R.id.recycleViewForFriendRequests);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         friendRequestAdaptor = new FriendRequestAdaptor(BaseController.getFriendsRequests(), context);
+        MainPage.friendRequestAdaptor = friendRequestAdaptor;
         recyclerView.setAdapter(friendRequestAdaptor);
         return layout;
     }
@@ -52,7 +53,12 @@ public class FriendRequestsFragment extends Fragment {
             public void run() {
                 final String response = HttpUtility.sendPostRequest(BaseController.server + "/getFriendRequest.php", fields2);
                 if (response.startsWith("error")) {
-                    BaseController.showError(context, getString(R.string.error_connection_server));
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            BaseController.showError(context, getString(R.string.error_connection_server));
+                        }
+                    });
                 } else {
                     ArrayList<String> friends = new Gson().fromJson(response, new TypeToken<ArrayList<String>>() {
                     }.getType());

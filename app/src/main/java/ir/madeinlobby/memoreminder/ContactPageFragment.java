@@ -71,7 +71,9 @@ public class ContactPageFragment extends Fragment {
                     ArrayList<String> friends = new Gson().fromJson(response, new TypeToken<ArrayList<String>>() {
                     }.getType());
                     BaseController.getFriends().clear();
-                    BaseController.getFriends().addAll(friends);
+                    if (friends != null) {
+                        BaseController.getFriends().addAll(friends);
+                    }
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

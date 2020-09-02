@@ -11,6 +11,7 @@
         android:id="@+id/imageViewForContactRow"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:tag="remove"
         android:src="@drawable/remove_friend_icon"
         android:onClick="contactRowClicked"/>
     <TextView

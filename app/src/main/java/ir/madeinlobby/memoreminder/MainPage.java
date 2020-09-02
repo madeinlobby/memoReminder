@@ -3,7 +3,9 @@ package ir.madeinlobby.memoreminder;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -283,15 +285,31 @@ public class MainPage extends AppCompatActivity {
 
     public void contactRowClicked(View view) {
         ImageView imageView = findViewById(R.id.imageViewForContactRow);
-        Drawable drawable = getResources().getDrawable(R.drawable.remove_friend_icon);
-        if (imageView.getDrawable().equals(drawable)) {
-            removeFriend(view);
+        String tag = (String) imageView.getTag();
+        if (tag.equals("remove")) {
+            Log.d("checkkk","remove");
+            new AlertDialog.Builder(MainPage.this)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("remove friend")
+                    .setMessage("are you sure you want to remove this friend?")
+                    .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            removeFriend();
+                        }
+                    }).setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                }
+            })
+                    .show();
         } else {
+            Log.d("checkkk","add");
             sendFriendRequest2(view);
         }
     }
 
-    private void removeFriend(View view) {
+    private void removeFriend() {
         TextView textView = findViewById(R.id.friendName);
         final String friendUsername = textView.getText().toString();
         final HashMap<String, String> fields = new HashMap<>();

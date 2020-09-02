@@ -45,6 +45,7 @@ public class AddFriendAdaptor extends RecyclerView.Adapter<AddFriendAdaptor.View
         holder.text.setText(data.get(position));
         if (!BaseController.getFriends().contains(data.get(position))) {
             holder.imageView.setImageResource(R.drawable.send_request);
+            holder.imageView.setTag("add");
         }
     }
 

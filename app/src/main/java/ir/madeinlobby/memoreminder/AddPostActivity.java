@@ -56,4 +56,9 @@ public class AddPostActivity extends AppCompatActivity {
     public void backFromAddPhotos(View view) {
         finish();
     }
+
+    public void goToCreatePost(View view) {
+        Intent intent = new Intent();
+        startActivity(intent);
+    }
 }

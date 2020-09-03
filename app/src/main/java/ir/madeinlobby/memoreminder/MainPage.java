@@ -66,7 +66,7 @@ public class MainPage extends AppCompatActivity {
         scrollView = findViewById(R.id.main_layout);
         floatingActionButtonForAddFriend = findViewById(R.id.fab);
         floatingActionButtonForAddPost = findViewById(R.id.fab2);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new HomePageFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new HomePageFragment(MainPage.this)).commit();
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -76,7 +76,7 @@ public class MainPage extends AppCompatActivity {
                     case R.id.nav_home:
                         floatingActionButtonForAddPost.setVisibility(View.VISIBLE);
                         floatingActionButtonForAddFriend.setVisibility(View.GONE);
-                        selectedFragment = new HomePageFragment();
+                        selectedFragment = new HomePageFragment(MainPage.this);
                         break;
                     case R.id.nav_contacts:
                         floatingActionButtonForAddPost.setVisibility(View.GONE);
@@ -423,33 +423,34 @@ public class MainPage extends AppCompatActivity {
         }).start();
     }
 
-    public void addPost(View view) {
-        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-        startActivityForResult(gallery, PICK_IMAGE);
-        photosGrid = findViewById(R.id.gridForPhotos);
-        imageView = new ImageView(this);
-        imageView.setMaxHeight(278);
-        imageView.setMinimumHeight(278);
-        imageView.setMaxWidth(278);
-        imageView.setMinimumHeight(278);
-        imageView.setBackground(getResources().getDrawable(R.drawable.border_for_photo));
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(280, 280);
-        lp.setMargins(10, 10, 10, 10);
-        imageView.setPadding(4,4,4,4);
-        imageView.setLayoutParams(lp);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && requestCode == PICK_IMAGE){
-            imageUri = data.getData();
-            imageView.setImageURI(imageUri);
-            photosGrid.addView(imageView);
-        }
-    }
+//    public void addPost(View view) {
+//        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+//        startActivityForResult(gallery, PICK_IMAGE);
+//        photosGrid = findViewById(R.id.gridForPhotos);
+//        imageView = new ImageView(this);
+//        imageView.setMaxHeight(278);
+//        imageView.setMinimumHeight(278);
+//        imageView.setMaxWidth(278);
+//        imageView.setMinimumHeight(278);
+//        imageView.setBackground(getResources().getDrawable(R.drawable.border_for_photo));
+//        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(280, 280);
+//        lp.setMargins(10, 10, 10, 10);
+//        imageView.setPadding(4,4,4,4);
+//        imageView.setLayoutParams(lp);
+//    }
+//
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode == RESULT_OK && requestCode == PICK_IMAGE){
+//            imageUri = data.getData();
+//            imageView.setImageURI(imageUri);
+//            photosGrid.addView(imageView);
+//        }
+//    }
 
     public void addPostButtonClicked(View view) {
-
+        Intent intent = new Intent(MainPage.this,AddPostActivity.class);
+        startActivity(intent);
     }
 }

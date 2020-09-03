@@ -20,7 +20,7 @@
                 android:id="@+id/back"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:onClick="backFromFriendRequestsPage"
+                android:onClick="backFromAddPhotos"
                 android:src="@drawable/back"/>
 
             <TextView

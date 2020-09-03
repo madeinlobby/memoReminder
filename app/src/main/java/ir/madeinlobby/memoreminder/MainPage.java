@@ -55,9 +55,9 @@ public class MainPage extends AppCompatActivity {
     public static FriendRequestAdaptor friendRequestAdaptor = null;
     FloatingActionButton floatingActionButtonForAddFriend,floatingActionButtonForAddPost;
     public static FriendsAdaptor friendsAdaptor = null;
-    private Uri imageUri = null;
-    ImageView imageView = null;
-    GridLayout photosGrid = null;
+//    private Uri imageUri = null;
+//    ImageView imageView = null;
+//    GridLayout photosGrid = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

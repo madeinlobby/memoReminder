@@ -466,6 +466,7 @@ public class MainPage extends AppCompatActivity {
         imageView.setBackground(getResources().getDrawable(R.drawable.border_for_photo));
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(280, 280);
         lp.setMargins(10, 10, 10, 10);
+        imageView.setPadding(4,4,4,4);
         imageView.setLayoutParams(lp);
     }
 

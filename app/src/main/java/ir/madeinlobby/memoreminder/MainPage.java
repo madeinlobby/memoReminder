@@ -8,7 +8,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 
 import androidx.fragment.app.Fragment;
@@ -20,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -52,6 +55,9 @@ public class MainPage extends AppCompatActivity {
     public static FriendRequestAdaptor friendRequestAdaptor = null;
     FloatingActionButton floatingActionButton;
     public static FriendsAdaptor friendsAdaptor = null;
+    private Uri imageUri = null;
+    ImageView imageView = null;
+    GridLayout photosGrid = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -449,14 +455,27 @@ public class MainPage extends AppCompatActivity {
     }
 
     public void addPost(View view) {
-//        ImagePicker.Companion.with(this)
-//                .crop()	    			//Crop image(Optional), Check Customization for more option
-//                .compress(1024)			//Final image size will be less than 1 MB(Optional)
-//                .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
-//                .start();
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(gallery, PICK_IMAGE);
+        photosGrid = findViewById(R.id.gridForPhotos);
+        imageView = new ImageView(this);
+        imageView.setMaxHeight(278);
+        imageView.setMinimumHeight(278);
+        imageView.setMaxWidth(278);
+        imageView.setMinimumHeight(278);
+        imageView.setBackground(getResources().getDrawable(R.drawable.border_for_photo));
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(280, 280);
+        lp.setMargins(10, 10, 10, 10);
+        imageView.setLayoutParams(lp);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == PICK_IMAGE){
+            imageUri = data.getData();
+            imageView.setImageURI(imageUri);
+            photosGrid.addView(imageView);
+        }
     }
 }

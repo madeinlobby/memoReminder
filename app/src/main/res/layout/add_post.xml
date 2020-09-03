@@ -2,23 +2,44 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
     android:padding="10dp">
-    <ImageView
-        android:layout_margin="10dp"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        tools:srcCompat="@tools:sample/avatars"
-        android:background="@drawable/border_for_photo"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="backFromFriendRequestsPage"
+            android:src="@drawable/back"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="friend requests"
+            android:textSize="20sp"
+            android:textColor="@color/topicColor"
+            android:gravity="center"
+            android:layout_marginRight="40dp"
+            android:layout_gravity="center"
+            />
+    </LinearLayout>
+    <GridLayout
+        android:id="@+id/gridForPhotos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="3">
 
     <ImageView
         android:id="@+id/addPhoto"
         android:layout_margin="10dp"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="280px"
+        android:layout_height="280px"
         android:onClick="addPost"
         android:src="@drawable/ic_baseline_add_24"/>
+    </GridLayout>
 </LinearLayout>

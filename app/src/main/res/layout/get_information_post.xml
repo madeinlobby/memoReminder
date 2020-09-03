@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:padding="10dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/titleFriendRequest"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:orientation="horizontal"
+            android:background="@color/postColor">
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:onClick="backFromFriendRequestsPage"
+                android:src="@drawable/back"/>
+
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="new post"
+                android:textSize="25sp"
+                android:textColor="@color/topicColor"
+                android:gravity="center"
+                android:layout_marginRight="40dp"
+                android:layout_gravity="center" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="33dp"
+                android:layout_alignParentRight="true"
+                android:text="add"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:layout_marginEnd="10dp"
+                android:layout_gravity="center" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="3dp"
+            android:background="@color/topicColor" />
+    </LinearLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="10dp" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="top"
+        android:padding="10dp"
+        android:inputType="textMultiLine"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:padding="5dp">
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/location_icon"/>
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Location"
+        android:textSize="20dp"
+        android:paddingLeft="10dp"
+        android:textColor="@color/black"/>
+    </LinearLayout>
+    <View
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="3dp"
+        android:background="@color/grey" />
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/tag_icon1"/>
+        <TextView
+            android:id="@+id/taggedPeople"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tag People"
+            android:textSize="20dp"
+            android:paddingLeft="10dp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+    <View
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="3dp"
+        android:background="@color/grey" />
+
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/tags_icon1"/>
+        <TextView
+            android:id="@+id/addedTags"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Tags"
+            android:textSize="20dp"
+            android:paddingLeft="10dp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+    <View
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="3dp"
+        android:background="@color/grey" />
+</LinearLayout>

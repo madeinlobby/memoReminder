@@ -15,7 +15,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp" android:orientation="horizontal">
+            android:paddingTop="10dp"
+            android:orientation="horizontal"
+            android:background="@color/postColor">
             <ImageView
                 android:id="@+id/back"
                 android:layout_width="40dp"
@@ -35,7 +37,7 @@
                 android:layout_gravity="center" />
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="33dp"
                 android:layout_alignParentRight="true"
                 android:text="Next"
                 android:textSize="20sp"

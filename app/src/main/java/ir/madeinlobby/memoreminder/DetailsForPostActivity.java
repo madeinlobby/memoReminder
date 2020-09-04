@@ -113,4 +113,9 @@ public class DetailsForPostActivity extends AppCompatActivity {
             textView.setText(TagFriendsInPostActivity.friendsSelected.size() + " people tagged");
         }
     }
+
+    public void openMap(View view) {
+        Intent intent = new Intent(DetailsForPostAcitivity.this, MapsActivity.class);
+        startActivity(intent);
+    }
 }

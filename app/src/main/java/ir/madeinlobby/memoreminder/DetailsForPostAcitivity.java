@@ -23,6 +23,7 @@ public class DetailsForPostAcitivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_for_post_acitivity);
         TagFriendsInPostActivity.friendsSelected = new ArrayList<>();
+        AddTagsForPostAcitivity.tagsSelected = new ArrayList<>();
     }
 
     public void backFromAddDetails(View view) {

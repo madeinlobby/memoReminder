@@ -58,7 +58,7 @@ public class AddPostActivity extends AppCompatActivity {
     }
 
     public void goToCreatePost(View view) {
-        Intent intent = new Intent();
+        Intent intent = new Intent(AddPostActivity.this,DetailsForPostAcitivity.class);
         startActivity(intent);
     }
 }

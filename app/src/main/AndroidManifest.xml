@@ -3,11 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="ir.madeinlobby.memoreminder">
 
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the "MyLocation" functionality.
-    -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission. ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -23,6 +18,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
+        <activity android:name=".TagFriendsInPostActivity"></activity>
+        <activity android:name=".AddTagsForPostAcitivity" />
+        <activity android:name=".DetailsForPostAcitivity" />
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

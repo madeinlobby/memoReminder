@@ -23,7 +23,7 @@ public class DetailsForPostAcitivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_for_post_acitivity);
         TagFriendsInPostActivity.friendsSelected = new ArrayList<>();
-        AddTagsForPostAcitivity.tagsSelected = new ArrayList<>();
+        AddTagsForPostActivity.tagsSelected = new ArrayList<>();
     }
 
     public void backFromAddDetails(View view) {
@@ -91,7 +91,7 @@ public class DetailsForPostAcitivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Intent intent = new Intent(DetailsForPostAcitivity.this, AddTagsForPostAcitivity.class);
+                            Intent intent = new Intent(DetailsForPostAcitivity.this, AddTagsForPostActivity.class);
                             startActivity(intent);
                         }
                     });

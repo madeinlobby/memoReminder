@@ -2,6 +2,7 @@ package ir.madeinlobby.memoreminder;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,10 +47,10 @@ public class TagsSelectableAdaptor extends RecyclerView.Adapter<TagsSelectableAd
         holder.text.setText(data.get(position).getTitle());
         int colorInt = Color.parseColor(data.get(position).getColorHex());
         holder.color.getBackground().setTint(colorInt);
-        if (AddTagsForPostAcitivity.tagsSelected.contains(data.get(position))) {
+        if (isTagSelectedBefore(data.get(position).getTitle(),data.get(position).getColorHex())){
             holder.text.setChecked(true);
             holder.text.setCheckMarkDrawable(R.drawable.ic_baseline_check_24);
-        } else {
+        } else{
             holder.text.setChecked(false);
             holder.text.setCheckMarkDrawable(R.drawable.ic_baseline_uncheked);
         }
@@ -59,12 +60,13 @@ public class TagsSelectableAdaptor extends RecyclerView.Adapter<TagsSelectableAd
                 boolean value = holder.text.isChecked();
                 if (value) {
                     holder.text.setChecked(false);
-                    AddTagsForPostAcitivity.tagsSelected.remove(data.get(position));
+//                    AddTagsForPostActivity.tagsSelected.remove(data.get(position));
+                    removeTagFromSelectedList(data.get(position).getTitle(),data.get(position).getColorHex());
                     holder.text.setCheckMarkDrawable(R.drawable.ic_baseline_uncheked);
                 } else {
                     holder.text.setChecked(true);
                     holder.text.setCheckMarkDrawable(R.drawable.ic_baseline_check_24);
-                    AddTagsForPostAcitivity.tagsSelected.add(data.get(position));
+                    AddTagsForPostActivity.tagsSelected.add(data.get(position));
                 }
             }
         });
@@ -73,5 +75,22 @@ public class TagsSelectableAdaptor extends RecyclerView.Adapter<TagsSelectableAd
     @Override
     public int getItemCount() {
         return data.size();
+    }
+
+    private boolean isTagSelectedBefore(String tagName, String color) {
+        for (Tag tag : AddTagsForPostActivity.tagsSelected) {
+            if (tag.getColorHex().equals(color) && tag.getTitle().equals(tagName))
+                return true;
+        }
+        return false;
+    }
+
+    private void removeTagFromSelectedList(String tagName,String color){
+        for (Tag tag : AddTagsForPostActivity.tagsSelected) {
+            if (tag.getColorHex().equals(color) && tag.getTitle().equals(tagName)){
+                AddTagsForPostActivity.tagsSelected.remove(tag);
+                break;
+            }
+        }
     }
 }

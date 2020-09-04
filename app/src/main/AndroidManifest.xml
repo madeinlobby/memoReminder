@@ -19,7 +19,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity android:name=".TagFriendsInPostActivity"></activity>
-        <activity android:name=".AddTagsForPostAcitivity" />
+        <activity android:name=".AddTagsForPostActivity" />
         <activity android:name=".DetailsForPostAcitivity" />
         <activity android:name=".MainPage" />
         <activity android:name=".AccountArea" />

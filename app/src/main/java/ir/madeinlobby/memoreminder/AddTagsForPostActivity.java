@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import ir.madeinlobby.memoreminder.model.Tag;
 import ir.madeinlobby.memoreminder.utilities.BaseController;
 
-public class AddTagsForPostAcitivity extends AppCompatActivity {
+public class AddTagsForPostActivity extends AppCompatActivity {
     public static ArrayList<Tag> tagsSelected = new ArrayList<>();
 
     @Override
@@ -21,7 +21,7 @@ public class AddTagsForPostAcitivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_tags_for_post_acitivity);
         RecyclerView recyclerView = findViewById(R.id.tagsSelectableList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        TagsSelectableAdaptor adaptor = new TagsSelectableAdaptor(BaseController.getTags(), AddTagsForPostAcitivity.this);
+        TagsSelectableAdaptor adaptor = new TagsSelectableAdaptor(BaseController.getTags(), AddTagsForPostActivity.this);
         recyclerView.setAdapter(adaptor);
     }
 

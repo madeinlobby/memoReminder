@@ -21,8 +21,6 @@
         <activity android:name=".TagFriendsInPostActivity"></activity>
         <activity android:name=".AddTagsForPostActivity" />
         <activity android:name=".DetailsForPostActivity" />
-        <activity android:name=".AddTagsForPostAcitivity" />
-        <activity android:name=".DetailsForPostAcitivity" />
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

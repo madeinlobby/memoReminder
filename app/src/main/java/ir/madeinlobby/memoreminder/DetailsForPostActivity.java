@@ -115,7 +115,7 @@ public class DetailsForPostActivity extends AppCompatActivity {
     }
 
     public void openMap(View view) {
-        Intent intent = new Intent(DetailsForPostAcitivity.this, MapsActivity.class);
+        Intent intent = new Intent(DetailsForPostActivity.this, MapsActivity.class);
         startActivity(intent);
     }
 }

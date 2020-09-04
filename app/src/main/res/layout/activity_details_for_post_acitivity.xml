@@ -13,6 +13,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:background="@color/postColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -57,18 +58,21 @@
             android:layout_marginTop="3dp"
             android:background="@color/topicColor" />
     </LinearLayout>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:lines="1"
-        android:textSize="18sp"
         android:layout_marginTop="20dp"
-        android:padding="10dp" />
+        android:hint="add title"
+        android:lines="1"
+        android:padding="10dp"
+        android:textSize="18sp"
+        />
 
     <LinearLayout
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
         android:padding="5dp">
         <ImageView
             android:layout_width="25dp"

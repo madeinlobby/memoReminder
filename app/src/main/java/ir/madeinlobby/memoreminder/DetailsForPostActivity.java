@@ -106,7 +106,7 @@ public class DetailsForPostActivity extends AppCompatActivity {
         super.onResume();
         if (AddTagsForPostActivity.tagsSelected.size() != 0) {
             TextView textView = findViewById(R.id.numberOfTagsWhoAdded);
-            textView.setText(AddTagsForPostActivity.tagsSelected.size() + " tag used");
+            textView.setText(AddTagsForPostActivity.tagsSelected.size() + " tags used");
         }
         if (TagFriendsInPostActivity.friendsSelected.size() != 0) {
             TextView textView = findViewById(R.id.numberOfPeopleWhoTaggedInPost);

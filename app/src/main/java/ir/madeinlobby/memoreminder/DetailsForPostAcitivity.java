@@ -25,6 +25,8 @@ public class DetailsForPostAcitivity extends AppCompatActivity {
     }
 
     public void tagFriends(View view) {
+        Intent intent = new Intent(DetailsForPostAcitivity.this,TagFriendsInPostActivity.class);
+        startActivity(intent);
     }
 
     public void addTags(View view) {

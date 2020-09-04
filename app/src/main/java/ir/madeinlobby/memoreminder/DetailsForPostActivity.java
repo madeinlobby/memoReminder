@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -16,7 +17,7 @@ import ir.madeinlobby.memoreminder.model.Tag;
 import ir.madeinlobby.memoreminder.utilities.BaseController;
 import ir.madeinlobby.memoreminder.utilities.HttpUtility;
 
-public class DetailsForPostAcitivity extends AppCompatActivity {
+public class DetailsForPostActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,7 @@ public class DetailsForPostAcitivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            BaseController.showError(DetailsForPostAcitivity.this, getString(R.string.error_connection_server));
+                            BaseController.showError(DetailsForPostActivity.this, getString(R.string.error_connection_server));
                         }
                     });
                 } else {
@@ -60,7 +61,7 @@ public class DetailsForPostAcitivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Intent intent = new Intent(DetailsForPostAcitivity.this, TagFriendsInPostActivity.class);
+                            Intent intent = new Intent(DetailsForPostActivity.this, TagFriendsInPostActivity.class);
                             startActivity(intent);
                         }
                     });
@@ -80,7 +81,7 @@ public class DetailsForPostAcitivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            BaseController.showError(DetailsForPostAcitivity.this, getString(R.string.error_connection_server));
+                            BaseController.showError(DetailsForPostActivity.this, getString(R.string.error_connection_server));
                         }
                     });
                 } else {
@@ -91,12 +92,25 @@ public class DetailsForPostAcitivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Intent intent = new Intent(DetailsForPostAcitivity.this, AddTagsForPostActivity.class);
+                            Intent intent = new Intent(DetailsForPostActivity.this, AddTagsForPostActivity.class);
                             startActivity(intent);
                         }
                     });
                 }
             }
         }).start();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (AddTagsForPostActivity.tagsSelected.size() != 0) {
+            TextView textView = findViewById(R.id.numberOfTagsWhoAdded);
+            textView.setText(AddTagsForPostActivity.tagsSelected.size() + " tag used");
+        }
+        if (TagFriendsInPostActivity.friendsSelected.size() != 0) {
+            TextView textView = findViewById(R.id.numberOfPeopleWhoTaggedInPost);
+            textView.setText(TagFriendsInPostActivity.friendsSelected.size() + " people tagged");
+        }
     }
 }

@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
+    android:id="@+id/DetailsView"
     android:orientation="vertical"
     android:padding="10dp">
 
@@ -106,6 +107,7 @@
         android:onClick="tagFriends"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:padding="5dp">
         <ImageView
             android:layout_width="25dp"
@@ -119,6 +121,15 @@
             android:textSize="20dp"
             android:paddingLeft="10dp"
             android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/numberOfPeopleWhoTaggedInPost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:textSize="16dp"
+            android:paddingLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/grey"/>
     </LinearLayout>
     <View
         android:layout_marginLeft="5dp"
@@ -129,26 +140,39 @@
         android:background="@color/grey" />
 
     <LinearLayout
-        android:onClick="addTags"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:onClick="addTags"
         android:padding="5dp">
+
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@drawable/tags_icon1"/>
+            android:src="@drawable/tags_icon1" />
+
         <TextView
             android:id="@+id/addedTags"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Tags"
-            android:textSize="20dp"
             android:paddingLeft="10dp"
-            android:textColor="@color/black"/>
+            android:text="Add Tags"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/numberOfTagsWhoAdded"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:textSize="16dp"
+            android:paddingLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/grey"/>
     </LinearLayout>
+
     <View
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"

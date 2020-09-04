@@ -11,8 +11,6 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import ir.madeinlobby.memoreminder.R;
-
 public class AddPostActivity extends AppCompatActivity {
     private static final int PICK_IMAGE = 1;
     private Uri imageUri = null;
@@ -58,7 +56,7 @@ public class AddPostActivity extends AppCompatActivity {
     }
 
     public void goToCreatePost(View view) {
-        Intent intent = new Intent(AddPostActivity.this,DetailsForPostAcitivity.class);
+        Intent intent = new Intent(AddPostActivity.this, DetailsForPostActivity.class);
         startActivity(intent);
     }
 }

@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 
 import java.util.ArrayList;
 
@@ -22,5 +23,9 @@ public class TagFriendsInPostActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         FriendsSelectableAdaptor adaptor=new FriendsSelectableAdaptor(BaseController.getFriends(),TagFriendsInPostActivity.this);
         recyclerView.setAdapter(adaptor);
+    }
+
+    public void doneAddFriends(View view) {
+        finish();
     }
 }

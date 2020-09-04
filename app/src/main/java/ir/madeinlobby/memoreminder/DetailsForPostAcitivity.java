@@ -12,6 +12,7 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import ir.madeinlobby.memoreminder.model.Tag;
 import ir.madeinlobby.memoreminder.utilities.BaseController;
 import ir.madeinlobby.memoreminder.utilities.HttpUtility;
 
@@ -58,7 +59,7 @@ public class DetailsForPostAcitivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Intent intent = new Intent(DetailsForPostAcitivity.this,TagFriendsInPostActivity.class);
+                            Intent intent = new Intent(DetailsForPostAcitivity.this, TagFriendsInPostActivity.class);
                             startActivity(intent);
                         }
                     });
@@ -68,7 +69,33 @@ public class DetailsForPostAcitivity extends AppCompatActivity {
     }
 
     public void addTags(View view) {
-        Intent intent = new Intent(DetailsForPostAcitivity.this,AddTagsForPostAcitivity.class);
-        startActivity(intent);
+        final HashMap<String, String> fields2 = new HashMap<>();
+        fields2.put("token", BaseController.getToken());
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final String response = HttpUtility.sendPostRequest(BaseController.server + "/getTags.php", fields2);
+                if (response.startsWith("error")) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            BaseController.showError(DetailsForPostAcitivity.this, getString(R.string.error_connection_server));
+                        }
+                    });
+                } else {
+                    ArrayList<Tag> tags = new Gson().fromJson(response, new TypeToken<ArrayList<Tag>>() {
+                    }.getType());
+                    BaseController.getTags().clear();
+                    BaseController.getTags().addAll(tags);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(DetailsForPostAcitivity.this, AddTagsForPostAcitivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
+            }
+        }).start();
     }
 }

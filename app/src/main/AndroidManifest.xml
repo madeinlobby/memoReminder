@@ -18,7 +18,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".DetailsForPostAcitivity"></activity>
+        <activity android:name=".AddTagsForPostAcitivity"></activity>
+        <activity android:name=".DetailsForPostAcitivity" />
         <activity android:name=".MainPage" />
         <activity android:name=".AccountArea" />
         <activity android:name=".RegisterActivity" />

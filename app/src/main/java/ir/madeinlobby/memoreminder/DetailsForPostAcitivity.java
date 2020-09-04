@@ -19,4 +19,13 @@ public class DetailsForPostAcitivity extends AppCompatActivity {
 
     public void createPost(View view) {
     }
+
+    public void addLocation(View view) {
+    }
+
+    public void tagFriends(View view) {
+    }
+
+    public void addTags(View view) {
+    }
 }

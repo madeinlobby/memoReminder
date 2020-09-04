@@ -63,14 +63,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:hint="add title"
+        android:hint="Add title..."
         android:lines="1"
         android:padding="10dp"
         android:textSize="18sp"
         />
 
     <LinearLayout
-        android:layout_marginTop="30dp"
+        android:onClick="addLocation"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp">
@@ -95,7 +98,10 @@
         android:layout_marginTop="3dp"
         android:background="@color/grey" />
     <LinearLayout
-        android:layout_margin="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:onClick="tagFriends"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp">
@@ -121,7 +127,10 @@
         android:background="@color/grey" />
 
     <LinearLayout
-        android:layout_margin="5dp"
+        android:onClick="addTags"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp">

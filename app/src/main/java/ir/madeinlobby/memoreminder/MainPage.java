@@ -53,19 +53,20 @@ public class MainPage extends AppCompatActivity {
     public static TagsAdaptor tagsAdaptor = null;
     public static AddFriendAdaptor addFriendAdaptor = null;
     public static FriendRequestAdaptor friendRequestAdaptor = null;
-    FloatingActionButton floatingActionButton;
+    FloatingActionButton floatingActionButtonForAddFriend,floatingActionButtonForAddPost;
     public static FriendsAdaptor friendsAdaptor = null;
-    private Uri imageUri = null;
-    ImageView imageView = null;
-    GridLayout photosGrid = null;
+//    private Uri imageUri = null;
+//    ImageView imageView = null;
+//    GridLayout photosGrid = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
         scrollView = findViewById(R.id.main_layout);
-        floatingActionButton = findViewById(R.id.fab);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new HomePageFragment()).commit();
+        floatingActionButtonForAddFriend = findViewById(R.id.fab);
+        floatingActionButtonForAddPost = findViewById(R.id.fab2);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new HomePageFragment(MainPage.this)).commit();
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -73,27 +74,31 @@ public class MainPage extends AppCompatActivity {
                 Fragment selectedFragment = null;
                 switch (item.getItemId()) {
                     case R.id.nav_home:
-                        selectedFragment = new HomePageFragment();
+                        floatingActionButtonForAddPost.setVisibility(View.VISIBLE);
+                        floatingActionButtonForAddFriend.setVisibility(View.GONE);
+                        selectedFragment = new HomePageFragment(MainPage.this);
                         break;
                     case R.id.nav_contacts:
+                        floatingActionButtonForAddPost.setVisibility(View.GONE);
                         if (contactPage.equals("")) {
-                            floatingActionButton.setVisibility(View.VISIBLE);
+                            floatingActionButtonForAddFriend.setVisibility(View.VISIBLE);
                             selectedFragment = new ContactPageFragment(MainPage.this);
                         } else if (contactPage.equals("friendRequests")) {
-                            floatingActionButton.setVisibility(View.GONE);
+                            floatingActionButtonForAddFriend.setVisibility(View.GONE);
                             selectedFragment = new FriendRequestsFragment(MainPage.this);
                         } else if (contactPage.equals("addFriend")) {
-                            floatingActionButton.setVisibility(View.GONE);
+                            floatingActionButtonForAddFriend.setVisibility(View.GONE);
                             selectedFragment = new AddFriendsFragment(MainPage.this);
                         }
                         break;
                     case R.id.nav_tags:
-                        floatingActionButton.setVisibility(View.GONE);
+                        floatingActionButtonForAddPost.setVisibility(View.GONE);
+                        floatingActionButtonForAddFriend.setVisibility(View.GONE);
                         selectedFragment = new TagsPageFragment(MainPage.this);
                         break;
                     case R.id.nav_tagged:
-                        floatingActionButton.setVisibility(View.GONE);
-                        showTaggedPage();
+                        floatingActionButtonForAddPost.setVisibility(View.GONE);
+                        floatingActionButtonForAddFriend.setVisibility(View.GONE);
                         break;
 
                     case R.id.nav_logout:
@@ -104,16 +109,6 @@ public class MainPage extends AppCompatActivity {
                 return true;
             }
         });
-    }
-
-    private void showTaggedPage() {
-    }
-
-    private void showTagsPage() {
-        LayoutInflater inflater;
-        inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.tags_page, null);
-        scrollView.addView(layout);
     }
 
     public void colorPickerClicked(View view) {
@@ -196,7 +191,7 @@ public class MainPage extends AppCompatActivity {
     }
 
     public void addFriendButtonClicked(View view) {
-        floatingActionButton.setVisibility(View.GONE);
+        floatingActionButtonForAddFriend.setVisibility(View.GONE);
         contactPage = "addFriend";
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new AddFriendsFragment(MainPage.this)).commit();
     }
@@ -235,7 +230,7 @@ public class MainPage extends AppCompatActivity {
 
     public void showFriendRequests(View view) {
         contactPage = "friendRequests";
-        floatingActionButton.setVisibility(View.GONE);
+        floatingActionButtonForAddFriend.setVisibility(View.GONE);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new FriendRequestsFragment(MainPage.this)).commit();
     }
 
@@ -281,41 +276,15 @@ public class MainPage extends AppCompatActivity {
 
     public void backFromFriendRequestsPage(View view) {
         contactPage = "";
-        floatingActionButton.setVisibility(View.VISIBLE);
+        floatingActionButtonForAddFriend.setVisibility(View.VISIBLE);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new ContactPageFragment(MainPage.this)).commit();
     }
 
     public void backFromSearchUserPage(View view) {
         contactPage = "";
-        floatingActionButton.setVisibility(View.VISIBLE);
+        floatingActionButtonForAddFriend.setVisibility(View.VISIBLE);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentPart, new ContactPageFragment(MainPage.this)).commit();
     }
-
-//    public void contactRowClicked(View view) {
-//        ImageView imageView = findViewById(R.id.imageViewForContactRow);
-//        String tag = (String) imageView.getTag();
-//        if (tag.equals("remove")) {
-//            Log.d("checkkk","remove");
-//            new AlertDialog.Builder(MainPage.this)
-//                    .setIcon(android.R.drawable.ic_dialog_alert)
-//                    .setTitle("remove friend")
-//                    .setMessage("are you sure you want to remove this friend?")
-//                    .setPositiveButton("yes", new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialogInterface, int i) {
-//                            removeFriend();
-//                        }
-//                    }).setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialogInterface, int i) {
-//                }
-//            })
-//                    .show();
-//        } else {
-//            Log.d("checkkk","add");
-//            sendFriendRequest2(view);
-//        }
-//    }
 
     public void removeFriend(final String friendUsername) {
         new AlertDialog.Builder(MainPage.this)
@@ -454,29 +423,34 @@ public class MainPage extends AppCompatActivity {
         }).start();
     }
 
-    public void addPost(View view) {
-        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-        startActivityForResult(gallery, PICK_IMAGE);
-        photosGrid = findViewById(R.id.gridForPhotos);
-        imageView = new ImageView(this);
-        imageView.setMaxHeight(278);
-        imageView.setMinimumHeight(278);
-        imageView.setMaxWidth(278);
-        imageView.setMinimumHeight(278);
-        imageView.setBackground(getResources().getDrawable(R.drawable.border_for_photo));
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(280, 280);
-        lp.setMargins(10, 10, 10, 10);
-        imageView.setPadding(4,4,4,4);
-        imageView.setLayoutParams(lp);
-    }
+//    public void addPost(View view) {
+//        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+//        startActivityForResult(gallery, PICK_IMAGE);
+//        photosGrid = findViewById(R.id.gridForPhotos);
+//        imageView = new ImageView(this);
+//        imageView.setMaxHeight(278);
+//        imageView.setMinimumHeight(278);
+//        imageView.setMaxWidth(278);
+//        imageView.setMinimumHeight(278);
+//        imageView.setBackground(getResources().getDrawable(R.drawable.border_for_photo));
+//        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(280, 280);
+//        lp.setMargins(10, 10, 10, 10);
+//        imageView.setPadding(4,4,4,4);
+//        imageView.setLayoutParams(lp);
+//    }
+//
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode == RESULT_OK && requestCode == PICK_IMAGE){
+//            imageUri = data.getData();
+//            imageView.setImageURI(imageUri);
+//            photosGrid.addView(imageView);
+//        }
+//    }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && requestCode == PICK_IMAGE){
-            imageUri = data.getData();
-            imageView.setImageURI(imageUri);
-            photosGrid.addView(imageView);
-        }
+    public void addPostButtonClicked(View view) {
+        Intent intent = new Intent(MainPage.this,AddPostActivity.class);
+        startActivity(intent);
     }
 }

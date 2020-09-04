@@ -1,10 +1,12 @@
 package ir.madeinlobby.memoreminder;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckedTextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,6 +40,13 @@ public class FriendsSelectableAdaptor extends RecyclerView.Adapter<FriendsSelect
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         holder.text.setText(data.get(position));
+        if (TagFriendsInPostActivity.friendsSelected.contains(data.get(position))) {
+            holder.text.setChecked(true);
+            holder.text.setCheckMarkDrawable(R.drawable.ic_baseline_check_24);
+        } else {
+            holder.text.setChecked(false);
+            holder.text.setCheckMarkDrawable(R.drawable.ic_baseline_uncheked);
+        }
         holder.text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,8 +54,10 @@ public class FriendsSelectableAdaptor extends RecyclerView.Adapter<FriendsSelect
                 if (value) {
                     holder.text.setChecked(false);
                     TagFriendsInPostActivity.friendsSelected.remove(holder.text.getText().toString());
+                    holder.text.setCheckMarkDrawable(R.drawable.ic_baseline_uncheked);
                 } else {
                     holder.text.setChecked(true);
+                    holder.text.setCheckMarkDrawable(R.drawable.ic_baseline_check_24);
                     TagFriendsInPostActivity.friendsSelected.add(holder.text.getText().toString());
                 }
             }

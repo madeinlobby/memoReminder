@@ -16,7 +16,6 @@ public class TagFriendsInPostActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        friendsSelected = new ArrayList<>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tag_friends_in_post);
         RecyclerView recyclerView=findViewById(R.id.contactsSelectableList);

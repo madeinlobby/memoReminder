@@ -12,7 +12,11 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Objects;
+
+import ir.madeinlobby.memoreminder.utilities.BaseController;
 
 public class AddPostActivity extends AppCompatActivity {
     private static final int PICK_IMAGE = 1;
@@ -51,7 +55,8 @@ public class AddPostActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
             imageUri = data.getData();
             imageView.setImageURI(imageUri);
-            Log.d("examplee", imageUri.toString());
+            filesSelected.add(imageUri.getPath());
+            Log.d("examplee", Objects.requireNonNull(imageUri.getPath()));
             photosGrid.addView(imageView);
         }
     }
@@ -61,6 +66,10 @@ public class AddPostActivity extends AppCompatActivity {
     }
 
     public void goToCreatePost(View view) {
+        if (filesSelected.isEmpty()) {
+            BaseController.showError(AddPostActivity.this,"you must select at least one image");
+            return;
+        }
         Intent intent = new Intent(AddPostActivity.this, DetailsForPostActivity.class);
         startActivity(intent);
     }

@@ -92,7 +92,7 @@ public class DetailsForPostActivity extends AppCompatActivity {
     public void addLocation(View view) {
         PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
         try {
-            Intent intent = builder.build((Activity) getApplicationContext());
+            Intent intent = builder.build(DetailsForPostActivity.this);
             startActivityForResult(intent,PLACE_PICKER_REQUEST);
         } catch (GooglePlayServicesRepairableException e) {
             e.printStackTrace();

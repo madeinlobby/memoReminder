@@ -25,6 +25,9 @@ public class AddPostActivity extends AppCompatActivity {
     GridLayout photosGrid = null;
     private static ArrayList<String> filesSelected = new ArrayList<>();
 
+    public static ArrayList<String> getFilesSelected() {
+        return filesSelected;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,11 +1,15 @@
 package ir.madeinlobby.memoreminder;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -32,6 +36,46 @@ public class DetailsForPostActivity extends AppCompatActivity {
     }
 
     public void createPost(View view) {
+        EditText title = findViewById(R.id.postTitle);
+        if (title.getText().toString().equals("")) {
+            BaseController.showError(DetailsForPostActivity.this, "you must write a title for your post");
+            return;
+        }
+        final HashMap<String, String> fields2 = new HashMap<>();
+        fields2.put("token", BaseController.getToken());
+        fields2.put("title", title.getText().toString());
+        //location
+        if (!AddTagsForPostActivity.tagsSelected.isEmpty()) {
+            fields2.put("tags", new Gson().toJson(AddTagsForPostActivity.tagsSelected));
+        }
+        if (!TagFriendsInPostActivity.friendsSelected.isEmpty()) {
+            fields2.put("mentions", new Gson().toJson(TagFriendsInPostActivity.friendsSelected));
+        }
+        new Thread(new Runnable() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void run() {
+                final String response = HttpUtility.sendPostRequest(BaseController.server + "/addPost.php", fields2, AddPostActivity.getFilesSelected());
+                if (response.startsWith("error")) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            BaseController.showError(DetailsForPostActivity.this, getString(R.string.error_connection_server));
+                        }
+                    });
+                } else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(DetailsForPostActivity.this,"post created successfully",Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(DetailsForPostActivity.this, MainPage.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                        }
+                    });
+                }
+            }
+        }).start();
     }
 
     public void addLocation(View view) {

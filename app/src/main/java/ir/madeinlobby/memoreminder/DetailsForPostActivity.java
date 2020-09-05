@@ -16,14 +16,21 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.location.places.Place;
+//import com.google.android.gms.location.places.Place;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.PlaceReport;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.widget.AutocompleteActivity;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 import ir.madeinlobby.memoreminder.model.Tag;
@@ -90,24 +97,41 @@ public class DetailsForPostActivity extends AppCompatActivity {
     }
 
     public void addLocation(View view) {
-        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-        try {
-            Intent intent = builder.build(DetailsForPostActivity.this);
-            startActivityForResult(intent,PLACE_PICKER_REQUEST);
-        } catch (GooglePlayServicesRepairableException e) {
-            e.printStackTrace();
-        } catch (GooglePlayServicesNotAvailableException e) {
-            e.printStackTrace();
-        }
+//        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+//        try {
+//            Intent intent = builder.build(DetailsForPostActivity.this);
+//            startActivityForResult(intent,PLACE_PICKER_REQUEST);
+//        } catch (GooglePlayServicesRepairableException e) {
+//            e.printStackTrace();
+//        } catch (GooglePlayServicesNotAvailableException e) {
+//            e.printStackTrace();
+//        }
+        List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME);
+        Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields)
+                .build(DetailsForPostActivity.this);
+        startActivityForResult(intent, PLACE_PICKER_REQUEST);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && requestCode == PLACE_PICKER_REQUEST) {
-            Place place = PlacePicker.getPlace(data,this);
-            String address = place.getAddress().toString();
+        if (requestCode == PLACE_PICKER_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                Place place = Autocomplete.getPlaceFromIntent(data);
+                Log.i("tag", "Place: " + place.getName() + ", " + place.getId());
+            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
+                // TODO: Handle the error.
+                Status status = Autocomplete.getStatusFromIntent(data);
+                Log.i("tag", status.getStatusMessage());
+            } else if (resultCode == RESULT_CANCELED) {
+            }
+            return;
         }
+        super.onActivityResult(requestCode, resultCode, data);
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode == RESULT_OK && requestCode == PLACE_PICKER_REQUEST) {
+//            Place place = PlacePicker.getPlace(data,this);
+//            String address = place.getAddress().toString();
+//        }
     }
 
     public void tagFriends(View view) {

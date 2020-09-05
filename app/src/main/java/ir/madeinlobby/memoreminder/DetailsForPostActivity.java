@@ -3,6 +3,7 @@ package ir.madeinlobby.memoreminder;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,17 +13,25 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.PlaceReport;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 import ir.madeinlobby.memoreminder.model.Tag;
 import ir.madeinlobby.memoreminder.utilities.BaseController;
 import ir.madeinlobby.memoreminder.utilities.HttpUtility;
 
 public class DetailsForPostActivity extends AppCompatActivity {
+    int PLACE_PICKER_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +66,7 @@ public class DetailsForPostActivity extends AppCompatActivity {
             @Override
             public void run() {
                 final String response = HttpUtility.sendPostRequest(BaseController.server + "/addPost.php", fields2, AddPostActivity.getFilesSelected());
-                Log.d("serverResponse",response);
+                Log.d("serverResponse", response);
                 if (response.startsWith("error")) {
                     runOnUiThread(new Runnable() {
                         @Override
@@ -69,7 +78,7 @@ public class DetailsForPostActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(DetailsForPostActivity.this,"post created successfully",Toast.LENGTH_LONG).show();
+                            Toast.makeText(DetailsForPostActivity.this, "post created successfully", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(DetailsForPostActivity.this, MainPage.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
@@ -81,6 +90,24 @@ public class DetailsForPostActivity extends AppCompatActivity {
     }
 
     public void addLocation(View view) {
+        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+        try {
+            Intent intent = builder.build((Activity) getApplicationContext());
+            startActivityForResult(intent,PLACE_PICKER_REQUEST);
+        } catch (GooglePlayServicesRepairableException e) {
+            e.printStackTrace();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == PLACE_PICKER_REQUEST) {
+            Place place = PlacePicker.getPlace(data,this);
+            String address = place.getAddress().toString();
+        }
     }
 
     public void tagFriends(View view) {

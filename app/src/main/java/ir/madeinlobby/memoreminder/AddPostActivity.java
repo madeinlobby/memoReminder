@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageView;
@@ -11,16 +12,19 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+
 public class AddPostActivity extends AppCompatActivity {
     private static final int PICK_IMAGE = 1;
     private Uri imageUri = null;
     ImageView imageView = null;
     GridLayout photosGrid = null;
-
+    private static ArrayList<String> filesSelected = new ArrayList<>();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        filesSelected = new ArrayList<>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_post_activity);
     }
@@ -37,16 +41,17 @@ public class AddPostActivity extends AppCompatActivity {
         imageView.setBackground(getResources().getDrawable(R.drawable.border_for_photo));
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(280, 280);
         lp.setMargins(10, 10, 10, 10);
-        imageView.setPadding(4,4,4,4);
+        imageView.setPadding(4, 4, 4, 4);
         imageView.setLayoutParams(lp);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && requestCode == PICK_IMAGE){
+        if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
             imageUri = data.getData();
             imageView.setImageURI(imageUri);
+            Log.d("examplee", imageUri.toString());
             photosGrid.addView(imageView);
         }
     }

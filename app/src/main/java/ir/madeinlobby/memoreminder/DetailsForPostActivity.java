@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -56,6 +57,7 @@ public class DetailsForPostActivity extends AppCompatActivity {
             @Override
             public void run() {
                 final String response = HttpUtility.sendPostRequest(BaseController.server + "/addPost.php", fields2, AddPostActivity.getFilesSelected());
+                Log.d("serverResponse",response);
                 if (response.startsWith("error")) {
                     runOnUiThread(new Runnable() {
                         @Override

@@ -137,28 +137,26 @@ public class DetailsForPostActivity extends AppCompatActivity {
 //        }
 //        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == PLACE_PICKER_REQUEST) {
-            Log.d("aboots", "11");
             Place place = PlacePicker.getPlace(this, data);
-            Log.d("aboots", String.valueOf(place));
-            Log.d("aboots", place.getId());
-            Log.d("aboots", place.getLatLng().latitude + "");
-            Log.d("aboots", place.getLatLng().longitude + "");
+//            Log.d("aboots", String.valueOf(place));
+//            Log.d("aboots", place.getId());
+//            Log.d("aboots", place.getLatLng().latitude + "");
+//            Log.d("aboots", place.getLatLng().longitude + "");
             Geocoder geocoder = new Geocoder(DetailsForPostActivity.this, Locale.getDefault());
             try {
                 List<Address> adressess = geocoder.getFromLocation(place.getLatLng().latitude, place.getLatLng().longitude, 1);
                 String address = adressess.get(0).getAddressLine(0);
-                Log.d("aboots", "compelete adress  " + adressess);
-                Log.d("aboots",adressess.get(0).getCountryName());
-                Log.d("aboots",adressess.get(0).getLocality());
-                Log.d("aboots",adressess.get(0).getAdminArea());
-                Log.d("aboots",adressess.get(0).getSubAdminArea());
+//                Log.d("aboots", "compelete adress  " + adressess);
+//                Log.d("aboots",adressess.get(0).getCountryName());
+//                Log.d("aboots",adressess.get(0).getLocality());
+//                Log.d("aboots",adressess.get(0).getAdminArea());
+//                Log.d("aboots",adressess.get(0).getSubAdminArea());
                 String locSaved = adressess.get(0).getCountryName() + ", " + adressess.get(0).getAdminArea();
                 TextView textView = findViewById(R.id.location);
                 textView.setText(locSaved);
 //                TextView textView = findViewById(R.id.locationThatBeenChosen);
 //                textView.setText(address);
                 location = locSaved;
-                Log.d("aboots", address);
             } catch (IOException e) {
                 e.printStackTrace();
             }

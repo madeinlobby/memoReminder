@@ -14,23 +14,23 @@ public class Post {
     private String usernameWhoBelong;
     private LocalDate dateCreated;
     private LocalDate lastDateEdited;
-    private Location location;
+    private String location;
     private ArrayList<Tag> tags;
     private ArrayList<String> usersWhoBeenTagged;
     private ArrayList<Comment> comments;
-    // image and video and voice
+    private ArrayList<String> filesAddresses;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public Post(String title, String usernameWhoBelong,Location location) {
+    public Post(String id, String title, String usernameWhoBelong, LocalDate dateCreated, LocalDate lastDateEdited, String location, ArrayList<Tag> tags, ArrayList<String> usersWhoBeenTagged, ArrayList<Comment> comments, ArrayList<String> filesAddresses) {
+        this.id = id;
         this.title = title;
-        this.dateCreated = LocalDate.now();
-        this.lastDateEdited = LocalDate.now();
         this.usernameWhoBelong = usernameWhoBelong;
-        this.id = RandomString.getAlphaNumericString();
-        this.tags = new ArrayList<>();
-        this.usersWhoBeenTagged = new ArrayList<>();
-        this.comments = new ArrayList<>();
+        this.dateCreated = dateCreated;
+        this.lastDateEdited = lastDateEdited;
         this.location = location;
+        this.tags = tags;
+        this.usersWhoBeenTagged = usersWhoBeenTagged;
+        this.comments = comments;
+        this.filesAddresses = filesAddresses;
     }
 
     public String getId() {
@@ -53,7 +53,7 @@ public class Post {
         return lastDateEdited;
     }
 
-    public Location getLocation() {
+    public String getLocation() {
         return location;
     }
 
@@ -67,5 +67,13 @@ public class Post {
 
     public ArrayList<Comment> getCommentsIds() {
         return comments;
+    }
+
+    public ArrayList<Comment> getComments() {
+        return comments;
+    }
+
+    public ArrayList<String> getFilesAddresses() {
+        return filesAddresses;
     }
 }

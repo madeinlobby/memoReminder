@@ -31,9 +31,8 @@ public class HomePageFragment extends Fragment {
         layout = (RelativeLayout) inflater.inflate(R.layout.home_page, container, false);
         RecyclerView recyclerView = layout.findViewById(R.id.recycleViewForPosts);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-//        friendsAdaptor = new FriendsAdaptor(BaseController.getFriends(), context);
-//        MainPage.friendsAdaptor = friendsAdaptor;
-//        recyclerView.setAdapter(friendsAdaptor);
+        PostsGeneralAdaptor postsGeneralAdaptor = new PostsGeneralAdaptor(BaseController.getUserPosts(),context);
+        recyclerView.setAdapter(postsGeneralAdaptor);
         return layout;
     }
 

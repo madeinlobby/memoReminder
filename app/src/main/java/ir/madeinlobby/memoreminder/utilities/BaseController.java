@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 
 import java.util.ArrayList;
 
+import ir.madeinlobby.memoreminder.model.Post;
 import ir.madeinlobby.memoreminder.model.Tag;
 
 
@@ -17,6 +18,7 @@ public class BaseController {
     private static ArrayList<String> searchedUsers = new ArrayList<>();
     private static  ArrayList<String> friendsRequests= new ArrayList<>();
     private static ArrayList<String> friends = new ArrayList<>();
+    private static ArrayList<Post> userPosts = new ArrayList<>();
 
     public static void showError(Context context, String message) {
         new AlertDialog.Builder(context)
@@ -53,5 +55,9 @@ public class BaseController {
 
     public static ArrayList<String> getFriends() {
         return friends;
+    }
+
+    public static ArrayList<Post> getUserPosts() {
+        return userPosts;
     }
 }

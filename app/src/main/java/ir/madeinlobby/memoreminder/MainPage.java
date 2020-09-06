@@ -55,9 +55,6 @@ public class MainPage extends AppCompatActivity {
     public static FriendRequestAdaptor friendRequestAdaptor = null;
     FloatingActionButton floatingActionButtonForAddFriend,floatingActionButtonForAddPost;
     public static FriendsAdaptor friendsAdaptor = null;
-//    private Uri imageUri = null;
-//    ImageView imageView = null;
-//    GridLayout photosGrid = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -422,32 +419,6 @@ public class MainPage extends AppCompatActivity {
             }
         }).start();
     }
-
-//    public void addPost(View view) {
-//        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-//        startActivityForResult(gallery, PICK_IMAGE);
-//        photosGrid = findViewById(R.id.gridForPhotos);
-//        imageView = new ImageView(this);
-//        imageView.setMaxHeight(278);
-//        imageView.setMinimumHeight(278);
-//        imageView.setMaxWidth(278);
-//        imageView.setMinimumHeight(278);
-//        imageView.setBackground(getResources().getDrawable(R.drawable.border_for_photo));
-//        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(280, 280);
-//        lp.setMargins(10, 10, 10, 10);
-//        imageView.setPadding(4,4,4,4);
-//        imageView.setLayoutParams(lp);
-//    }
-//
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (resultCode == RESULT_OK && requestCode == PICK_IMAGE){
-//            imageUri = data.getData();
-//            imageView.setImageURI(imageUri);
-//            photosGrid.addView(imageView);
-//        }
-//    }
 
     public void addPostButtonClicked(View view) {
         Intent intent = new Intent(MainPage.this,AddPostActivity.class);

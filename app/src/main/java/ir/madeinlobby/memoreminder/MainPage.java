@@ -46,7 +46,6 @@ import ir.madeinlobby.memoreminder.utilities.HttpUtility;
 
 
 public class MainPage extends AppCompatActivity {
-    private static final int PICK_IMAGE = 1;
     ScrollView scrollView;
     String tagColor = "";
     String contactPage = "";

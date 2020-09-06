@@ -1,15 +1,32 @@
 package ir.madeinlobby.memoreminder;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.FetchPhotoRequest;
+import com.google.android.libraries.places.api.net.FetchPhotoResponse;
+import com.google.android.libraries.places.api.net.FetchPlaceRequest;
+import com.google.android.libraries.places.api.net.FetchPlaceResponse;
+import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
+import com.google.android.libraries.places.api.net.FindAutocompletePredictionsResponse;
+import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest;
+import com.google.android.libraries.places.api.net.FindCurrentPlaceResponse;
+import com.google.android.libraries.places.api.net.PlacesClient;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -43,4 +60,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
+
+//    public static String findAddressById(String id){
+//        // Define a Place ID.
+//        final String placeId = "INSERT_PLACE_ID_HERE";
+//
+//// Specify the fields to return.
+//        final List<Place.Field> placeFields = Arrays.asList(Place.Field.ID, Place.Field.NAME);
+//
+//// Construct a request object, passing the place ID and fields array.
+//        final FetchPlaceRequest request = FetchPlaceRequest.newInstance(placeId, placeFields);
+//        placesClient.fetchPlace(request).addOnSuccessListener((response) -> {
+//            Place place = response.getPlace();
+//            Log.i(TAG, "Place found: " + place.getName());
+//        }).addOnFailureListener((exception) -> {
+//            if (exception instanceof ApiException) {
+//                final ApiException apiException = (ApiException) exception;
+//                Log.e(TAG, "Place not found: " + exception.getMessage());
+//                final int statusCode = apiException.getStatusCode();
+//            }
+//        });
+//    }
 }

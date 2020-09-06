@@ -85,7 +85,7 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:src="@drawable/location_icon"
-            android:onClick="openMap"/>
+            />
         <TextView
             android:id="@+id/location"
             android:layout_width="wrap_content"
@@ -94,7 +94,16 @@
             android:textSize="20dp"
             android:paddingLeft="10dp"
             android:textColor="@color/black"
-            android:onClick="openMap"/>
+            />
+<!--        <TextView-->
+<!--            android:id="@+id/locationThatBeenChosen"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="right"-->
+<!--            android:textSize="14dp"-->
+<!--            android:paddingLeft="10dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:textColor="@color/grey"/>-->
     </LinearLayout>
     <View
         android:layout_marginLeft="5dp"

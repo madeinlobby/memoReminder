@@ -75,7 +75,10 @@ public class DetailsForPostActivity extends AppCompatActivity {
             fields2.put("location",location);
         }
         if (!AddTagsForPostActivity.tagsSelected.isEmpty()) {
-            fields2.put("tags", new Gson().toJson(AddTagsForPostActivity.tagsSelected));
+            ArrayList<String> titles = new ArrayList<>();
+            for (Tag tag : AddTagsForPostActivity.tagsSelected)
+                titles.add(tag.getTitle());
+            fields2.put("tags", new Gson().toJson(titles));
         }
         if (!TagFriendsInPostActivity.friendsSelected.isEmpty()) {
             fields2.put("mentions", new Gson().toJson(TagFriendsInPostActivity.friendsSelected));
@@ -84,8 +87,7 @@ public class DetailsForPostActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void run() {
-                final String response = HttpUtility.sendPostRequest(BaseController.server + "/addPost.php", fields2, AddPostActivity.getFilesSelected());
-                Log.d("serverResponse", response);
+                final String response = HttpUtility.sendPostRequest(getContentResolver(), BaseController.server + "/addPost.php", fields2, AddPostActivity.getFilesSelected());
                 if (response.startsWith("error")) {
                     runOnUiThread(new Runnable() {
                         @Override

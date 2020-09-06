@@ -17,15 +17,16 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import ir.madeinlobby.memoreminder.utilities.BaseController;
+import ir.madeinlobby.memoreminder.utilities.HttpUtility;
 
 public class AddPostActivity extends AppCompatActivity {
     private static final int PICK_IMAGE = 1;
     private Uri imageUri = null;
     ImageView imageView = null;
     GridLayout photosGrid = null;
-    private static ArrayList<String> filesSelected = new ArrayList<>();
+    private static ArrayList<Uri> filesSelected = new ArrayList<>();
 
-    public static ArrayList<String> getFilesSelected() {
+    public static ArrayList<Uri> getFilesSelected() {
         return filesSelected;
     }
 
@@ -58,8 +59,8 @@ public class AddPostActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
             imageUri = data.getData();
             imageView.setImageURI(imageUri);
-            filesSelected.add(imageUri.getPath());
-            Log.d("examplee", Objects.requireNonNull(imageUri.getPath()));
+            filesSelected.add(imageUri);
+//            Log.d("examplee", Objects.requireNonNull(imageUri.getPath()));
             photosGrid.addView(imageView);
         }
     }

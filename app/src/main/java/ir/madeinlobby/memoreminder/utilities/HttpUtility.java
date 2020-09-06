@@ -1,6 +1,13 @@
 package ir.madeinlobby.memoreminder.utilities;
 
+import android.content.ContentResolver;
+import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Build;
+import android.os.ParcelFileDescriptor;
+import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 
 import androidx.annotation.RequiresApi;
 
@@ -13,6 +20,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
@@ -72,7 +80,7 @@ public class HttpUtility {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public static String sendPostRequest (String requestUrl, Map<String, String> params, ArrayList<String> files) {
+    public static String sendPostRequest (ContentResolver resolver, String requestUrl, Map<String, String> params, ArrayList<Uri> files) {
         String charset = "UTF-8";
         String boundary = Long.toHexString(System.currentTimeMillis()); // Just generate some unique random value.
         String CRLF = "\r\n"; // Line separator required by multipart/form-data.
@@ -91,18 +99,19 @@ public class HttpUtility {
                 writer.append(CRLF).append(params.get(key)).append(CRLF).flush();
             }
 
-            for (String file : files) {
-                File thisFile = new File(file);
+            for (Uri file : files) {
+                InputStream fileInputStream = resolver.openInputStream(file);
                 writer.append("--").append(boundary).append(CRLF);
                 writer.append("Content-Disposition: form-data; name=\"file[]\"; filename=\"").
-                        append(thisFile.getName()).append("\"").append(CRLF);
+                        append(getNameFromURI(resolver, file)).append("\"").append(CRLF);
                 writer.append("Content-Type: ").append(URLConnection
-                        .guessContentTypeFromName(thisFile.getName())).append(CRLF);
+                        .guessContentTypeFromName(getNameFromURI(resolver, file))).append(CRLF);
                 writer.append("Content-Transfer-Encoding: binary").append(CRLF);
                 writer.append(CRLF).flush();
-                Files.copy(thisFile.toPath(), output);
+                sendFile(fileInputStream, output);
                 output.flush(); // Important before continuing with writer!
                 writer.append(CRLF).flush(); // CRLF is important! It indicates end of boundary.
+                fileInputStream.close();
             }
 
 
@@ -122,8 +131,42 @@ public class HttpUtility {
             }
             reader.close();
         }catch (Exception e) {
+            e.printStackTrace();
         }
         return response.toString();
+    }
+
+    public static String getRealPathFromURI(ContentResolver resolver, Uri contentUri) {
+        Cursor cursor = null;
+        try {
+            String[] proj = { MediaStore.Images.Media.DATA };
+            cursor = resolver.query(contentUri,  proj, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+    }
+
+    public static String getNameFromURI (ContentResolver resolver, Uri contentUri) {
+        Cursor returnCursor = resolver.query(contentUri, null, null, null, null);
+        int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+        int sizeIndex = returnCursor.getColumnIndex(OpenableColumns.SIZE);
+        returnCursor.moveToFirst();
+        return returnCursor.getString(nameIndex);
+    }
+
+    public static void sendFile (InputStream inputStream, OutputStream output) throws IOException {
+        byte[] buffer = new byte[1024];
+        while (true) {
+            int bytesRead = inputStream.read(buffer);
+            if (bytesRead == -1)
+                break;
+            output.write(buffer, 0, bytesRead);
+        }
     }
 }
 

@@ -4,12 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
+import ir.madeinlobby.memoreminder.model.Post;
+
 public class ShowSinglePost extends AppCompatActivity {
+    static Post post;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,10 +22,13 @@ public class ShowSinglePost extends AppCompatActivity {
 
         SliderView sliderView = findViewById(R.id.imageSlider);
 
-        SliderAdapterExample adapter = new SliderAdapterExample(this);
+        SliderAdapterExample adapter = new SliderAdapterExample(this, post.getDateCreated());
 
         sliderView.setSliderAdapter(adapter);
-//        adapter.setItems();
+        adapter.setItems(post.getFilesAddresses());
+
+        TextView location = findViewById(R.id.singlePostLocation);
+        location.setText(post.getLocation());
 
         sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
         sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);

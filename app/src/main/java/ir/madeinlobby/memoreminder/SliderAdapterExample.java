@@ -4,13 +4,18 @@ import android.content.Context;
 
 import com.bumptech.glide.Glide;
 
+import android.graphics.Color;
+import android.icu.util.LocaleData;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.smarteist.autoimageslider.SliderViewAdapter;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +25,11 @@ public class SliderAdapterExample extends
 
     private Context context;
     private List<String> imageUrls = new ArrayList<>();
+    private String modificationDate;
 
-    public SliderAdapterExample(Context context) {
+    public SliderAdapterExample(Context context, String date) {
         this.context = context;
+        this.modificationDate = date;
     }
 
     public void setItems(List<String> images) {
@@ -43,6 +50,9 @@ public class SliderAdapterExample extends
                 .load(url)
                 .fitCenter()
                 .into(viewHolder.imageViewBackground);
+        viewHolder.textView.setText(modificationDate);
+        viewHolder.textView.setTextSize(16);
+        viewHolder.textView.setTextColor(Color.WHITE);
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,11 +73,13 @@ public class SliderAdapterExample extends
         View itemView;
         ImageView imageViewBackground;
         ImageView imageGifContainer;
+        TextView textView;
 
         public SliderAdapterVH(View itemView) {
             super(itemView);
             imageViewBackground = itemView.findViewById(R.id.iv_auto_image_slider);
             imageGifContainer = itemView.findViewById(R.id.iv_gif_container);
+            textView = itemView.findViewById(R.id.tv_auto_image_slider);
             this.itemView = itemView;
         }
     }

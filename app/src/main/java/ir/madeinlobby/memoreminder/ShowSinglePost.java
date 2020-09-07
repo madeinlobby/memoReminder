@@ -30,6 +30,9 @@ public class ShowSinglePost extends AppCompatActivity {
         TextView location = findViewById(R.id.singlePostLocation);
         location.setText(post.getLocation());
 
+        TextView title = findViewById(R.id.postTopic);
+        title.setText(post.getTitle());
+
         sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
         sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
         sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);

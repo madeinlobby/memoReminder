@@ -3,6 +3,7 @@ package ir.madeinlobby.memoreminder;
 import android.content.Context;
 
 import com.bumptech.glide.Glide;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +25,7 @@ public class SliderAdapterExample extends
         this.context = context;
     }
 
-    public void setItems(List<String> images){
+    public void setItems(List<String> images) {
         this.imageUrls.addAll(images);
     }
 

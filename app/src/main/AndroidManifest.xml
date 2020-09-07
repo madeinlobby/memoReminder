@@ -19,10 +19,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".TagFriendsInPostActivity"></activity>
+        <activity android:name=".ShowSinglePost"></activity>
+        <activity android:name=".TagFriendsInPostActivity" />
         <activity android:name=".AddTagsForPostActivity" />
         <activity android:name=".DetailsForPostActivity" />
-
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -33,13 +33,11 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCBL6F2s5zzPKRFR7EaW97Xo9lmzdFPG9c" />
-        <!--            android:value="@string/google_maps_key" />-->
-        <!--            android:value= "AIzaSyDt1k8SP8RFY4JnNDx-sucfu6-74j1-11E"/>-->
-
+            android:value="AIzaSyCBL6F2s5zzPKRFR7EaW97Xo9lmzdFPG9c" /> <!-- android:value="@string/google_maps_key" /> -->
+        <!-- android:value= "AIzaSyDt1k8SP8RFY4JnNDx-sucfu6-74j1-11E"/> -->
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
         <activity android:name=".MainPage" />
         <activity android:name=".AccountArea" />
         <activity android:name=".RegisterActivity" />

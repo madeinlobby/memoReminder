@@ -1,13 +1,12 @@
 package ir.madeinlobby.memoreminder;
 
 import android.content.Context;
-import android.graphics.Color;
+
 import com.bumptech.glide.Glide;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.smarteist.autoimageslider.SliderViewAdapter;
@@ -19,25 +18,14 @@ public class SliderAdapterExample extends
         SliderViewAdapter<SliderAdapterExample.SliderAdapterVH> {
 
     private Context context;
-    private List<SliderItem> mSliderItems = new ArrayList<>();
+    private List<String> imageUrls = new ArrayList<>();
 
     public SliderAdapterExample(Context context) {
         this.context = context;
     }
 
-    public void renewItems(List<SliderItem> sliderItems) {
-        this.mSliderItems = sliderItems;
-        notifyDataSetChanged();
-    }
-
-    public void deleteItem(int position) {
-        this.mSliderItems.remove(position);
-        notifyDataSetChanged();
-    }
-
-    public void addItem(SliderItem sliderItem) {
-        this.mSliderItems.add(sliderItem);
-        notifyDataSetChanged();
+    public void setItems(List<String> images){
+        this.imageUrls.addAll(images);
     }
 
     @Override
@@ -49,13 +37,9 @@ public class SliderAdapterExample extends
     @Override
     public void onBindViewHolder(SliderAdapterVH viewHolder, final int position) {
 
-        SliderItem sliderItem = mSliderItems.get(position);
-
-        viewHolder.textViewDescription.setText(sliderItem.getDescription());
-        viewHolder.textViewDescription.setTextSize(16);
-        viewHolder.textViewDescription.setTextColor(Color.WHITE);
+        String url = imageUrls.get(position);
         Glide.with(viewHolder.itemView)
-                .load(sliderItem.getImageUrl())
+                .load(url)
                 .fitCenter()
                 .into(viewHolder.imageViewBackground);
 
@@ -70,7 +54,7 @@ public class SliderAdapterExample extends
     @Override
     public int getCount() {
         //slider view count could be dynamic size
-        return mSliderItems.size();
+        return imageUrls.size();
     }
 
     class SliderAdapterVH extends SliderViewAdapter.ViewHolder {
@@ -78,13 +62,11 @@ public class SliderAdapterExample extends
         View itemView;
         ImageView imageViewBackground;
         ImageView imageGifContainer;
-        TextView textViewDescription;
 
         public SliderAdapterVH(View itemView) {
             super(itemView);
             imageViewBackground = itemView.findViewById(R.id.iv_auto_image_slider);
             imageGifContainer = itemView.findViewById(R.id.iv_gif_container);
-            textViewDescription = itemView.findViewById(R.id.tv_auto_image_slider);
             this.itemView = itemView;
         }
     }

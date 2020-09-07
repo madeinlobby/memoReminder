@@ -12,15 +12,15 @@ public class Post {
     private String id;
     private String title;
     private String usernameWhoBelong;
-    private LocalDate dateCreated;
-    private LocalDate lastDateEdited;
+    private String dateCreated;
+    private String lastDateEdited;
     private String location;
     private ArrayList<Tag> tags;
     private ArrayList<String> usersWhoBeenTagged;
     private ArrayList<Comment> comments;
     private ArrayList<String> filesAddresses;
 
-    public Post(String id, String title, String usernameWhoBelong, LocalDate dateCreated, LocalDate lastDateEdited, String location, ArrayList<Tag> tags, ArrayList<String> usersWhoBeenTagged, ArrayList<Comment> comments, ArrayList<String> filesAddresses) {
+    public Post(String id, String title, String usernameWhoBelong, String dateCreated, String lastDateEdited, String location, ArrayList<Tag> tags, ArrayList<String> usersWhoBeenTagged, ArrayList<Comment> comments, ArrayList<String> filesAddresses) {
         this.id = id;
         this.title = title;
         this.usernameWhoBelong = usernameWhoBelong;
@@ -45,11 +45,11 @@ public class Post {
         return usernameWhoBelong;
     }
 
-    public LocalDate getDateCreated() {
+    public String getDateCreated() {
         return dateCreated;
     }
 
-    public LocalDate getLastDateEdited() {
+    public String getLastDateEdited() {
         return lastDateEdited;
     }
 

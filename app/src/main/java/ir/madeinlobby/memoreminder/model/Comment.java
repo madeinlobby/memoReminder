@@ -11,15 +11,15 @@ public class Comment {
     private String sender;
     private String content;
     private String postId;
-    private LocalDate date;
+    private String date;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public Comment(String sender, String content, String postId) {
+
+    public Comment(String id, String sender, String content, String postId, String date) {
+        this.id = id;
         this.sender = sender;
         this.content = content;
         this.postId = postId;
-        this.date = LocalDate.now();
-        this.id = RandomString.getAlphaNumericString();
+        this.date = date;
     }
 
     public String getId() {
@@ -38,7 +38,7 @@ public class Comment {
         return postId;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 }

@@ -2,6 +2,7 @@ package ir.madeinlobby.memoreminder;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,7 @@ public class HomePageFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        getPosts();
+        getPosts();
         layout = (RelativeLayout) inflater.inflate(R.layout.home_page, container, false);
         RecyclerView recyclerView = layout.findViewById(R.id.recycleViewForPosts);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -48,6 +49,7 @@ public class HomePageFragment extends Fragment {
     private void getPosts() {
         final HashMap<String, String> fields2 = new HashMap<>();
         fields2.put("token", BaseController.getToken());
+        Log.d("token11",BaseController.getToken());
         new Thread(new Runnable() {
             @Override
             public void run() {

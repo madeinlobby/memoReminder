@@ -2,6 +2,7 @@ package ir.madeinlobby.memoreminder;
 
 import android.content.Context;
 import android.graphics.Color;
+import com.bumptech.glide.Glide;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.smarteist.autoimageslider.SliderViewAdapter;
-import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +19,13 @@ public class SliderAdapterExample extends
         SliderViewAdapter<SliderAdapterExample.SliderAdapterVH> {
 
     private Context context;
-    private List<SliderView> mSliderItems = new ArrayList<>();
+    private List<SliderItem> mSliderItems = new ArrayList<>();
 
     public SliderAdapterExample(Context context) {
         this.context = context;
     }
 
-    public void renewItems(List<SliderView> sliderItems) {
+    public void renewItems(List<SliderItem> sliderItems) {
         this.mSliderItems = sliderItems;
         notifyDataSetChanged();
     }
@@ -35,7 +35,7 @@ public class SliderAdapterExample extends
         notifyDataSetChanged();
     }
 
-    public void addItem(SliderView sliderItem) {
+    public void addItem(SliderItem sliderItem) {
         this.mSliderItems.add(sliderItem);
         notifyDataSetChanged();
     }
@@ -49,7 +49,7 @@ public class SliderAdapterExample extends
     @Override
     public void onBindViewHolder(SliderAdapterVH viewHolder, final int position) {
 
-        SliderView sliderItem = mSliderItems.get(position);
+        SliderItem sliderItem = mSliderItems.get(position);
 
         viewHolder.textViewDescription.setText(sliderItem.getDescription());
         viewHolder.textViewDescription.setTextSize(16);

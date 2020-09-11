@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     android:background="@drawable/brief_post_row"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:onClick="showPost">
 
     <ImageView
         android:id="@+id/postRowPicture"

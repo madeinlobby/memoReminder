@@ -39,6 +39,7 @@ public class HttpUtility {
             url = new URL(requestURL);
             httpConn = (HttpURLConnection) url.openConnection();
             httpConn.setRequestMethod("POST");
+            httpConn.setRequestProperty("Cookie", "__test=19aa2c61eb406dc180c118dc08efdb2b");
             StringBuffer requestParams = new StringBuffer();
 
             if (params.size() > 0) {
@@ -55,6 +56,7 @@ public class HttpUtility {
                             URLEncoder.encode(value, "UTF-8"));
                     requestParams.append("&");
                 }
+
 
                 // sends POST data
                 OutputStreamWriter writer = new OutputStreamWriter(httpConn.getOutputStream());
@@ -76,6 +78,7 @@ public class HttpUtility {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println("RESP:     " + response);
         return response.toString();
     }
 
@@ -89,6 +92,7 @@ public class HttpUtility {
             connection = new URL(requestUrl).openConnection();
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
+            connection.setRequestProperty("Cookie", "__test=19aa2c61eb406dc180c118dc08efdb2b");
             OutputStream output = connection.getOutputStream();
             PrintWriter writer = new PrintWriter(new OutputStreamWriter(output, charset), true);
 
@@ -133,6 +137,7 @@ public class HttpUtility {
         }catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println("RESP:     " + response);
         return response.toString();
     }
 

@@ -12,7 +12,8 @@ import ir.madeinlobby.memoreminder.model.Tag;
 
 public class BaseController {
     //    public static final String server = "http://10.0.2.2/memoReminder";           //local
-    public static final String server = "https://memoreminder.000webhostapp.com/control";     // online
+//    public static final String server = "https://memoreminder.000webhostapp.com/control";     // online
+    public static final String server = "http://taha7900.gigfa.com/control";     // online
     private static String token = "";
     private  static ArrayList<Tag> tags=new ArrayList<>();
     private static ArrayList<String> searchedUsers = new ArrayList<>();

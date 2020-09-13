@@ -54,12 +54,12 @@ public class SliderAdapterExample extends
         viewHolder.textView.setTextSize(16);
         viewHolder.textView.setTextColor(Color.WHITE);
 
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "This is item in position " + position, Toast.LENGTH_SHORT).show();
-            }
-        });
+//        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(context, "This is item in position " + position, Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     @Override

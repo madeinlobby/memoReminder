@@ -17,7 +17,7 @@ import ir.madeinlobby.memoreminder.model.Post;
 import ir.madeinlobby.memoreminder.model.Tag;
 
 public class ShowSinglePost extends AppCompatActivity {
-    static Post post;
+    private static Post post;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,4 +62,11 @@ public class ShowSinglePost extends AppCompatActivity {
 
     }
 
+    public static Post getPost() {
+        return post;
+    }
+
+    public static void setPost(Post post) {
+        ShowSinglePost.post = post;
+    }
 }

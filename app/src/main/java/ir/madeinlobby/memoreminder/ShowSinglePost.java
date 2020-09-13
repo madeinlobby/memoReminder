@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,7 +25,6 @@ public class ShowSinglePost extends AppCompatActivity {
         setContentView(R.layout.activity_show_single_post);
 
         SliderView sliderView = findViewById(R.id.imageSlider);
-        Log.d("yasaman", post.toString());
 
         SliderAdapterExample adapter = new SliderAdapterExample(this, post.getDateCreated());
 
@@ -39,11 +39,14 @@ public class ShowSinglePost extends AppCompatActivity {
         LinearLayout tags = findViewById(R.id.tagsForPost);
         for (Tag tag : post.getTags()) {
             TextView color = new TextView(this);
-            color.setText("#");
-            color.setTextColor(Color.parseColor(tag.getColorHex()));
+            color.setWidth(50);
+            color.setHeight(50);
+            color.setBackground(getResources().getDrawable(R.drawable.color_box));
+            color.setGravity(Gravity.CENTER_VERTICAL);
+            color.getBackground().setTint(Color.parseColor(tag.getColorHex()));
             tags.addView(color);
             TextView tagName = new TextView(this);
-            tagName.setText(tag.getTitle() + " ");
+            tagName.setText(" "+tag.getTitle() + "   ");
             tags.addView(tagName);
             color.setTextSize(16);
             tagName.setTextSize(16);

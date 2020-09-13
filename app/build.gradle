@@ -54,4 +54,6 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     compile 'com.beloo.widget:ChipsLayoutManager:0.3.7@aar'
 
+    implementation 'com.stone.vega.library:VegaLayoutManager:1.0.6'
+
 }

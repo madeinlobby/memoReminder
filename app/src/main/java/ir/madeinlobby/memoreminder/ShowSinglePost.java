@@ -19,6 +19,7 @@ import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
+import com.stone.vega.library.VegaLayoutManager;
 
 import ir.madeinlobby.memoreminder.model.Post;
 import ir.madeinlobby.memoreminder.model.Tag;
@@ -37,6 +38,11 @@ public class ShowSinglePost extends AppCompatActivity {
         recyclerView.setLayoutManager(chipsLayoutManager);
         TaggedPeopleInAPostAdaptor taggedPeopleInAPostAdaptor = new TaggedPeopleInAPostAdaptor(post.getUsersWhoBeenTagged(),ShowSinglePost.this);
         recyclerView.setAdapter(taggedPeopleInAPostAdaptor);
+
+        RecyclerView recyclerView2 = findViewById(R.id.recycleViewForComments);
+        recyclerView2.setLayoutManager(new VegaLayoutManager());
+        CommentsAdaptor commentsAdaptor = new CommentsAdaptor(post.getComments(),ShowSinglePost.this);
+        recyclerView2.setAdapter(commentsAdaptor);
 
 
         SliderView sliderView = findViewById(R.id.imageSlider);

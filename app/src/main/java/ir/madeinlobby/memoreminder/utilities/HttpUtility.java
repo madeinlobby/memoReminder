@@ -1,13 +1,17 @@
 package ir.madeinlobby.memoreminder.utilities;
 
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
+import android.widget.ImageView;
 
 import androidx.annotation.RequiresApi;
 
@@ -172,6 +176,28 @@ public class HttpUtility {
                 break;
             output.write(buffer, 0, bytesRead);
         }
+    }
+
+    public static void loadBitmapIntoImage (final Context context, final ImageView view, final String addr) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    URL url = new URL(addr);
+                    URLConnection conn = url.openConnection();
+                    conn.addRequestProperty("Cookie", "__test=19aa2c61eb406dc180c118dc08efdb2b");
+                    final Bitmap bmp = BitmapFactory.decodeStream(conn.getInputStream());
+                    ((Activity) context).runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            view.setImageBitmap(bmp);
+                        }
+                    });
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 }
 

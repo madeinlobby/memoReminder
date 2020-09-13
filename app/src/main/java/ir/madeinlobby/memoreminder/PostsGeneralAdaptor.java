@@ -1,7 +1,12 @@
 package ir.madeinlobby.memoreminder;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +20,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 
 import ir.madeinlobby.memoreminder.model.Post;
+import ir.madeinlobby.memoreminder.utilities.HttpUtility;
 
 public class PostsGeneralAdaptor extends RecyclerView.Adapter<PostsGeneralAdaptor.ViewHolder> {
     private ArrayList<Post> data;
@@ -50,12 +60,13 @@ public class PostsGeneralAdaptor extends RecyclerView.Adapter<PostsGeneralAdapto
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        Post post = data.get(position);
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+        final Post post = data.get(position);
         holder.location.setText(post.getLocation());
         holder.title.setText(post.getTitle());
         holder.date.setText(post.getDateCreated());
-        Picasso.get().load(post.getFilesAddresses().get(0)).into(holder.imageView);
+        HttpUtility.loadBitmapIntoImage(context, holder.imageView, post.getFilesAddresses().get(0));
+//        Picasso.get().load(post.getFilesAddresses().get(0)).into(holder.imageView);
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

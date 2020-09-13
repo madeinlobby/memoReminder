@@ -1,20 +1,25 @@
 package ir.madeinlobby.memoreminder;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
 import ir.madeinlobby.memoreminder.model.Post;
 import ir.madeinlobby.memoreminder.model.Tag;
+import ir.madeinlobby.memoreminder.utilities.BaseController;
 
 public class ShowSinglePost extends AppCompatActivity {
     private static Post post;
@@ -23,6 +28,13 @@ public class ShowSinglePost extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_single_post);
+
+        RecyclerView recyclerView = findViewById(R.id.recycleViewForTaggedPeople);
+        ChipsLayoutManager chipsLayoutManager = ChipsLayoutManager.newBuilder(ShowSinglePost.this).build();
+        recyclerView.setLayoutManager(chipsLayoutManager);
+        TaggedPeopleInAPostAdaptor taggedPeopleInAPostAdaptor = new TaggedPeopleInAPostAdaptor(post.getUsersWhoBeenTagged(),ShowSinglePost.this);
+        recyclerView.setAdapter(taggedPeopleInAPostAdaptor);
+
 
         SliderView sliderView = findViewById(R.id.imageSlider);
 
@@ -68,5 +80,9 @@ public class ShowSinglePost extends AppCompatActivity {
 
     public static void setPost(Post post) {
         ShowSinglePost.post = post;
+    }
+
+    public void showTaggedPeople(View view) {
+
     }
 }

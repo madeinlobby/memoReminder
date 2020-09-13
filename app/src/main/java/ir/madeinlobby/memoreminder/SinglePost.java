@@ -10,7 +10,7 @@ public class SinglePost extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_single_post);
+        setContentView(R.layout.activity_show_single_post);
     }
 
     public void tagIconClicked(View view) {

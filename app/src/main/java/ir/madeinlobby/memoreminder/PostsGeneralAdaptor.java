@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +44,7 @@ public class PostsGeneralAdaptor extends RecyclerView.Adapter<PostsGeneralAdapto
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView title, date, location;
         ImageView imageView;
+        LinearLayout linearLayout;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -50,6 +52,7 @@ public class PostsGeneralAdaptor extends RecyclerView.Adapter<PostsGeneralAdapto
             date = itemView.findViewById(R.id.postRowModification);
             location = itemView.findViewById(R.id.postRowLocation);
             imageView = itemView.findViewById(R.id.postRowPicture);
+            linearLayout = itemView.findViewById(R.id.singlePostId);
         }
     }
 
@@ -67,10 +70,18 @@ public class PostsGeneralAdaptor extends RecyclerView.Adapter<PostsGeneralAdapto
         holder.date.setText(post.getDateCreated());
         HttpUtility.loadBitmapIntoImage(context, holder.imageView, post.getFilesAddresses().get(0));
 //        Picasso.get().load(post.getFilesAddresses().get(0)).into(holder.imageView);
-        holder.imageView.setOnClickListener(new View.OnClickListener() {
+//        holder.imageView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ShowSinglePost.post = data.get(position);
+//            }
+//        });
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ShowSinglePost.post = data.get(position);
+                ShowSinglePost.setPost(data.get(position));
+                MainPage mainPage = (MainPage) layoutInflater.getContext();
+                mainPage.showPost();
             }
         });
     }

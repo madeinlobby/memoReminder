@@ -424,7 +424,7 @@ public class MainPage extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void showPost(View view){
+    public void showPost(){
         Toast.makeText(this,"click",Toast.LENGTH_SHORT);
         Intent intent = new Intent(this, ShowSinglePost.class);
         startActivity(intent);

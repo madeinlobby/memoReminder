@@ -11,6 +11,11 @@ import android.os.Build;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
+import android.util.Log;
+import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
 import androidx.annotation.RequiresApi;
@@ -37,13 +42,18 @@ public class HttpUtility {
     private static HttpURLConnection httpConn;
     private static URL url;
     private static StringBuilder response;
+    private static String cookie;
+
+    public static void setCookie(String cookie) {
+        HttpUtility.cookie = cookie;
+    }
 
     public static String sendPostRequest(String requestURL, Map<String, String> params) {
         try {
             url = new URL(requestURL);
             httpConn = (HttpURLConnection) url.openConnection();
             httpConn.setRequestMethod("POST");
-            httpConn.setRequestProperty("Cookie", "__test=19aa2c61eb406dc180c118dc08efdb2b");
+            httpConn.setRequestProperty("Cookie", cookie);
             StringBuffer requestParams = new StringBuffer();
 
             if (params.size() > 0) {
@@ -96,7 +106,7 @@ public class HttpUtility {
             connection = new URL(requestUrl).openConnection();
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
-            connection.setRequestProperty("Cookie", "__test=19aa2c61eb406dc180c118dc08efdb2b");
+            connection.setRequestProperty("Cookie", cookie);
             OutputStream output = connection.getOutputStream();
             PrintWriter writer = new PrintWriter(new OutputStreamWriter(output, charset), true);
 
@@ -185,7 +195,7 @@ public class HttpUtility {
                 try {
                     URL url = new URL(addr);
                     URLConnection conn = url.openConnection();
-                    conn.addRequestProperty("Cookie", "__test=19aa2c61eb406dc180c118dc08efdb2b");
+                    conn.addRequestProperty("Cookie", cookie);
                     final Bitmap bmp = BitmapFactory.decodeStream(conn.getInputStream());
                     ((Activity) context).runOnUiThread(new Runnable() {
                         @Override
@@ -198,6 +208,20 @@ public class HttpUtility {
                 }
             }
         }).start();
+    }
+
+    public static void getCookies (Context context) {
+        WebView webView = new WebView(context);
+        webView.setVisibility(View.INVISIBLE);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.loadUrl(BaseController.server + "/getCode.php");
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                String cookie = CookieManager.getInstance().getCookie(BaseController.server + "/getcode.php");
+                setCookie(cookie);
+            }
+        });
     }
 }
 

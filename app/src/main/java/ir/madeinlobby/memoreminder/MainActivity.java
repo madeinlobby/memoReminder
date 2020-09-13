@@ -9,6 +9,9 @@ import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         mainActivity = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        HttpUtility.getCookies(this);
+
         TextView textView = findViewById(R.id.register);
         SpannableString content = new SpannableString("create an account");
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);

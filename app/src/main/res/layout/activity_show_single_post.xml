@@ -64,13 +64,6 @@
                     app:sliderIndicatorUnselectedColor="#FFF"
                     app:sliderScrollTimeInSec="1"
                     app:sliderStartAutoCycle="true" />
-                <!--        <ImageView-->
-                <!--            android:layout_width="40dp"-->
-                <!--            android:layout_height="40dp"-->
-                <!--            android:src="@drawable/tag_icon1"-->
-                <!--            android:layout_gravity="right"-->
-                <!--            android:onClick="showTaggedPeople"-->
-                <!--            android:padding="5dp"/>-->
 
             </androidx.cardview.widget.CardView>
 
@@ -124,8 +117,82 @@
                 android:id="@+id/divider2"
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="5dp"
                 android:background="@color/topicColor" />
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:orientation="horizontal"-->
+            <!--                android:paddingTop="10dp">-->
+
+            <!--                <ImageView-->
+            <!--                    android:layout_width="45dp"-->
+            <!--                    android:layout_height="45dp"-->
+            <!--                    android:layout_gravity="start"-->
+            <!--                    android:padding="5dp"-->
+            <!--                    android:layout_weight="0"-->
+            <!--                    android:src="@drawable/comments" />-->
+
+            <!--                <EditText-->
+            <!--                    android:padding="10dp"-->
+            <!--                    android:id="@+id/AddComment"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="40dp"-->
+            <!--                    android:layout_marginLeft="10dp"-->
+            <!--                    android:hint="add a comment"-->
+            <!--                    android:layout_weight="1"-->
+            <!--                    android:inputType="textMultiLine"-->
+            <!--                    android:drawableEnd="@drawable/ic_baseline_send_24"-->
+            <!--                    android:layout_marginEnd="10dp"-->
+            <!--                    android:background="@drawable/text_input_style"/>-->
+            <!--            </LinearLayout>-->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/commentsLogo"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="start"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="0"
+                    android:src="@drawable/comments" />
+
+                <EditText
+                    android:id="@+id/AddComment"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:layout_toRightOf="@id/commentsLogo"
+                    android:background="@drawable/text_input_style"
+                    android:hint="add a comment"
+                    android:inputType="textMultiLine"
+                    android:padding="10dp" />
+
+                <ImageView
+                    android:id="@+id/searchUser"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignEnd="@id/AddComment"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:onClick="searchUsername"
+                    android:src="@drawable/ic_baseline_send_24" />
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleViewForComments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="5dp" />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

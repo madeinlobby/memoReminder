@@ -23,21 +23,45 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="15dp"
                 android:background="@color/postColor"
+                android:orientation="horizontal"
                 android:padding="3dp">
 
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="8dp"
                     android:src="@drawable/location_icon" />
 
                 <TextView
                     android:id="@+id/singlePostLocation"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Shiraz"
+                    android:layout_weight = "0"
                     android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:layout_weight = "1"
                     android:textSize="18sp" />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/owner" />
+
+                <TextView
+                    android:id="@+id/postOwner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="farmand"
+                    android:textColor="@color/black"
+                    android:layout_marginRight="6dp"
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <androidx.cardview.widget.CardView

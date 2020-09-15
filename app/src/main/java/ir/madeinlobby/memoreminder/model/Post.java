@@ -76,4 +76,6 @@ public class Post {
     public ArrayList<String> getFilesAddresses() {
         return filesAddresses;
     }
+
+
 }

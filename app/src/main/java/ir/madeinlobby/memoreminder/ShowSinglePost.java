@@ -43,6 +43,9 @@ public class ShowSinglePost extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_single_post);
 
+        TextView textView = findViewById(R.id.postOwner);
+        textView.setText(post.getUsernameWhoBelong());
+
         RecyclerView recyclerView = findViewById(R.id.recycleViewForTaggedPeople);
         ChipsLayoutManager chipsLayoutManager = ChipsLayoutManager.newBuilder(ShowSinglePost.this).build();
         recyclerView.setLayoutManager(chipsLayoutManager);

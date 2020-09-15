@@ -51,9 +51,9 @@ public class ShowSinglePost extends AppCompatActivity {
 
         Log.d("comment1", post.getComments().size() + "");
         RecyclerView recyclerView2 = findViewById(R.id.recycleViewForComments);
-//        recyclerView2.setLayoutManager(new LinearLayoutManager(ShowSinglePost.this));
+        recyclerView2.setLayoutManager(new LinearLayoutManager(ShowSinglePost.this));
 //        recyclerView2.setLayoutManager(new VegaLayoutManager());
-        recyclerView2.setLayoutManager(new VirtualLayoutManager(ShowSinglePost.this));
+//        recyclerView2.setLayoutManager(new VirtualLayoutManager(ShowSinglePost.this));
         commentsAdaptor = new CommentsAdaptor(post.getComments(), ShowSinglePost.this);
         recyclerView2.setAdapter(commentsAdaptor);
 

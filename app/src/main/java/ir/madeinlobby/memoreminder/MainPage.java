@@ -194,35 +194,52 @@ public class MainPage extends AppCompatActivity {
     }
 
     private void logout() {
-        final HashMap<String, String> fields = new HashMap<>();
-        fields.put("token", BaseController.getToken());
-        new Thread(new Runnable() {
+        new AlertDialog.Builder(MainPage.this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("logout")
+                .setMessage("are you sure you want to logout")
+                .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        final HashMap<String, String> fields = new HashMap<>();
+                        fields.put("token", BaseController.getToken());
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                String response = HttpUtility.sendPostRequest(BaseController.server + "/logout.php", fields);
+                                if (response.startsWith("error")) {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            BaseController.showError(MainPage.this, getString(R.string.error_connection_server));
+                                        }
+                                    });
+                                } else {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(MainPage.this, getString(R.string.logout_successful), Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                                }
+                            }
+                        }).start();
+                        BaseController.getTags().clear();
+                        BaseController.getFriends().clear();
+                        BaseController.getFriendsRequests().clear();
+                        BaseController.getSearchedUsers().clear();
+                        BaseController.getTaggedPosts().clear();
+                        BaseController.getUserPosts().clear();
+                        BaseController.setToken("");
+                        finish();
+                    }
+                }).setNegativeButton("cancel", new DialogInterface.OnClickListener() {
             @Override
-            public void run() {
-                String response = HttpUtility.sendPostRequest(BaseController.server + "/logout.php", fields);
-                if (response.startsWith("error")) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            BaseController.showError(MainPage.this, getString(R.string.error_connection_server));
-                        }
-                    });
-                } else {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(MainPage.this, getString(R.string.logout_successful), Toast.LENGTH_LONG).show();
-                        }
-                    });
-                }
+            public void onClick(DialogInterface dialogInterface, int i) {
+
             }
-        }).start();
-        BaseController.getTags().clear();
-        BaseController.getFriends().clear();
-        BaseController.getFriendsRequests().clear();
-        BaseController.getSearchedUsers().clear();
-        BaseController.setToken("");
-        finish();
+        })
+                .show();
     }
 
     public void showFriendRequests(View view) {

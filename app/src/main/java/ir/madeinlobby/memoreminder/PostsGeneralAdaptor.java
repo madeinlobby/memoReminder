@@ -68,8 +68,8 @@ public class PostsGeneralAdaptor extends RecyclerView.Adapter<PostsGeneralAdapto
         holder.location.setText(post.getLocation());
         holder.title.setText(post.getTitle());
         holder.date.setText(post.getDateCreated());
-        HttpUtility.loadBitmapIntoImage(context, holder.imageView, post.getFilesAddresses().get(0));
-//        Picasso.get().load(post.getFilesAddresses().get(0)).into(holder.imageView);
+//        HttpUtility.loadBitmapIntoImage(context, holder.imageView, post.getFilesAddresses().get(0));
+        Picasso.get().load(post.getFilesAddresses().get(0)).into(holder.imageView);
 //        holder.imageView.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {

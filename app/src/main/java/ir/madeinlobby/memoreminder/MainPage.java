@@ -95,6 +95,7 @@ public class MainPage extends AppCompatActivity {
                     case R.id.nav_tagged:
                         floatingActionButtonForAddPost.setVisibility(View.GONE);
                         floatingActionButtonForAddFriend.setVisibility(View.GONE);
+                        selectedFragment = new TaggedPostsPageFragment(MainPage.this);
                         break;
 
                     case R.id.nav_logout:

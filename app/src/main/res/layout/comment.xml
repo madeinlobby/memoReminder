@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_margin="8dp"
     android:background="@color/background"
     android:orientation="vertical">
 
@@ -25,7 +25,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="sender"
-                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textColor="@color/topicColor"
                 android:textSize="18sp" />
             <TextView
                 android:id="@+id/commentDate"
@@ -49,12 +50,12 @@
             android:text="descriptionnn"
             android:layout_gravity="left"/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginRight="5dp"
-        android:background="@color/grey" />
+<!--    <View-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="1dp"-->
+<!--        android:layout_marginLeft="5dp"-->
+<!--        android:layout_marginTop="3dp"-->
+<!--        android:layout_marginRight="5dp"-->
+<!--        android:background="@color/grey" />-->
 
 </LinearLayout>

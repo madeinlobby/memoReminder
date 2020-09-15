@@ -151,7 +151,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:padding="10dp">
+                android:paddingTop="10dp">
 
                 <ImageView
                     android:id="@+id/commentsLogo"
@@ -175,14 +175,25 @@
                     android:inputType="textMultiLine"
                     android:padding="10dp" />
 
+<!--                <ImageView-->
+<!--                    android:id="@+id/addCommentButton"-->
+<!--                    android:layout_width="30dp"-->
+<!--                    android:layout_height="30dp"-->
+<!--                    android:layout_alignEnd="@id/AddComment"-->
+<!--                    android:layout_marginRight="5dp"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:layout_marginTop="5dp"-->
+<!--                    android:onClick="addComment"-->
+<!--                    android:src="@drawable/ic_baseline_send_24" />-->
                 <ImageView
                     android:id="@+id/addCommentButton"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:layout_alignEnd="@id/AddComment"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="1dp"
+                    android:paddingBottom="6dp"
                     android:onClick="addComment"
                     android:src="@drawable/ic_baseline_send_24" />
             </RelativeLayout>

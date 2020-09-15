@@ -51,9 +51,9 @@ public class ShowSinglePost extends AppCompatActivity {
 
         Log.d("comment1", post.getComments().size() + "");
         RecyclerView recyclerView2 = findViewById(R.id.recycleViewForComments);
-//        recyclerView2.setLayoutManager(new LinearLayoutManager(ShowSinglePost.this));
+        recyclerView2.setLayoutManager(new LinearLayoutManager(ShowSinglePost.this));
 //        recyclerView2.setLayoutManager(new VegaLayoutManager());
-        recyclerView2.setLayoutManager(new VirtualLayoutManager(ShowSinglePost.this));
+//        recyclerView2.setLayoutManager(new VirtualLayoutManager(ShowSinglePost.this));
         commentsAdaptor = new CommentsAdaptor(post.getComments(), ShowSinglePost.this);
         recyclerView2.setAdapter(commentsAdaptor);
 
@@ -114,7 +114,8 @@ public class ShowSinglePost extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final String response = HttpUtility.sendPostRequest(BaseController.server + "/getFriends.php", fields2);
+                final String response = HttpUtility.sendPostRequest(BaseController.server + "/addComment.php", fields2);
+                Log.d("comments1",response);
                 if (response.startsWith("error")) {
                     runOnUiThread(new Runnable() {
                         @Override
@@ -123,12 +124,14 @@ public class ShowSinglePost extends AppCompatActivity {
                         }
                     });
                 } else {
+                    Comment comment1 = new Gson().fromJson(response, Comment.class);
+                    post.getComments().add(comment1);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             editText.setText("");
                             Toast.makeText(ShowSinglePost.this, "your comment added", Toast.LENGTH_LONG).show();
-//                            commentsAdaptor.notifyDataSetChanged();
+                            commentsAdaptor.notifyDataSetChanged();
                         }
                     });
                 }

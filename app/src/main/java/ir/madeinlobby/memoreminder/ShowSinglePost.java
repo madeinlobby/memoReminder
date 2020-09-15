@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -45,13 +46,15 @@ public class ShowSinglePost extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycleViewForTaggedPeople);
         ChipsLayoutManager chipsLayoutManager = ChipsLayoutManager.newBuilder(ShowSinglePost.this).build();
         recyclerView.setLayoutManager(chipsLayoutManager);
-        TaggedPeopleInAPostAdaptor taggedPeopleInAPostAdaptor = new TaggedPeopleInAPostAdaptor(post.getUsersWhoBeenTagged(),ShowSinglePost.this);
+        TaggedPeopleInAPostAdaptor taggedPeopleInAPostAdaptor = new TaggedPeopleInAPostAdaptor(post.getUsersWhoBeenTagged(), ShowSinglePost.this);
         recyclerView.setAdapter(taggedPeopleInAPostAdaptor);
 
-        Log.d("comment1",post.getComments().size()+"");
+        Log.d("comment1", post.getComments().size() + "");
         RecyclerView recyclerView2 = findViewById(R.id.recycleViewForComments);
-        recyclerView2.setLayoutManager(new LinearLayoutManager(ShowSinglePost.this));
-        commentsAdaptor = new CommentsAdaptor(post.getComments(),ShowSinglePost.this);
+//        recyclerView2.setLayoutManager(new LinearLayoutManager(ShowSinglePost.this));
+//        recyclerView2.setLayoutManager(new VegaLayoutManager());
+        recyclerView2.setLayoutManager(new VirtualLayoutManager(ShowSinglePost.this));
+        commentsAdaptor = new CommentsAdaptor(post.getComments(), ShowSinglePost.this);
         recyclerView2.setAdapter(commentsAdaptor);
 
 
@@ -77,7 +80,7 @@ public class ShowSinglePost extends AppCompatActivity {
             color.getBackground().setTint(Color.parseColor(tag.getColorHex()));
             tags.addView(color);
             TextView tagName = new TextView(this);
-            tagName.setText(" "+tag.getTitle() + "   ");
+            tagName.setText(" " + tag.getTitle() + "   ");
             tags.addView(tagName);
             color.setTextSize(16);
             tagName.setTextSize(16);
@@ -103,11 +106,11 @@ public class ShowSinglePost extends AppCompatActivity {
 
     public void addComment(View view) {
         final EditText editText = findViewById(R.id.AddComment);
-        String comment=editText.getText().toString();
+        String comment = editText.getText().toString();
         final HashMap<String, String> fields2 = new HashMap<>();
-        fields2.put("postId",post.getId());
+        fields2.put("postId", post.getId());
         fields2.put("token", BaseController.getToken());
-        fields2.put("content",comment);
+        fields2.put("content", comment);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -124,7 +127,7 @@ public class ShowSinglePost extends AppCompatActivity {
                         @Override
                         public void run() {
                             editText.setText("");
-                            Toast.makeText(ShowSinglePost.this,"your comment added",Toast.LENGTH_LONG).show();
+                            Toast.makeText(ShowSinglePost.this, "your comment added", Toast.LENGTH_LONG).show();
 //                            commentsAdaptor.notifyDataSetChanged();
                         }
                     });

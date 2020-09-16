@@ -37,11 +37,12 @@ public class TaggedPostsPageFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getTaggedPosts1();
+//        getTaggedPosts1();
         layout = (RelativeLayout) inflater.inflate(R.layout.tagged_posts_page, container, false);
         RecyclerView recyclerView = layout.findViewById(R.id.recycleViewForTaggedPosts);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         postsGeneralAdaptor = new PostsGeneralAdaptor(BaseController.getTaggedPosts(), context);
+        MainActivity.postsGeneralAdaptor2 = postsGeneralAdaptor;
         recyclerView.setAdapter(postsGeneralAdaptor);
         return layout;
     }
@@ -49,8 +50,8 @@ public class TaggedPostsPageFragment extends Fragment {
     private void getTaggedPosts1() {
         final HashMap<String, String> fields2 = new HashMap<>();
         fields2.put("token", BaseController.getToken());
-        fields2.put("mentioned","true");
-        Log.d("token11",BaseController.getToken());
+        fields2.put("mentioned", "true");
+        Log.d("token11", BaseController.getToken());
         new Thread(new Runnable() {
             @Override
             public void run() {

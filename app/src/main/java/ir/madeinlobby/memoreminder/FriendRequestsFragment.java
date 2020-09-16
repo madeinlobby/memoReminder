@@ -34,13 +34,14 @@ public class FriendRequestsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getFriendRequests();
+//        getFriendRequests();
         layout = (RelativeLayout) inflater.inflate(R.layout.freind_requests, container, false);
         RecyclerView recyclerView = layout.findViewById(R.id.recycleViewForFriendRequests);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         friendRequestAdaptor = new FriendRequestAdaptor(BaseController.getFriendsRequests(), context);
         MainPage.friendRequestAdaptor = friendRequestAdaptor;
         recyclerView.setAdapter(friendRequestAdaptor);
+        MainActivity.friendRequestAdaptor = friendRequestAdaptor;
         return layout;
     }
 

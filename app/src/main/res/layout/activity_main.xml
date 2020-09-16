@@ -68,16 +68,29 @@
             android:background="@drawable/text_input_style"/>
     </LinearLayout>
 
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/button"
-        android:text="@string/login"
-        android:textAllCaps="false"
-        android:textSize="20sp"
-        android:onClick="loginClicked"/>
+<!--    <Button-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        android:background="@drawable/button"-->
+<!--        android:text="@string/login"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:textSize="20sp"-->
+<!--        android:onClick="loginClicked"/>-->
+
+        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+            android:id="@+id/loginButton"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/button"
+            android:text="@string/login"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:onClick="loginClicked"/>
+
     <TextView
         android:id="@+id/register"
         android:layout_marginTop="15dp"

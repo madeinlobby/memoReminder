@@ -42,12 +42,13 @@ public class TagsPageFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getTags();
+//        getTags();
         layout = (RelativeLayout) inflater.inflate(R.layout.tags_page, container, false);
         RecyclerView recyclerView = layout.findViewById(R.id.recycleViewForTags);
         recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
         tagsAdaptor = new TagsAdaptor(BaseController.getTags(), context);
         MainPage.tagsAdaptor = tagsAdaptor;
+        MainActivity.tagsAdaptor = tagsAdaptor;
         recyclerView.setAdapter(tagsAdaptor);
 //        return inflater.inflate(R.layout.tags_page,container,false);
         return layout;

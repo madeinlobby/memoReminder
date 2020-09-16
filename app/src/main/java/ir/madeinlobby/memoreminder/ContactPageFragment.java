@@ -44,12 +44,13 @@ public class ContactPageFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getFriends();
+//        getFriends();
         layout = (RelativeLayout) inflater.inflate(R.layout.contacts_page, container, false);
         RecyclerView recyclerView = layout.findViewById(R.id.recycleViewForFriends);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         friendsAdaptor = new FriendsAdaptor(BaseController.getFriends(), context);
         MainPage.friendsAdaptor = friendsAdaptor;
+        MainActivity.friendsAdaptor = friendsAdaptor;
         recyclerView.setAdapter(friendsAdaptor);
         return layout;
     }

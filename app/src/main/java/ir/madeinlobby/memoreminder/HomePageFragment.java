@@ -37,11 +37,12 @@ public class HomePageFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getPosts();
+//        getPosts();
         layout = (RelativeLayout) inflater.inflate(R.layout.home_page, container, false);
         RecyclerView recyclerView = layout.findViewById(R.id.recycleViewForPosts);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         postsGeneralAdaptor = new PostsGeneralAdaptor(BaseController.getUserPosts(), context);
+        MainActivity.postsGeneralAdaptor = postsGeneralAdaptor;
         recyclerView.setAdapter(postsGeneralAdaptor);
         return layout;
     }
@@ -49,7 +50,7 @@ public class HomePageFragment extends Fragment {
     private void getPosts() {
         final HashMap<String, String> fields2 = new HashMap<>();
         fields2.put("token", BaseController.getToken());
-        Log.d("token11",BaseController.getToken());
+        Log.d("token11", BaseController.getToken());
         new Thread(new Runnable() {
             @Override
             public void run() {

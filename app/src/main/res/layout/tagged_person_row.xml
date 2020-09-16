@@ -3,7 +3,7 @@
     android:orientation="horizontal"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_margin="8dp"
     android:padding="10dp"
     android:background="@drawable/border_for_photo"
     android:backgroundTint="@color/postColor">

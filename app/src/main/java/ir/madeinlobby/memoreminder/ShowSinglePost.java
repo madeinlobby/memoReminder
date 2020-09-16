@@ -1,6 +1,7 @@
 package ir.madeinlobby.memoreminder;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,14 +18,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alibaba.android.vlayout.VirtualLayoutManager;
-import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager;
+
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
-import com.stone.vega.library.VegaLayoutManager;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,8 +53,13 @@ public class ShowSinglePost extends AppCompatActivity {
         textView.setText(post.getUsernameWhoBelong());
 
         RecyclerView recyclerView = findViewById(R.id.recycleViewForTaggedPeople);
-        ChipsLayoutManager chipsLayoutManager = ChipsLayoutManager.newBuilder(ShowSinglePost.this).build();
-        recyclerView.setLayoutManager(chipsLayoutManager);
+//        ChipsLayoutManager chipsLayoutManager = ChipsLayoutManager.newBuilder(ShowSinglePost.this)
+//                .setRowStrategy(ChipsLayoutManager.STRATEGY_DEFAULT).setMaxViewsInRow(2).build();
+//        recyclerView.setLayoutManager(chipsLayoutManager);
+//        FlowLayoutManager flowLayoutManager = new FlowLayoutManager();
+//        flowLayoutManager.setAutoMeasureEnabled(true);
+//        recyclerView.setLayoutManager(flowLayoutManager);
+        recyclerView.setLayoutManager(new GridLayoutManager(ShowSinglePost.this,2));
         TaggedPeopleInAPostAdaptor taggedPeopleInAPostAdaptor = new TaggedPeopleInAPostAdaptor(post.getUsersWhoBeenTagged(), ShowSinglePost.this);
         recyclerView.setAdapter(taggedPeopleInAPostAdaptor);
 

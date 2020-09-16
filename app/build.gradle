@@ -62,4 +62,5 @@ dependencies {
 
     implementation 'br.com.simplepass:loading-button-android:2.2.0'
 
+    implementation 'com.xiaofeng.android:flowlayoutmanager:1.2.3.2'
 }

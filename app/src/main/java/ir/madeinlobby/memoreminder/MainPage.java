@@ -125,7 +125,7 @@ public class MainPage extends AppCompatActivity {
             BaseController.showError(MainPage.this, getString(R.string.error_for_pick_color));
             return;
         }
-        EditText editText = findViewById(R.id.tagName);
+        final EditText editText = findViewById(R.id.tagName);
         final String tagTitle = editText.getText().toString();
         final HashMap<String, String> fields = new HashMap<>();
         fields.put("token", BaseController.getToken());
@@ -150,6 +150,7 @@ public class MainPage extends AppCompatActivity {
                             BaseController.getTags().add(new Tag(tagTitle, tagColor));
                             tagsAdaptor.notifyDataSetChanged();
                             tagColor = "";
+                            editText.setText("");
                         }
                     });
                 }
@@ -443,7 +444,6 @@ public class MainPage extends AppCompatActivity {
     }
 
     public void showPost(){
-        Toast.makeText(this,"click",Toast.LENGTH_SHORT);
         Intent intent = new Intent(this, ShowSinglePost.class);
         startActivity(intent);
     }

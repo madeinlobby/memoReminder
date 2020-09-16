@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,11 +38,17 @@ import ir.madeinlobby.memoreminder.utilities.HttpUtility;
 public class ShowSinglePost extends AppCompatActivity {
     private static Post post;
     CommentsAdaptor commentsAdaptor;
+    static PostsGeneralAdaptor postsGeneralAdaptor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_single_post);
+
+        ImageView postDeleteIcon = findViewById(R.id.deletePost);
+        if (BaseController.getTaggedPosts().contains(post)) {
+            postDeleteIcon.setVisibility(View.GONE);
+        }
 
         TextView textView = findViewById(R.id.postOwner);
         textView.setText(post.getUsernameWhoBelong());
@@ -118,7 +125,7 @@ public class ShowSinglePost extends AppCompatActivity {
             @Override
             public void run() {
                 final String response = HttpUtility.sendPostRequest(BaseController.server + "/addComment.php", fields2);
-                Log.d("comments1",response);
+                Log.d("comments1", response);
                 if (response.startsWith("error")) {
                     runOnUiThread(new Runnable() {
                         @Override
@@ -135,6 +142,36 @@ public class ShowSinglePost extends AppCompatActivity {
                             editText.setText("");
                             Toast.makeText(ShowSinglePost.this, "your comment added", Toast.LENGTH_LONG).show();
                             commentsAdaptor.notifyDataSetChanged();
+                        }
+                    });
+                }
+            }
+        }).start();
+    }
+
+    public void deletePostClicked(View view) {
+        final HashMap<String, String> fields2 = new HashMap<>();
+        fields2.put("postId", post.getId());
+        fields2.put("token", BaseController.getToken());
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final String response = HttpUtility.sendPostRequest(BaseController.server + "/deletePost.php", fields2);
+                if (response.startsWith("error")) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            BaseController.showError(ShowSinglePost.this, getString(R.string.error_connection_server));
+                        }
+                    });
+                } else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            BaseController.getUserPosts().remove(post);
+                            Toast.makeText(ShowSinglePost.this, "post removed successfully", Toast.LENGTH_LONG).show();
+                            postsGeneralAdaptor.notifyDataSetChanged();
+                            finish();
                         }
                     });
                 }

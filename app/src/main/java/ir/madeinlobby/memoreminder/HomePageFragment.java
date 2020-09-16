@@ -43,6 +43,7 @@ public class HomePageFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         postsGeneralAdaptor = new PostsGeneralAdaptor(BaseController.getUserPosts(), context);
         MainActivity.postsGeneralAdaptor = postsGeneralAdaptor;
+        ShowSinglePost.postsGeneralAdaptor = postsGeneralAdaptor;
         recyclerView.setAdapter(postsGeneralAdaptor);
         return layout;
     }

@@ -26,6 +26,7 @@ import java.util.Collection;
 import java.util.HashMap;
 
 import br.com.simplepass.loadingbutton.customViews.CircularProgressButton;
+import br.com.simplepass.loadingbutton.customViews.OnAnimationEndListener;
 import ir.madeinlobby.memoreminder.model.Post;
 import ir.madeinlobby.memoreminder.model.Tag;
 import ir.madeinlobby.memoreminder.utilities.BaseController;

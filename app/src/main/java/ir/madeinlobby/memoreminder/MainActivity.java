@@ -175,6 +175,9 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             BaseController.showError(MainActivity.this, getString(R.string.error_connection_server));
+                            circularProgressButton.stopAnimation();
+                            circularProgressButton.revertAnimation();
+                            circularProgressButton.setBackgroundResource(R.drawable.button);
                         }
                     });
                 } else {

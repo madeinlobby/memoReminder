@@ -81,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             BaseController.showError(MainActivity.this, getString(R.string.error_for_login));
+                            circularProgressButton.stopAnimation();
+                            circularProgressButton.revertAnimation();
+                            circularProgressButton.setBackgroundResource(R.drawable.button);
 //                            Toast.makeText(MainActivity.this, "invalid username or password", Toast.LENGTH_LONG).show();
                         }
                     });
@@ -142,6 +145,9 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             BaseController.showError(MainActivity.this, getString(R.string.error_connection_server));
+                            circularProgressButton.stopAnimation();
+                            circularProgressButton.revertAnimation();
+                            circularProgressButton.setBackgroundResource(R.drawable.button);
                         }
                     });
                 } else {
@@ -192,6 +198,10 @@ public class MainActivity extends AppCompatActivity {
                             circularProgressButton.stopAnimation();
                             circularProgressButton.revertAnimation();
                             circularProgressButton.setBackgroundResource(R.drawable.button);
+                            EditText textUserName = findViewById(R.id.usernameForLogin);
+                            EditText textPassword = findViewById(R.id.passwordForLogin);
+                            textPassword.setText("");
+                            textUserName.setText("");
                             Toast.makeText(MainActivity.this, getString(R.string.login_successful), Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(MainActivity.this, MainPage.class);
                             startActivity(intent);
@@ -214,6 +224,9 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             BaseController.showError(MainActivity.this, getString(R.string.error_connection_server));
+                            circularProgressButton.stopAnimation();
+                            circularProgressButton.revertAnimation();
+                            circularProgressButton.setBackgroundResource(R.drawable.button);
                         }
                     });
                 } else {
@@ -248,6 +261,9 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             BaseController.showError(MainActivity.this, getString(R.string.error_connection_server));
+                            circularProgressButton.stopAnimation();
+                            circularProgressButton.revertAnimation();
+                            circularProgressButton.setBackgroundResource(R.drawable.button);
                         }
                     });
                 } else {

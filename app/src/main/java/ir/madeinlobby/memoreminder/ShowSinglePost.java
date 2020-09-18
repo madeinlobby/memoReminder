@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -154,32 +156,47 @@ public class ShowSinglePost extends AppCompatActivity {
     }
 
     public void deletePostClicked(View view) {
-        final HashMap<String, String> fields2 = new HashMap<>();
-        fields2.put("token", BaseController.getToken());
-        fields2.put("postId", post.getId());
-        new Thread(new Runnable() {
+        new AlertDialog.Builder(ShowSinglePost.this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("remove post")
+                .setMessage("are you sure you want to delete this post?")
+                .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        final HashMap<String, String> fields2 = new HashMap<>();
+                        fields2.put("token", BaseController.getToken());
+                        fields2.put("postId", post.getId());
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                final String response = HttpUtility.sendPostRequest(BaseController.server + "/removePost.php", fields2);
+                                if (response.startsWith("error")) {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            BaseController.showError(ShowSinglePost.this, getString(R.string.error_connection_server));
+                                        }
+                                    });
+                                } else {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            BaseController.getUserPosts().remove(post);
+                                            Toast.makeText(ShowSinglePost.this, "post removed successfully", Toast.LENGTH_LONG).show();
+                                            postsGeneralAdaptor.notifyDataSetChanged();
+                                            finish();
+                                        }
+                                    });
+                                }
+                            }
+                        }).start();
+                    }
+                }).setNegativeButton("cancel", new DialogInterface.OnClickListener() {
             @Override
-            public void run() {
-                final String response = HttpUtility.sendPostRequest(BaseController.server + "/removePost.php", fields2);
-                if (response.startsWith("error")) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            BaseController.showError(ShowSinglePost.this, getString(R.string.error_connection_server));
-                        }
-                    });
-                } else {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            BaseController.getUserPosts().remove(post);
-                            Toast.makeText(ShowSinglePost.this, "post removed successfully", Toast.LENGTH_LONG).show();
-                            postsGeneralAdaptor.notifyDataSetChanged();
-                            finish();
-                        }
-                    });
-                }
+            public void onClick(DialogInterface dialogInterface, int i) {
+
             }
-        }).start();
+        })
+                .show();
     }
 }

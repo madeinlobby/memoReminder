@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -186,6 +187,8 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
 //                            postsGeneralAdaptor2.notifyDataSetChanged();
                             circularProgressButton.stopAnimation();
+                            circularProgressButton.revertAnimation();
+                            circularProgressButton.setBackgroundResource(R.drawable.button);
                             Toast.makeText(MainActivity.this, getString(R.string.login_successful), Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(MainActivity.this, MainPage.class);
                             startActivity(intent);

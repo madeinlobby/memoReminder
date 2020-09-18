@@ -155,12 +155,12 @@ public class ShowSinglePost extends AppCompatActivity {
 
     public void deletePostClicked(View view) {
         final HashMap<String, String> fields2 = new HashMap<>();
-        fields2.put("postId", post.getId());
         fields2.put("token", BaseController.getToken());
+        fields2.put("postId", post.getId());
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final String response = HttpUtility.sendPostRequest(BaseController.server + "/deletePost.php", fields2);
+                final String response = HttpUtility.sendPostRequest(BaseController.server + "/removePost.php", fields2);
                 if (response.startsWith("error")) {
                     runOnUiThread(new Runnable() {
                         @Override
